@@ -54,11 +54,11 @@ const Contact = () => {
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <Mail className="h-5 w-5 text-[hsl(35,45%,65%)]" />
-                    <span className="text-foreground">ventas@adivan.mx</span>
+                    <span className="text-foreground">Adivanwesternbooots@gmail.com</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Phone className="h-5 w-5 text-[hsl(35,45%,65%)]" />
-                    <span className="text-foreground">+52 (477) 787 1652</span>
+                    <span className="text-foreground">+52 (477) 554 7669</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <MapPin className="h-5 w-5 text-[hsl(35,45%,65%)]" />
