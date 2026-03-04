@@ -15,8 +15,8 @@ import bagImage from "@/assets/product-bag.jpg";
 
 const products = [
   { id: 1, name: "Botas Rosas", price: 1299, category: "Botas", image: "/Botasrosas.jpg", description: "Cinturón de piel café con hebilla metálica y acabado rústico moderno." },
-  { id: 2, name: "Cinturón Negro", price: 1199, category: "Cinturones", image: beltBlack, description: "Diseño limpio en piel negra para combinar con todo tu guardarropa." },
-  { id: 3, name: "Cartera Doble Clásica", price: 899, category: "Carteras", image: walletClassic, description: "Cartera de piel marrón con compartimentos para el uso diario." },
+  { id: 2, name: "Papada de Cocodrilo", price: 1199, category: "Botas", image: "/coco-papada.jpg", description: "Diseño limpio en piel negra para combinar con todo tu guardarropa." },
+  { id: 3, name: "Pescado Choco", price: 899, category: "Botas", image: "/pescado-choco.jpg", description: "Cartera de piel marrón con compartimentos para el uso diario." },
   { id: 4, name: "Cartera Slim Negra", price: 799, category: "Carteras", image: walletSlim, description: "Cartera delgada de piel para llevar lo esencial." },
   { id: 5, name: "Bolsa Crossbody Negra", price: 2199, category: "Bolsas", image: bagCrossbody, description: "Bolsa bandolera de piel negra para llevar contigo lo indispensable." },
   { id: 6, name: "Bolsa Shopper Camel", price: 1999, category: "Bolsas", image: bagShopper, description: "Bolsa amplia en tono camel, ideal para el día a día y viajes cortos." },
