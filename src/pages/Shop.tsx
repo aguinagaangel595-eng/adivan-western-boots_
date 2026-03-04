@@ -14,7 +14,7 @@ import walletImage from "@/assets/product-wallet.jpg";
 import bagImage from "@/assets/product-bag.jpg";
 
 const products = [
-  { id: 1, name: "Botas Rosas", price: 1299, category: "Botas", image: "/botasrosas.jpg", description: "Cinturón de piel café con hebilla metálica y acabado rústico moderno." },
+  { id: 1, name: "Botas Rosas", price: 1299, category: "Botas", image: "/Botasrosas.jpg", description: "Cinturón de piel café con hebilla metálica y acabado rústico moderno." },
   { id: 2, name: "Cinturón Negro", price: 1199, category: "Cinturones", image: beltBlack, description: "Diseño limpio en piel negra para combinar con todo tu guardarropa." },
   { id: 3, name: "Cartera Doble Clásica", price: 899, category: "Carteras", image: walletClassic, description: "Cartera de piel marrón con compartimentos para el uso diario." },
   { id: 4, name: "Cartera Slim Negra", price: 799, category: "Carteras", image: walletSlim, description: "Cartera delgada de piel para llevar lo esencial." },
