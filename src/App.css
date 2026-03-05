@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "Bronco";
+  src: url("/src/assets/Bronco.ttf") format("truetype");
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
