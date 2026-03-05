@@ -27,7 +27,7 @@ const About = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <div className="aspect-[4/5] overflow-hidden rounded-3xl shadow-xl">
-                  <img src={aboutImage} alt="Artesanía ADIVAN" className="w-full h-full object-cover" />
+                  <img src="/nosotros" alt="Artesanía ADIVAN" className="w-full h-full object-cover" />
                 </div>
               </div>
               <div>
