@@ -22,8 +22,8 @@ const Header = () => {
         <div className="flex h-20 items-center justify-between">
           <div className="flex flex-col items-start">
             <Link to="/" className="flex flex-col">
-              <span className="font-serif text-3xl font-bold tracking-tight text-white">
-                ADIVAN
+              <span style={{ fontFamily: "Bronco" }} className="text-3xl text-white">
+              ADIVAN
               </span>
               <span className="text-[10px] uppercase tracking-[0.35em] text-[hsl(35,45%,65%)]">
                 Western Boots
