@@ -18,14 +18,14 @@ const products = [
   { id: 2, name: "Papada de Cocodrilo", price: 1199, category: "Botas", image: "/coco-papada.jpg", description: "Diseño limpio en piel negra para combinar con todo tu guardarropa." },
   { id: 3, name: "Pescado Choco", price: 899, category: "Botas", image: "/pescado-choco.jpg", description: "Cartera de piel marrón con compartimentos para el uso diario." },
   { id: 4, name: "Cartera Slim Negra", price: 799, category: "Carteras", image: walletSlim, description: "Cartera delgada de piel para llevar lo esencial." },
-  { id: 5, name: "Bolsa Crossbody Negra", price: 2199, category: "Bolsas", image: bagCrossbody, description: "Bolsa bandolera de piel negra para llevar contigo lo indispensable." },
+  { id: 5, name: "Bolsa Crossbody Negra", price: 2199, category: "Cinturones", image: bagCrossbody, description: "Bolsa bandolera de piel negra para llevar contigo lo indispensable." },
   { id: 6, name: "Bolsa Shopper Camel", price: 1999, category: "Bolsas", image: bagShopper, description: "Bolsa amplia en tono camel, ideal para el día a día y viajes cortos." },
-  { id: 7, name: "Llaveros de Piel", price: 399, category: "Accesorios", image: beltImage, description: "Set de llaveros en piel con grabado sutil y anillo metálico resistente." },
-  { id: 8, name: "Porta Tarjetas", price: 449, category: "Accesorios", image: walletImage, description: "Pequeño porta tarjetas de piel ideal para uso diario o viajes." },
+  { id: 7, name: "Llaveros de Piel", price: 399, category: "Otros", image: beltImage, description: "Set de llaveros en piel con grabado sutil y anillo metálico resistente." },
+  { id: 8, name: "Porta Tarjetas", price: 449, category: "Otros", image: walletImage, description: "Pequeño porta tarjetas de piel ideal para uso diario o viajes." },
   { id: 9, name: "Bolso Mensajero", price: 2499, category: "Bolsas", image: bagImage, description: "Bolso mensajero clásico de piel genuina con correa ajustable." },
 ];
 
-const categories = ["Todo", "Cinturones", "Carteras", "Bolsas", "Accesorios"];
+const categories = ["Todo", "Botas", "Cinturones", "Carteras", "Bolsas", "Sombreros", "Otros"];
 
 const Shop = () => {
   const [activeCategory, setActiveCategory] = useState("Todo");
