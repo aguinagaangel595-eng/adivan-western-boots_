@@ -1,3 +1,38 @@
+import { useState, useEffect } from "react";
+
+export default function Cookies() {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const accepted = localStorage.getItem("privacidadAceptada");
+    if (!accepted) {
+      setShow(true);
+    }
+  }, []);
+
+  const aceptar = () => {
+    localStorage.setItem("privacidadAceptada", "true");
+    setShow(false);
+  };
+
+  if (!show) return null;
+
+  return (
+    <div className="fixed bottom-0 left-0 right-0 bg-black text-white p-4 flex justify-between items-center">
+      <p>
+        Este sitio utiliza datos para mejorar tu experiencia. Al continuar aceptas
+        nuestro <a href="/privacidad" className="underline">Aviso de Privacidad</a>.
+      </p>
+
+      <button
+        onClick={aceptar}
+        className="bg-white text-black px-4 py-2 rounded"
+      >
+        Aceptar
+      </button>
+    </div>
+  );
+}
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
