@@ -9,25 +9,6 @@ const CartModal = () => {
   const formatPrice = (price: number) =>
     new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN" }).format(price);
 
-  const handleWhatsApp = () => {
-    const numero = "524775547669"; // 👈 Cambia esto por tu número (52 + 10 dígitos, sin + ni espacios)
-
-    const lineas = items.map(
-      (item) => `• ${item.name} x${item.quantity} — ${formatPrice(item.price * item.quantity)}`
-    );
-
-    const mensaje = [
-      "Hola, me gustaría hacer el siguiente pedido:",
-      "",
-      ...lineas,
-      "",
-      `*Total: ${formatPrice(totalPrice)}*`,
-    ].join("\n");
-
-    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
-    window.open(url, "_blank");
-  };
-
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetContent className="w-full sm:max-w-md bg-background flex flex-col">
@@ -71,12 +52,12 @@ const CartModal = () => {
                 <span>Total estimado:</span>
                 <span>{formatPrice(totalPrice)}</span>
               </div>
-              <Button
-                onClick={handleWhatsApp}
-                className="w-full rounded-full bg-primary text-primary-foreground text-base py-6"
-              >
-                Pedir por WhatsApp
+              <Button className="w-full rounded-full bg-primary text-primary-foreground text-base py-6">
+                Pagar ahora
               </Button>
+              <p className="text-xs text-muted-foreground text-center">
+                *Flujo de pago por enlace. Conecta Stripe, Mercado Pago, PayPal, etc.
+              </p>
             </div>
           </>
         )}
