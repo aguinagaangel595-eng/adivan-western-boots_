@@ -4,17 +4,18 @@ import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
 const CartModal = () => {
-  const { items, isOpen, setIsOpen, updateQuantity, removeItem, totalPrice, clearCart } = useCart();
+  const { items, isOpen, setIsOpen, updateQuantity, removeItem, totalPrice } = useCart();
 
   const formatPrice = (price: number) =>
     new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN" }).format(price);
 
   const handleWhatsApp = () => {
-    const numero = "524775547669"; // 👈 Cambia por tu número (52 + 10 dígitos, sin espacios ni +)
+    const numero = "524775547669"; // 👈 Tu número aquí
 
-    const lineas = items.map(
-      (item) => `• ${item.name} x${item.quantity} — ${formatPrice(item.price * item.quantity)}`
-    );
+    const lineas = items.map((item) => {
+      const talla = item.talla ? ` | Talla: ${item.talla}` : "";
+      return `• ${item.name}${talla} x${item.quantity} — ${formatPrice(item.price * item.quantity)}`;
+    });
 
     const mensaje = [
       "Hola, me gustaría hacer el siguiente pedido:",
@@ -43,20 +44,23 @@ const CartModal = () => {
           <>
             <div className="flex-1 overflow-y-auto space-y-4 py-4">
               {items.map((item) => (
-                <div key={item.id} className="flex gap-4 p-3 rounded-xl bg-muted/50">
+                <div key={`${item.id}-${item.talla}`} className="flex gap-4 p-3 rounded-xl bg-muted/50">
                   <img src={item.image} alt={item.name} className="w-20 h-20 object-cover rounded-lg" />
                   <div className="flex-1 min-w-0">
                     <h4 className="font-semibold text-sm truncate">{item.name}</h4>
+                    {item.talla && (
+                      <p className="text-xs text-muted-foreground">Talla: {item.talla}</p>
+                    )}
                     <p className="text-sm text-muted-foreground">{formatPrice(item.price)}</p>
                     <div className="flex items-center gap-2 mt-2">
-                      <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => updateQuantity(item.id, item.quantity - 1)}>
+                      <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => updateQuantity(item.id, item.quantity - 1, item.talla)}>
                         <Minus className="h-3 w-3" />
                       </Button>
                       <span className="text-sm font-medium w-6 text-center">{item.quantity}</span>
-                      <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => updateQuantity(item.id, item.quantity + 1)}>
+                      <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => updateQuantity(item.id, item.quantity + 1, item.talla)}>
                         <Plus className="h-3 w-3" />
                       </Button>
-                      <Button variant="ghost" size="icon" className="h-7 w-7 ml-auto text-destructive" onClick={() => removeItem(item.id)}>
+                      <Button variant="ghost" size="icon" className="h-7 w-7 ml-auto text-destructive" onClick={() => removeItem(item.id, item.talla)}>
                         <Trash2 className="h-3 w-3" />
                       </Button>
                     </div>
