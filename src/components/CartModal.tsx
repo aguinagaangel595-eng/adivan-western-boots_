@@ -10,7 +10,7 @@ const CartModal = () => {
     new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN" }).format(price);
 
   const handleWhatsApp = () => {
-    const numero = "524771234567"; // 👈 Tu número aquí
+    const numero = "524775547669"; // 👈 Tu número aquí
 
     const lineas = items.map((item) => {
       const talla = item.talla ? ` | Talla: ${item.talla}` : "";
