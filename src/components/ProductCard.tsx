@@ -13,7 +13,7 @@ interface ProductCardProps {
 
 const TALLAS: Record<string, (number | string)[]> = {
   "Botas": [22, 23, 24, 25, 26, 27, 28, 29],
-  "Cinturón": [28, 30, 32, 34, 36, 38, 40, 42],
+  "Cinturones": [28, 30, 32, 34, 36, 38, 40, 42],
   "Botín": [25, 26, 27, 28, 29],
   "Botina": [22, 23, 24, 25, 26],
 };
