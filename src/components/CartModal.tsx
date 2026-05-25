@@ -4,13 +4,13 @@ import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
 const CartModal = () => {
-  const { items, isOpen, setIsOpen, updateQuantity, removeItem, totalPrice } = useCart();
+  const { items, isOpen, setIsOpen, updateQuantity, removeItem, totalPrice, clearCart } = useCart();
 
   const formatPrice = (price: number) =>
     new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN" }).format(price);
 
   const handleWhatsApp = () => {
-    const numero = "524775547669"; // 👈 Tu número aquí
+    const numero = "524771234567"; // 👈 Tu número aquí
 
     const lineas = items.map((item) => {
       const talla = item.talla ? ` | Talla: ${item.talla}` : "";
