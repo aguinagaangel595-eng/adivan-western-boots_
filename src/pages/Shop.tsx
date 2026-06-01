@@ -15,7 +15,7 @@ import bagImage from "@/assets/product-bag.jpg";
 
 const products = [
   { id: 1, name: "Botas Rosas", price: 1299, category: "Botas", image: "/Botasrosas.jpg", description: "Cinturón de piel café con hebilla metálica y acabado rústico moderno." },
-  { id: 2, name: "Papada de Cocodrilo", price: 1199, category: "Botas", image: "/cocologo.jpg", description: "Diseño limpio en piel negra para combinar con todo tu guardarropa." },
+  { id: 2, name: "Papada de Cocodrilo", price: 1199, category: "Botas", image: "/cocologo.jpeg", description: "Diseño limpio en piel negra para combinar con todo tu guardarropa." },
   { id: 3, name: "Pescado Choco", price: 899, category: "Botas", image: "/pescado-choco.jpg", description: "Cartera de piel marrón con compartimentos para el uso diario." },
   { id: 4, name: "Cartera Slim Negra", price: 799, category: "Carteras", image: walletSlim, description: "Cartera delgada de piel para llevar lo esencial." },
   { id: 5, name: "Bolsa Crossbody Negra", price: 2199, category: "Cinturones", image: bagCrossbody, description: "Bolsa bandolera de piel negra para llevar contigo lo indispensable." },
