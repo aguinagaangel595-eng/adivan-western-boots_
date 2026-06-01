@@ -36,7 +36,7 @@ const Hero = () => {
           {/* Image */}
           <div className="relative hidden lg:block">
             <div className="aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl">
-              <img src={heroImage} alt="Productos ADIVAN" className="w-full h-full object-cover" />
+              <img src= "/cocologo.jpeg" alt="Productos ADIVAN" className="w-full h-full object-cover" />
             </div>
             <div className="absolute bottom-6 left-6 right-6 bg-black/60 backdrop-blur-md rounded-2xl px-6 py-4">
               <p className="text-xs uppercase tracking-[0.2em] text-[hsl(35,45%,65%)] mb-1">Hecho a mano</p>
