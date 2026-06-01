@@ -5,8 +5,9 @@ import craftsmanshipImage from "@/assets/craftsmanship-process.png";
 const steps = [
   { num: "01", title: "Selección de piel", desc: "Elegimos pieles con el grosor, textura y carácter adecuados para cada tipo de producto, priorizando resistencia y belleza natural." },
   { num: "02", title: "Corte y perfilado", desc: "Trazamos las piezas con precisión, cuidando que cada corte aproveche las mejores vetas y mantenga la estructura del cuero." },
-  { num: "03", title: "Costura & armado", desc: "Unimos, cosimos y reforzamos cada punto para garantizar durabilidad, comodidad y un acabado limpio y seguro." },
-  { num: "04", title: "Acabados finales", desc: "El pulido de cantos, los detalles metálicos y el tratamiento final de la piel sellan el carácter de cada pieza ADIVAN." },
+  { num: "03", title: "Personalización de diseño", desc: "Aplicamos grabados, pigmentos y texturizado, diseñando al gusto del cliente la piel" },
+  { num: "04", title: "Costura & armado", desc: "Unimos, cosimos y reforzamos cada punto para garantizar durabilidad, comodidad y un acabado limpio y seguro." },
+  { num: "05", title: "Acabados finales", desc: "El pulido de cantos, los detalles metálicos y el tratamiento final de la piel sellan el carácter de cada pieza ADIVAN." },
 ];
 
 const Craftsmanship = () => {
