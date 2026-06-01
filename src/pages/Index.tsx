@@ -11,7 +11,7 @@ import bagCrossbody from "@/assets/product-bag-crossbody.png";
 import craftsmanshipImage from "@/assets/craftsmanship-hands.jpg";
 
 const featuredProducts = [
-  { id: 1, name: "Cinturón Western", price: 1299, category: "Cinturones", image: beltWestern, description: "Cinturón de piel café con hebilla metálica y acabado rústico." },
+  { id: 1, name: "Botas Rosas", price: 1199, category: "Botas", image: "/Botasrosas.jpg", description: "Botas coquetas rosas para dama." },
   { id: 3, name: "Cartera Doble Clásica", price: 899, category: "Carteras", image: walletClassic, description: "Cartera de piel marrón con compartimentos." },
   { id: 5, name: "Bolsa Crossbody Negra", price: 2199, category: "Bolsas", image: bagCrossbody, description: "Bolsa bandolera de piel negra." },
 ];
