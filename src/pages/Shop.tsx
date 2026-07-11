@@ -41,12 +41,12 @@ const products = [
   },
   { 
     id: 4, 
-    name: "Cartera Slim Negra", 
-    price: 799, 
-    category: "Carteras", 
-    description: "Cartera delgada de piel para llevar lo esencial.",
+    name: "Rodeo Clásicas", 
+    price: 1099, 
+    category: "Botas", 
+    description: "Botas estilo rodeo con suela doble vida",
     variants: [
-      { color: "Negra", images: ["/product-wallet-slim.jpg"] } // Ejemplo de ruta en public
+      { color: "Miel", images: ["/Rodeo-miel-1", "/Rodeo-miel-2", "Rodeo-miel-3"] } // Ejemplo de ruta en public
     ]
   },
   { 
