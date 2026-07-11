@@ -3,26 +3,102 @@ import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { useState } from "react";
 
-import beltWestern from "@/assets/product-belt-western.png";
-import beltBlack from "@/assets/product-belt-black.jpg";
-import walletClassic from "@/assets/product-wallet-classic.png";
-import walletSlim from "@/assets/product-wallet-slim.jpg";
-import bagCrossbody from "@/assets/product-bag-crossbody.png";
-import bagShopper from "@/assets/product-bag-shopper.jpg";
-import beltImage from "@/assets/product-belt.jpg";
-import walletImage from "@/assets/product-wallet.jpg";
-import bagImage from "@/assets/product-bag.jpg";
+// ¡Adiós a los imports de imágenes! Tu código ahora es más limpio gracias a la carpeta public.
 
 const products = [
-  { id: 1, name: "Botas Rosas", price: 1299, category: "Botas", image: "/Botasrosas.jpg", description: "Cinturón de piel café con hebilla metálica y acabado rústico moderno." },
-  { id: 2, name: "Papada de Cocodrilo", price: 1199, category: "Botas", image: "/cocologo.jpeg", description: "Diseño limpio en piel negra para combinar con todo tu guardarropa." },
-  { id: 3, name: "Pescado Negro ORIGINAL", price: 2699, category: "Botas", image: "/pescado-negro.jpg", description: "Botas de piel original de pescado Pirarucú." },
-  { id: 4, name: "Cartera Slim Negra", price: 799, category: "Carteras", image: walletSlim, description: "Cartera delgada de piel para llevar lo esencial." },
-  { id: 5, name: "Bolsa Crossbody Negra", price: 2199, category: "Cinturones", image: bagCrossbody, description: "Bolsa bandolera de piel negra para llevar contigo lo indispensable." },
-  { id: 6, name: "Bolsa Shopper Camel", price: 1999, category: "Bolsas", image: bagShopper, description: "Bolsa amplia en tono camel, ideal para el día a día y viajes cortos." },
-  { id: 7, name: "Llaveros de Piel", price: 399, category: "Otros", image: beltImage, description: "Set de llaveros en piel con grabado sutil y anillo metálico resistente." },
-  { id: 8, name: "Porta Tarjetas", price: 449, category: "Otros", image: walletImage, description: "Pequeño porta tarjetas de piel ideal para uso diario o viajes." },
-  { id: 9, name: "Bolso Mensajero", price: 2499, category: "Bolsas", image: bagImage, description: "Bolso mensajero clásico de piel genuina con correa ajustable." },
+  { 
+    id: 1, 
+    name: "Botas Rosas", 
+    price: 1299, 
+    category: "Botas", 
+    description: "Cinturón de piel café con hebilla metálica y acabado rústico moderno.", // (Ojo: dejé tu descripción original)
+    variants: [
+      // Como ya usas 'public', solo pones "/nombre-de-la-foto.jpg"
+      { color: "Rosa", images: ["/Botasrosas.jpg", "/Botasrosas-lado.jpg"] }, 
+      { color: "Café", images: ["/Botascafe.jpg", "/Botascafe-suela.jpg"] }
+    ]
+  },
+  { 
+    id: 2, 
+    name: "Papada de Cocodrilo", 
+    price: 1199, 
+    category: "Botas", 
+    description: "Diseño limpio en piel negra para combinar con todo tu guardarropa.", 
+    variants: [
+      { color: "Negro", images: ["/cocologo.jpeg", "/coco-detalle.jpg"] },
+      { color: "Miel",  images: ["/coco-miel.jpg", "/coco-miel-lado.jpg"] }
+    ]
+  },
+  { 
+    id: 3, 
+    name: "Pescado Negro ORIGINAL", 
+    price: 2699, 
+    category: "Botas", 
+    description: "Botas de piel original de pescado Pirarucú.",
+    variants: [
+      { color: "Negro", images: ["/pescado-negro.jpg", "/pescado-negro-2.jpg"] }
+    ]
+  },
+  { 
+    id: 4, 
+    name: "Cartera Slim Negra", 
+    price: 799, 
+    category: "Carteras", 
+    description: "Cartera delgada de piel para llevar lo esencial.",
+    variants: [
+      { color: "Negra", images: ["/product-wallet-slim.jpg"] } // Ejemplo de ruta en public
+    ]
+  },
+  { 
+    id: 5, 
+    name: "Bolsa Crossbody Negra", 
+    price: 2199, 
+    category: "Bolsas", // Corregí la categoría a Bolsas
+    description: "Bolsa bandolera de piel negra para llevar contigo lo indispensable.",
+    variants: [
+      { color: "Negra", images: ["/product-bag-crossbody.png"] }
+    ]
+  },
+  { 
+    id: 6, 
+    name: "Bolsa Shopper Camel", 
+    price: 1999, 
+    category: "Bolsas", 
+    description: "Bolsa amplia en tono camel, ideal para el día a día y viajes cortos.",
+    variants: [
+      { color: "Camel", images: ["/product-bag-shopper.jpg"] }
+    ] 
+  },
+  { 
+    id: 7, 
+    name: "Llaveros de Piel", 
+    price: 399, 
+    category: "Otros", 
+    description: "Set de llaveros en piel con grabado sutil y anillo metálico resistente.",
+    variants: [
+      { color: "Único", images: ["/product-belt.jpg"] }
+    ] 
+  },
+  { 
+    id: 8, 
+    name: "Porta Tarjetas", 
+    price: 449, 
+    category: "Otros", 
+    description: "Pequeño porta tarjetas de piel ideal para uso diario o viajes.",
+    variants: [
+      { color: "Único", images: ["/product-wallet.jpg"] }
+    ] 
+  },
+  { 
+    id: 9, 
+    name: "Bolso Mensajero", 
+    price: 2499, 
+    category: "Bolsas", 
+    description: "Bolso mensajero clásico de piel genuina con correa ajustable.",
+    variants: [
+      { color: "Único", images: ["/product-bag.jpg"] }
+    ] 
+  },
 ];
 
 const categories = ["Todo", "Botas", "Cinturones", "Carteras", "Bolsas", "Sombreros", "Otros"];
