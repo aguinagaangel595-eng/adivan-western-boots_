@@ -46,7 +46,8 @@ const products = [
     category: "Botas", 
     description: "Botas estilo rodeo con suela doble vida",
     variants: [
-      { color: "Miel", images: ["/Rodeo-miel-1", "/Rodeo-miel-2", "Rodeo-miel-3"] } // Ejemplo de ruta en public
+      { color: "Mango", images: ["/Rodeo-mango-1.jpeg", "/Rodeo-mango-2.jpeg", "Rodeo-mango-3.jpeg"] }
+      { color: "Café enmielado", images: ["/Rodeo-cafe-enmielado-1.jpeg", "/Rodeo-cafe-enmielad-2.jpeg", "Rodeo-cafe-enmielad-3.jpeg"] }// Ejemplo de ruta en public
     ]
   },
   { 
