@@ -15,7 +15,7 @@ const products = [
     id: 1,
     name: "Botas Rosas",
     price: 999,
-    originalPrice: 1499,
+    originalPrice: 1399,
     category: "Rodeo",
     description: "Botas coquetas en piel rosa, para dama, con pespunte en tono contrastante.",
     variants: [{ color: "Rosa", images: ["/Botasrosas.jpg"] }],
@@ -23,7 +23,7 @@ const products = [
   {
     id: 2,
     name: "Rodeo Café Enmielado",
-    price: 1299,
+    price: 1199,
     category: "Rodeo",
     description: "Bota rodeo clásica en piel café enmielado, tubo bordado y suela de doble vida.",
     variants: [
@@ -33,7 +33,7 @@ const products = [
   {
     id: 3,
     name: "Rodeo Mango",
-    price: 1299,
+    price: 1199,
     category: "Rodeo",
     description: "Bota rodeo en piel color mango con bordado floral en hilo tono hueso.",
     variants: [
@@ -43,7 +43,7 @@ const products = [
   {
     id: 4,
     name: "Cocodrilo Clásica",
-    price: 1299,
+    price: 999,
     originalPrice: 1599,
     category: "Exótica",
     description: "Piel de res con grabado tipo cocodrilo y tubo bordado en tono café oscuro.",
@@ -52,7 +52,7 @@ const products = [
   {
     id: 5,
     name: "Papada de Cocodrilo",
-    price: 1199,
+    price: 999,
     category: "Exótica",
     description: "Piel de res con grabado tipo papada de cocodrilo, acabado envejecido, tubo liso color olivo.",
     variants: [{ color: "Olivo", images: ["/coco-papada.jpg"] }],
@@ -60,7 +60,7 @@ const products = [
   {
     id: 6,
     name: "Pescado Chocolate",
-    price: 3199,
+    price: 3499,
     category: "Originales",
     description: "Piel exótica original de pescado (pirarucú) en tono chocolate, tubo bordado café.",
     variants: [{ color: "Chocolate", images: ["/pescado-choco.jpg"] }],
@@ -76,7 +76,7 @@ const products = [
   {
     id: 8,
     name: "Tejida Miel",
-    price: 1399,
+    price: 1199,
     category: "Tejida",
     description: "Bota de piel tejida a mano en tono miel, con tubo liso color café.",
     variants: [{ color: "Miel", images: ["/tejida-miel.jpg"] }],
