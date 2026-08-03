@@ -50,9 +50,10 @@ const Terms = () => {
               <p>
                 Los precios se muestran en pesos mexicanos (MXN) e incluyen los impuestos aplicables salvo
                 que se indique lo contrario. Nos reservamos el derecho de modificar precios sin previo
-                aviso, sin afectar pedidos ya confirmados. El pago se procesa a través de los métodos
-                habilitados en el sitio o acordados directamente por WhatsApp/correo para pedidos
-                personalizados.
+                aviso, sin afectar pedidos ya confirmados. Este sitio no cuenta con pasarela de pago en
+                línea: el carrito solo arma un resumen de tu pedido, que se envía por WhatsApp. Ahí
+                confirmamos disponibilidad, talla y la forma de pago (transferencia, depósito o efectivo
+                contra entrega, según se acuerde).
               </p>
             </div>
 

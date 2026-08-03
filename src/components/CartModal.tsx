@@ -80,6 +80,9 @@ const CartModal = () => {
               >
                 Pedir por WhatsApp
               </Button>
+              <p className="text-xs text-muted-foreground text-center">
+                Sin pago en línea: te escribimos por WhatsApp para confirmar talla, disponibilidad y forma de pago.
+              </p>
             </div>
           </>
         )}

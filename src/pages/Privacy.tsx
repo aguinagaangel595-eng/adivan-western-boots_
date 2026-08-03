@@ -44,7 +44,7 @@ const Privacy = () => {
               <ul className="list-disc pl-6 space-y-1 mt-2">
                 <li>Datos de identificación: nombre completo, teléfono, correo electrónico.</li>
                 <li>Datos de envío: domicilio, ciudad, código postal.</li>
-                <li>Datos de pago: procesados por pasarelas de pago externas; ADIVAN no almacena números completos de tarjeta.</li>
+                <li>Datos del pedido: los artículos, tallas y cantidades que agregas al carrito, para armar el resumen que se envía por WhatsApp.</li>
                 <li>Datos de navegación: dirección IP, tipo de dispositivo y cookies (ver sección 6).</li>
               </ul>
             </div>
@@ -64,9 +64,11 @@ const Privacy = () => {
             <div>
               <h2 className="font-serif text-2xl font-bold mb-3">4. Transferencia de datos</h2>
               <p>
-                No vendemos ni rentamos tus datos personales. Podemos compartir información estrictamente
-                necesaria con paqueterías (para realizar el envío) y procesadores de pago (para completar tu
-                compra), quienes están obligados a proteger tu información conforme a la ley aplicable.
+                No vendemos ni rentamos tus datos personales. Este sitio no procesa pagos en línea: al enviar
+                tu pedido por WhatsApp, la conversación y el acuerdo de pago (transferencia, efectivo, etc.)
+                se manejan directamente por ese medio, sujeto a los términos de privacidad de WhatsApp/Meta.
+                Podemos compartir información estrictamente necesaria con paqueterías para realizar el envío,
+                quienes están obligadas a proteger tu información conforme a la ley aplicable.
               </p>
             </div>
 
