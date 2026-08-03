@@ -7,7 +7,6 @@ import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
-import contactImage from "@/assets/contact-image.jpg";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -45,11 +44,11 @@ const Contact = () => {
               {/* Left: Info */}
               <div>
                 <div className="aspect-video overflow-hidden rounded-2xl shadow-xl mb-8">
-                  <img src={contactImage} alt="ADIVAN contacto" className="w-full h-full object-cover" />
+                  <img src="/pescado-choco.jpg" alt="Botas ADIVAN hechas a mano" className="w-full h-full object-cover" />
                 </div>
                 <p className="text-foreground leading-relaxed mb-8">
-                  ¿Buscas un cinturón con medidas especiales, una serie de carteras para regalo corporativo 
-                  o una línea exclusiva para tu tienda? Hablemos de lo que quieres crear con piel.
+                  ¿Buscas una talla especial, un par para mayoreo o una colaboración con tu tienda?
+                  Hablemos de lo que quieres crear con piel.
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useCart } from "@/context/CartContext";
+import { ZoomIn } from "lucide-react";
 
 // 1. Agregamos la interfaz para las variantes de color/modelo
 export interface ProductVariant {
@@ -12,22 +14,17 @@ interface ProductCardProps {
   id: number;
   name: string;
   price: number;
+  originalPrice?: number; // Si existe, se muestra tachado como oferta
   category: string;
   description?: string;
   image?: string; // Mantenemos image por si algún producto viejo no tiene variantes
   variants?: ProductVariant[]; // Nueva propiedad para colores y carrusel
 }
 
-const TALLAS: Record<string, (number | string)[]> = {
-  "Botas": [22, 23, 24, 25, 26, 27, 28, 29],
-  "Cinturones": [28, 30, 32, 34, 36, 38, 40, 42],
-  "Botín": [25, 26, 27, 28, 29],
-  "Botina": [22, 23, 24, 25, 26],
-};
+// Todo el catálogo actual son botas, así que siempre se pide talla.
+const TALLAS_BOTA = [22, 23, 24, 25, 26, 27, 28, 29];
 
-const CATEGORIAS_CON_TALLA = Object.keys(TALLAS);
-
-const ProductCard = ({ id, name, price, image, variants, category, description }: ProductCardProps) => {
+const ProductCard = ({ id, name, price, originalPrice, image, variants, category, description }: ProductCardProps) => {
   const { addItem } = useCart();
   const [tallaSeleccionada, setTallaSeleccionada] = useState<number | string | null>(null);
   const [error, setError] = useState(false);
@@ -35,12 +32,13 @@ const ProductCard = ({ id, name, price, image, variants, category, description }
   // 2. Estados para el Color y el Carrusel
   const [selectedColorIdx, setSelectedColorIdx] = useState(0);
   const [currentImgIdx, setCurrentImgIdx] = useState(0);
+  const [zoomOpen, setZoomOpen] = useState(false);
 
   const formatPrice = (p: number) =>
     new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN" }).format(p);
 
-  const necesitaTalla = CATEGORIAS_CON_TALLA.includes(category);
-  const tallas = TALLAS[category] ?? [];
+  const necesitaTalla = true;
+  const tallas = TALLAS_BOTA;
 
   // Lógica para determinar qué imágenes mostrar
   const hasVariants = variants && variants.length > 0;
@@ -87,15 +85,32 @@ const ProductCard = ({ id, name, price, image, variants, category, description }
       
       {/* SECCIÓN DEL CARRUSEL */}
       <div className="aspect-square overflow-hidden bg-muted relative">
-        <img 
-          src={displayImages[currentImgIdx]} 
-          alt={`${name} - ${displayColorName || 'Foto'}`} 
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" 
-        />
-        
+        <button
+          type="button"
+          onClick={() => setZoomOpen(true)}
+          className="absolute inset-0 z-0 cursor-zoom-in"
+          aria-label={`Ver imagen ampliada de ${name}`}
+        >
+          <img
+            src={displayImages[currentImgIdx]}
+            alt={`${name} - ${displayColorName || "Foto"}`}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </button>
+
+        <div className="absolute bottom-3 right-3 bg-black/40 text-white rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none">
+          <ZoomIn className="h-4 w-4" />
+        </div>
+
         <span className="absolute top-4 left-4 bg-[hsl(0,0%,5%)] text-white text-[10px] uppercase tracking-[0.2em] px-3 py-1.5 rounded-full z-10">
           {category}
         </span>
+
+        {originalPrice && (
+          <span className="absolute top-4 right-4 bg-destructive text-destructive-foreground text-[10px] uppercase tracking-[0.15em] font-bold px-3 py-1.5 rounded-full z-10">
+            Oferta
+          </span>
+        )}
 
         {/* Flechas del Carrusel (Solo se muestran si hay más de 1 imagen) */}
         {displayImages.length > 1 && (
@@ -178,7 +193,14 @@ const ProductCard = ({ id, name, price, image, variants, category, description }
         )}
 
         <div className="flex items-center justify-between pt-2 mt-auto">
-          <p className="text-xl font-bold text-foreground">{formatPrice(price)}</p>
+          <div>
+            {originalPrice && (
+              <p className="text-xs text-muted-foreground line-through">{formatPrice(originalPrice)}</p>
+            )}
+            <p className={`text-xl font-bold ${originalPrice ? "text-destructive" : "text-foreground"}`}>
+              {formatPrice(price)}
+            </p>
+          </div>
           <Button
             className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 text-sm px-5"
             onClick={handleAgregar}
@@ -187,6 +209,24 @@ const ProductCard = ({ id, name, price, image, variants, category, description }
           </Button>
         </div>
       </div>
+
+      <Dialog open={zoomOpen} onOpenChange={setZoomOpen}>
+        <DialogContent className="max-w-xl border-none bg-background p-3 sm:p-4">
+          <DialogTitle className="sr-only">
+            {name}
+            {displayColorName ? ` — ${displayColorName}` : ""}
+          </DialogTitle>
+          <img
+            src={displayImages[currentImgIdx]}
+            alt={`${name} - ${displayColorName || "Foto"}`}
+            className="w-full h-auto max-h-[75vh] object-contain rounded-lg"
+          />
+          <p className="text-center text-sm text-muted-foreground pt-1">
+            {name}
+            {displayColorName ? ` · ${displayColorName}` : ""}
+          </p>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

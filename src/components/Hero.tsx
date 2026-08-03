@@ -1,53 +1,62 @@
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/hero-new.jpg";
+import { motion, useScroll, useTransform } from "framer-motion";
+import heroBoots from "@/assets/hero-boots.jpg";
 
 const Hero = () => {
-  return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden" style={{ background: "radial-gradient(ellipse at 30% 50%, hsl(20,15%,12%) 0%, hsl(0,0%,4%) 70%)" }}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Text */}
-          <div>
-            <span className="inline-block border border-[hsl(35,45%,65%)] text-[hsl(35,45%,65%)] text-xs uppercase tracking-[0.2em] px-5 py-2 rounded-full mb-8">
-              Autenticidad en cada puntada
-            </span>
-            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-              La piel cobra vida con{" "}
-              <span className="text-[hsl(35,45%,65%)]">ADIVAN.</span>
-            </h1>
-            <p className="text-lg text-white/70 mb-10 max-w-lg leading-relaxed">
-              Cinturones, carteras, bolsas y accesorios de piel genuina inspirados en el estilo Western moderno. 
-              Piezas pensadas para quienes viven con carácter y aprecian la artesanía real.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" asChild className="rounded-full bg-[hsl(35,45%,65%)] hover:bg-[hsl(35,45%,55%)] text-[hsl(0,0%,5%)] font-semibold px-8 py-6 text-base">
-                <Link to="/shop">
-                  Ver tienda <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild className="rounded-full border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-6 text-base bg-transparent">
-                <Link to="/craftsmanship">Ver proceso artesanal</Link>
-              </Button>
-            </div>
-          </div>
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
+  const imageY = useTransform(scrollYProgress, [0, 1], ["-4%", "12%"]);
 
-          {/* Image */}
-          <div className="relative hidden lg:block">
-            <div className="aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl">
-              <img src= "/cocologo.jpeg" alt="Productos ADIVAN" className="w-full h-full object-cover" />
-            </div>
-            <div className="absolute bottom-6 left-6 right-6 bg-black/60 backdrop-blur-md rounded-2xl px-6 py-4">
-              <p className="text-xs uppercase tracking-[0.2em] text-[hsl(35,45%,65%)] mb-1">Hecho a mano</p>
-              <p className="text-white text-sm">Piel genuina · Estilo Western</p>
-            </div>
+  return (
+    <section
+      ref={sectionRef}
+      className="relative min-h-[92vh] flex flex-col justify-end overflow-hidden bg-[hsl(0,0%,4%)]"
+    >
+      {/* Fotografía editorial a pantalla completa */}
+      <motion.div className="absolute inset-0" style={{ y: imageY }}>
+        <img
+          src={heroBoots}
+          alt="Botas ADIVAN hechas a mano en piel genuina"
+          className="w-full h-full object-cover object-[62%_78%] scale-110"
+        />
+      </motion.div>
+      <div className="absolute inset-0 bg-gradient-to-r from-[hsl(0,0%,4%)] via-[hsl(0,0%,4%)]/70 to-[hsl(0,0%,4%)]/10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[hsl(0,0%,4%)] via-[hsl(0,0%,4%)]/10 to-transparent" />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full pt-44 pb-24">
+        <motion.div
+          className="max-w-xl"
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <span className="inline-block border border-[hsl(35,45%,65%)] text-[hsl(35,45%,65%)] text-xs uppercase tracking-[0.25em] px-5 py-2 rounded-full mb-8">
+            Autenticidad en cada puntada
+          </span>
+          <h1 className="font-serif text-5xl md:text-7xl lg:text-[5.5rem] font-bold text-white mb-6 leading-[0.98]">
+            La piel cobra vida con <span className="text-[hsl(35,45%,65%)]">ADIVAN.</span>
+          </h1>
+          <p className="text-lg text-white/70 mb-10 max-w-md leading-relaxed">
+            Botas, cinturones, carteras y bolsas de piel genuina, hechas a mano con esencia Western moderna.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Button size="lg" asChild className="rounded-full bg-[hsl(35,45%,65%)] hover:bg-[hsl(35,45%,55%)] text-[hsl(0,0%,5%)] font-semibold px-8 py-6 text-base">
+              <Link to="/shop">
+                Ver tienda <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+            <Button size="lg" variant="outline" asChild className="rounded-full border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-6 text-base bg-transparent">
+              <Link to="/craftsmanship">Ver proceso artesanal</Link>
+            </Button>
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      {/* Scrolling banner */}
-      <div className="absolute bottom-0 left-0 right-0 bg-[hsl(35,45%,65%)] py-3 overflow-hidden">
+      {/* Cinta con mensaje de marca */}
+      <div className="relative bg-[hsl(35,45%,65%)] py-3 overflow-hidden">
         <div className="animate-marquee whitespace-nowrap flex gap-12 text-[hsl(0,0%,5%)] text-xs font-bold uppercase tracking-[0.3em]">
           {Array.from({ length: 8 }).map((_, i) => (
             <span key={i}>Hecho a mano · Piel genuina · Estilo Western ·</span>

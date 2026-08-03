@@ -1,43 +1,53 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const CookieConsent = () => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const accepted = localStorage.getItem("cookiesAccepted");
-    if (!accepted) {
+    const consent = localStorage.getItem("adivan_cookie_consent");
+    if (!consent) {
       setShow(true);
     }
   }, []);
 
-  const acceptCookies = () => {
-    localStorage.setItem("cookiesAccepted", "true");
+  const setConsent = (value) => {
+    localStorage.setItem("adivan_cookie_consent", value);
+    localStorage.setItem("adivan_cookie_consent_date", new Date().toISOString());
     setShow(false);
   };
 
   if (!show) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-      
-      <div className="bg-white max-w-lg p-8 rounded-xl shadow-2xl text-center">
-
-        <h2 className="text-2xl font-bold mb-4">
-          Aviso de Privacidad
-        </h2>
-
-        <p className="text-gray-600 mb-6">
-          En ADIVAN utilizamos cookies para mejorar tu experiencia y procesar
-          tus compras. Al continuar navegando aceptas nuestro aviso de privacidad.
+    <div
+      role="dialog"
+      aria-label="Aviso de cookies"
+      className="fixed inset-x-0 bottom-0 z-50 p-4 sm:p-6"
+    >
+      <div className="mx-auto max-w-4xl bg-[hsl(0,0%,7%)] text-white border border-white/10 rounded-2xl shadow-2xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <p className="text-sm text-white/80 flex-1 leading-relaxed">
+          Usamos cookies propias y de terceros para que el carrito funcione, recordar tus preferencias y
+          entender cómo se usa el sitio. Puedes aceptar todas o solo las esenciales.{" "}
+          <Link to="/privacy#cookies" className="underline text-[hsl(35,45%,65%)] hover:text-[hsl(35,45%,75%)]">
+            Leer más
+          </Link>
+          .
         </p>
-
-        <button
-          onClick={acceptCookies}
-          className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800"
-        >
-          Aceptar y continuar
-        </button>
-
+        <div className="flex gap-3 w-full sm:w-auto shrink-0">
+          <button
+            onClick={() => setConsent("essential-only")}
+            className="flex-1 sm:flex-none border border-white/25 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-white/10 transition-colors"
+          >
+            Solo esenciales
+          </button>
+          <button
+            onClick={() => setConsent("all")}
+            className="flex-1 sm:flex-none bg-[hsl(35,45%,65%)] text-[hsl(0,0%,5%)] text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-[hsl(35,45%,55%)] transition-colors"
+          >
+            Aceptar todas
+          </button>
+        </div>
       </div>
     </div>
   );
