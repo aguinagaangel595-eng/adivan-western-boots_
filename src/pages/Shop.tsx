@@ -13,7 +13,7 @@ const products = [
     id: 1,
     name: "Botas Rosas",
     price: 999,
-    originalPrice: 1299,
+    originalPrice: 1399,
     category: "Rodeo",
     description: "Botas coquetas en piel rosa, para dama, con pespunte en tono contrastante.",
     variants: [{ color: "Rosa", images: ["/Botasrosas.jpg"] }],
