@@ -74,7 +74,7 @@ const products = [
   {
     id: 8,
     name: "Tejida Miel",
-    price: 1299,
+    price: 1199,
     category: "Tejida",
     description: "Bota de piel tejida a mano en tono miel, con tubo liso color café.",
     variants: [{ color: "Miel", images: ["/tejida-miel.jpg"] }],
