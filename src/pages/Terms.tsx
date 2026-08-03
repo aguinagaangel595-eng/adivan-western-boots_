@@ -69,7 +69,7 @@ const Terms = () => {
             <div>
               <h2 className="font-serif text-2xl font-bold mb-3">5. Cambios y devoluciones</h2>
               <p>
-                Aceptamos cambios o devoluciones dentro de un plazo de <strong>[definir número]</strong> días
+                Aceptamos cambios o devoluciones dentro de un plazo de 15 días
                 naturales a partir de la recepción del producto, siempre que se encuentre sin uso, con sus
                 etiquetas y empaque original. Los costos de envío de la devolución corren por cuenta del
                 cliente, salvo que se trate de un defecto de fabricación. Para iniciar un cambio o
@@ -84,8 +84,8 @@ const Terms = () => {
             <div>
               <h2 className="font-serif text-2xl font-bold mb-3">6. Garantía</h2>
               <p>
-                Nuestros productos están garantizados contra defectos de fabricación por un periodo de{" "}
-                <strong>[definir plazo]</strong> a partir de la fecha de compra. La garantía no cubre el
+                Nuestros productos están garantizados contra defectos de fabricación por un periodo de 90
+                días a partir de la fecha de compra. La garantía no cubre el
                 desgaste normal del cuero, daños por mal uso, exposición a la humedad excesiva o
                 modificaciones realizadas por terceros.
               </p>
