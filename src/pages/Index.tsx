@@ -9,8 +9,17 @@ import { motion } from "framer-motion";
 import craftsmanshipImage from "@/assets/craftsmanship-hands.jpg";
 
 const featuredProducts = [
-  { id: 2, name: "Rodeo Café Enmielado", price: 1299, category: "Rodeo", image: "/Rodeo-cafe-enmielado-1.jpeg", description: "Bota rodeo clásica en piel café enmielado, tubo bordado." },
-  { id: 7, name: "Pescado Negro", price: 3499, category: "Exótica", image: "/pescado-negro.jpg", description: "Piel original de pescado (pirarucú), tubo bordado a tono." },
+  {
+    id: 2,
+    name: "Rodeo Café Enmielado",
+    price: 1299,
+    category: "Rodeo",
+    description: "Bota rodeo clásica en piel café enmielado, tubo bordado.",
+    variants: [
+      { color: "Café enmielado", images: ["/Rodeo-cafe-enmielado-1.jpeg", "/Rodeo-cafe-enmielado-2.jpeg", "/Rodeo-cafe-enmielado-3.jpeg"] },
+    ],
+  },
+  { id: 7, name: "Pescado Negro", price: 3499, category: "Originales", image: "/pescado-negro.jpg", description: "Piel exótica original de pescado (pirarucú), tubo bordado a tono." },
   { id: 8, name: "Tejida Miel", price: 1399, category: "Tejida", image: "/tejida-miel.jpg", description: "Piel tejida a mano en tono miel, tubo liso color café." },
 ];
 

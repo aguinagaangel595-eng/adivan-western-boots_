@@ -1,12 +1,14 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 // Catálogo real: solo botas con fotografía auténtica de producto ADIVAN.
 // (Cinturones, carteras y bolsas llegan próximamente.)
 // Precios de boceto/referencia — ajústalos cuando tengas tu lista final.
+// "Exótica" = piel de res con grabado tipo exótico (imitación). "Originales" = piel exótica genuina.
 
 const products = [
   {
@@ -59,16 +61,16 @@ const products = [
     id: 6,
     name: "Pescado Chocolate",
     price: 3199,
-    category: "Exótica",
-    description: "Piel original de pescado (pirarucú) en tono chocolate, tubo bordado café.",
+    category: "Originales",
+    description: "Piel exótica original de pescado (pirarucú) en tono chocolate, tubo bordado café.",
     variants: [{ color: "Chocolate", images: ["/pescado-choco.jpg"] }],
   },
   {
     id: 7,
     name: "Pescado Negro",
     price: 3499,
-    category: "Exótica",
-    description: "Piel original de pescado (pirarucú) en negro, tubo bordado a tono.",
+    category: "Originales",
+    description: "Piel exótica original de pescado (pirarucú) en negro, tubo bordado a tono.",
     variants: [{ color: "Negro", images: ["/pescado-negro.jpg"] }],
   },
   {
@@ -81,17 +83,28 @@ const products = [
   },
 ];
 
-const categories = ["Todo", "Ofertas", "Rodeo", "Exótica", "Tejida"];
+const categories = ["Todo", "Ofertas", "Rodeo", "Exótica", "Originales", "Tejida"];
+
+type SortOrder = "default" | "price-asc" | "price-desc";
 
 const Shop = () => {
   const [activeCategory, setActiveCategory] = useState("Todo");
+  const [sortOrder, setSortOrder] = useState<SortOrder>("default");
 
-  const filtered =
-    activeCategory === "Todo"
-      ? products
-      : activeCategory === "Ofertas"
-      ? products.filter((p) => p.originalPrice)
-      : products.filter((p) => p.category === activeCategory);
+  const filtered = useMemo(() => {
+    const byCategory =
+      activeCategory === "Todo"
+        ? products
+        : activeCategory === "Ofertas"
+        ? products.filter((p) => p.originalPrice)
+        : products.filter((p) => p.category === activeCategory);
+
+    if (sortOrder === "default") return byCategory;
+
+    const sorted = [...byCategory];
+    sorted.sort((a, b) => (sortOrder === "price-asc" ? a.price - b.price : b.price - a.price));
+    return sorted;
+  }, [activeCategory, sortOrder]);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -110,7 +123,7 @@ const Shop = () => {
 
         {/* Filters */}
         <section className="py-8 px-4 sm:px-6 lg:px-8 border-b border-border">
-          <div className="mx-auto max-w-7xl flex flex-wrap gap-3 justify-center">
+          <div className="mx-auto max-w-7xl flex flex-wrap items-center justify-center gap-3">
             {categories.map((cat) => (
               <button
                 key={cat}
@@ -128,6 +141,17 @@ const Shop = () => {
                 {cat}
               </button>
             ))}
+
+            <Select value={sortOrder} onValueChange={(v) => setSortOrder(v as SortOrder)}>
+              <SelectTrigger className="w-[190px] rounded-full text-xs uppercase tracking-[0.1em] font-semibold ml-auto sm:ml-4">
+                <SelectValue placeholder="Ordenar por" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="default">Ordenar por</SelectItem>
+                <SelectItem value="price-asc">Precio: menor a mayor</SelectItem>
+                <SelectItem value="price-desc">Precio: mayor a menor</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </section>
 
@@ -138,6 +162,7 @@ const Shop = () => {
               {filtered.map((product, i) => (
                 <motion.div
                   key={product.id}
+                  layout
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, ease: "easeOut", delay: i * 0.05 }}
