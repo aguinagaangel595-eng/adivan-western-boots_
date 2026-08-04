@@ -42,15 +42,28 @@ const Hero = () => {
           <p className="text-lg text-white/70 mb-10 max-w-md leading-relaxed">
             Botas, cinturones, carteras y bolsas de piel genuina, hechas a mano con esencia Western moderna.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button size="lg" asChild className="rounded-full bg-[hsl(35,45%,65%)] hover:bg-[hsl(35,45%,55%)] text-[hsl(0,0%,5%)] font-semibold px-8 py-6 text-base">
-              <Link to="/shop">
-                Ver tienda <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" asChild className="rounded-full border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-6 text-base bg-transparent">
-              <Link to="/craftsmanship">Ver proceso artesanal</Link>
-            </Button>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-6">
+            <motion.div
+              animate={{ scale: [1, 1.045, 1] }}
+              transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+              className="inline-block w-fit"
+            >
+              <Button
+                size="lg"
+                asChild
+                className="rounded-full bg-[hsl(35,45%,65%)] hover:bg-[hsl(35,45%,55%)] text-[hsl(0,0%,5%)] font-bold px-12 py-8 text-xl shadow-[0_0_45px_rgba(200,155,107,0.55)] hover:shadow-[0_0_60px_rgba(200,155,107,0.75)] transition-shadow"
+              >
+                <Link to="/shop">
+                  Ver Tienda <ArrowRight className="ml-2 h-6 w-6" />
+                </Link>
+              </Button>
+            </motion.div>
+            <Link
+              to="/craftsmanship"
+              className="text-white/70 hover:text-white text-sm font-medium underline underline-offset-4 decoration-white/30 hover:decoration-white transition-colors"
+            >
+              Ver proceso artesanal
+            </Link>
           </div>
         </motion.div>
       </div>

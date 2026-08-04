@@ -20,13 +20,6 @@ const Privacy = () => {
 
         <section className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl prose-legal text-foreground leading-relaxed space-y-8">
-            <p className="text-sm text-muted-foreground bg-muted border border-border rounded-xl p-4">
-              Este aviso es una plantilla general redactada con base en la Ley Federal de Protección de
-              Datos Personales en Posesión de los Particulares (LFPDPPP) de México y no sustituye la
-              revisión de un abogado. Antes de publicarlo, verifica y completa los datos de identidad y
-              domicilio de ADIVAN como responsable del tratamiento de datos.
-            </p>
-
             <div>
               <h2 className="font-serif text-2xl font-bold mb-3">1. Responsable de tus datos</h2>
               <p>

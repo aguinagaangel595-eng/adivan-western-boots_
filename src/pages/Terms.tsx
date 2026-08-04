@@ -20,12 +20,6 @@ const Terms = () => {
 
         <section className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-foreground leading-relaxed space-y-8">
-            <p className="text-sm text-muted-foreground bg-muted border border-border rounded-xl p-4">
-              Esta es una plantilla general de términos y condiciones de compra. No sustituye la asesoría
-              de un abogado; revísala y ajústala antes de publicarla, especialmente en lo relativo a
-              políticas de devolución, garantías y datos fiscales de ADIVAN.
-            </p>
-
             <div>
               <h2 className="font-serif text-2xl font-bold mb-3">1. Aceptación de los términos</h2>
               <p>
