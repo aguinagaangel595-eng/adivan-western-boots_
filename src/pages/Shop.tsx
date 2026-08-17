@@ -5,8 +5,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
 
-// Catálogo real: solo botas con fotografía auténtica de producto ADIVAN.
-// (Cinturones, carteras y bolsas llegan próximamente.)
+// Catálogo real: solo productos con fotografía auténtica editada de ADIVAN.
+// (Bolsas, sombreros, cintos y otros llegan cuando tengas las fotos editadas de esos.)
 // Precios de boceto/referencia — ajústalos cuando tengas tu lista final.
 // "Exótica" = piel de res con grabado tipo exótico (imitación). "Originales" = piel exótica genuina.
 
@@ -81,9 +81,17 @@ const products = [
     description: "Bota de piel tejida a mano en tono miel, con tubo liso color café.",
     variants: [{ color: "Miel", images: ["/tejida-miel.jpg"] }],
   },
+  {
+    id: 9,
+    name: "Cartera Bifold Negra",
+    price: 599,
+    category: "Carteras",
+    description: "Cartera de piel 100% genuina, hecha en México, con portatarjetas y compartimentos.",
+    variants: [{ color: "Negro", images: ["/cartera-negra-1.jpg", "/cartera-negra-2.jpg"] }],
+  },
 ];
 
-const categories = ["Todo", "Ofertas", "Rodeo", "Exótica", "Originales", "Tejida"];
+const categories = ["Todo", "Ofertas", "Rodeo", "Exótica", "Originales", "Tejida", "Carteras"];
 
 type SortOrder = "default" | "price-asc" | "price-desc";
 
@@ -116,7 +124,7 @@ const Shop = () => {
           <div className="mx-auto max-w-7xl text-center">
             <h1 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4">Tienda</h1>
             <p className="text-base text-white/60 max-w-2xl mx-auto">
-              Botas de piel genuina ADIVAN, hechas a mano una por una. Cinturones, carteras y bolsas — próximamente.
+              Botas y artículos de piel genuina ADIVAN, hechos a mano uno por uno. Bolsas, sombreros y cintos — próximamente.
             </p>
           </div>
         </section>

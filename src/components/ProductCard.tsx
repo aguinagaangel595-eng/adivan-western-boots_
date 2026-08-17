@@ -21,8 +21,14 @@ interface ProductCardProps {
   variants?: ProductVariant[]; // Nueva propiedad para colores y carrusel
 }
 
-// Todo el catálogo actual son botas, así que siempre se pide talla.
-const TALLAS_BOTA = [22, 23, 24, 25, 26, 27, 28, 29];
+// Tallas por categoría. Carteras/bolsas/sombreros no llevan talla (queda fuera de este mapa).
+const TALLAS_POR_CATEGORIA: Record<string, (number | string)[]> = {
+  Rodeo: [22, 23, 24, 25, 26, 27, 28, 29],
+  Exótica: [22, 23, 24, 25, 26, 27, 28, 29],
+  Originales: [22, 23, 24, 25, 26, 27, 28, 29],
+  Tejida: [22, 23, 24, 25, 26, 27, 28, 29],
+  Cintos: [28, 30, 32, 34, 36, 38, 40, 42],
+};
 
 const ProductCard = ({ id, name, price, originalPrice, image, variants, category, description }: ProductCardProps) => {
   const { addItem } = useCart();
@@ -37,8 +43,8 @@ const ProductCard = ({ id, name, price, originalPrice, image, variants, category
   const formatPrice = (p: number) =>
     new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN" }).format(p);
 
-  const necesitaTalla = true;
-  const tallas = TALLAS_BOTA;
+  const tallas = TALLAS_POR_CATEGORIA[category] ?? [];
+  const necesitaTalla = tallas.length > 0;
 
   // Lógica para determinar qué imágenes mostrar
   const hasVariants = variants && variants.length > 0;
