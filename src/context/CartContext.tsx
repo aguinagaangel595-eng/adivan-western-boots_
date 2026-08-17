@@ -7,13 +7,16 @@ export interface CartItem {
   image: string;
   quantity: number;
   talla?: number | string;
+  color?: string;
+  grabado?: string;
+  grabadoColor?: string;
 }
 
 interface CartContextType {
   items: CartItem[];
   addItem: (item: Omit<CartItem, "quantity">) => void;
-  removeItem: (id: number, talla?: number | string) => void;
-  updateQuantity: (id: number, quantity: number, talla?: number | string) => void;
+  removeItem: (id: number, talla?: number | string, color?: string, grabado?: string) => void;
+  updateQuantity: (id: number, quantity: number, talla?: number | string, color?: string, grabado?: string) => void;
   clearCart: () => void;
   totalItems: number;
   totalPrice: number;
@@ -23,36 +26,39 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
+const sameLine = (a: CartItem, b: Partial<CartItem>) =>
+  a.id === b.id && a.talla === b.talla && a.color === b.color && a.grabado === b.grabado;
+
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
   const addItem = useCallback((item: Omit<CartItem, "quantity">) => {
     setItems((prev) => {
-      const existing = prev.find((i) => i.id === item.id && i.talla === item.talla);
+      const existing = prev.find((i) => sameLine(i, item));
       if (existing) {
-        return prev.map((i) =>
-          i.id === item.id && i.talla === item.talla ? { ...i, quantity: i.quantity + 1 } : i
-        );
+        return prev.map((i) => (sameLine(i, item) ? { ...i, quantity: i.quantity + 1 } : i));
       }
       return [...prev, { ...item, quantity: 1 }];
     });
     setIsOpen(true);
   }, []);
 
-  const removeItem = useCallback((id: number, talla?: number | string) => {
-    setItems((prev) => prev.filter((i) => !(i.id === id && i.talla === talla)));
+  const removeItem = useCallback((id: number, talla?: number | string, color?: string, grabado?: string) => {
+    setItems((prev) => prev.filter((i) => !sameLine(i, { id, talla, color, grabado })));
   }, []);
 
-  const updateQuantity = useCallback((id: number, quantity: number, talla?: number | string) => {
-    if (quantity <= 0) {
-      setItems((prev) => prev.filter((i) => !(i.id === id && i.talla === talla)));
-    } else {
-      setItems((prev) =>
-        prev.map((i) => i.id === id && i.talla === talla ? { ...i, quantity } : i)
-      );
-    }
-  }, []);
+  const updateQuantity = useCallback(
+    (id: number, quantity: number, talla?: number | string, color?: string, grabado?: string) => {
+      const key = { id, talla, color, grabado };
+      if (quantity <= 0) {
+        setItems((prev) => prev.filter((i) => !sameLine(i, key)));
+      } else {
+        setItems((prev) => prev.map((i) => (sameLine(i, key) ? { ...i, quantity } : i)));
+      }
+    },
+    []
+  );
 
   const clearCart = useCallback(() => setItems([]), []);
   const totalItems = items.reduce((sum, i) => sum + i.quantity, 0);

@@ -3,11 +3,19 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useCart } from "@/context/CartContext";
 import { ZoomIn } from "lucide-react";
+import ColorWheel from "@/components/ColorWheel";
+import { sampleWheelColor } from "@/lib/colorWheel";
 
 // 1. Agregamos la interfaz para las variantes de color/modelo
 export interface ProductVariant {
   color: string;
   images: string[];
+}
+
+export interface GrabadoOption {
+  id: string;
+  name: string;
+  image: string;
 }
 
 interface ProductCardProps {
@@ -19,6 +27,7 @@ interface ProductCardProps {
   description?: string;
   image?: string; // Mantenemos image por si algún producto viejo no tiene variantes
   variants?: ProductVariant[]; // Nueva propiedad para colores y carrusel
+  grabados?: GrabadoOption[]; // Patrones de piel grabada, con rueda de color
 }
 
 // Tallas por categoría. Carteras/bolsas/sombreros no llevan talla (queda fuera de este mapa).
@@ -30,7 +39,7 @@ const TALLAS_POR_CATEGORIA: Record<string, (number | string)[]> = {
   Cintos: [28, 30, 32, 34, 36, 38, 40, 42],
 };
 
-const ProductCard = ({ id, name, price, originalPrice, image, variants, category, description }: ProductCardProps) => {
+const ProductCard = ({ id, name, price, originalPrice, image, variants, category, description, grabados }: ProductCardProps) => {
   const { addItem } = useCart();
   const [tallaSeleccionada, setTallaSeleccionada] = useState<number | string | null>(null);
   const [error, setError] = useState(false);
@@ -40,16 +49,31 @@ const ProductCard = ({ id, name, price, originalPrice, image, variants, category
   const [currentImgIdx, setCurrentImgIdx] = useState(0);
   const [zoomOpen, setZoomOpen] = useState(false);
 
+  // Estados para grabado + rueda de color
+  const [selectedGrabadoIdx, setSelectedGrabadoIdx] = useState(0);
+  const [wheelHue, setWheelHue] = useState(30);
+  const [wheelRadius, setWheelRadius] = useState(0.5);
+
   const formatPrice = (p: number) =>
     new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN" }).format(p);
 
   const tallas = TALLAS_POR_CATEGORIA[category] ?? [];
   const necesitaTalla = tallas.length > 0;
 
+  const hasGrabados = !!grabados && grabados.length > 0;
+  const grabadoSeleccionado = hasGrabados ? grabados![selectedGrabadoIdx] : null;
+  const grabadoColor = sampleWheelColor(wheelHue, wheelRadius);
+
   // Lógica para determinar qué imágenes mostrar
   const hasVariants = variants && variants.length > 0;
   const currentVariant = hasVariants ? variants[selectedColorIdx] : null;
-  const displayImages = currentVariant ? currentVariant.images : (image ? [image] : ["/placeholder.png"]);
+  const displayImages = hasGrabados
+    ? [grabadoSeleccionado!.image]
+    : currentVariant
+    ? currentVariant.images
+    : image
+    ? [image]
+    : ["/placeholder.png"];
   const displayColorName = currentVariant && currentVariant.color !== "Único" ? currentVariant.color : undefined;
 
   // 3. Controles del Carrusel
@@ -68,19 +92,26 @@ const ProductCard = ({ id, name, price, originalPrice, image, variants, category
     setCurrentImgIdx(0); // Regresa a la primera foto al cambiar de color
   };
 
+  const handleGrabadoChange = (idx: number) => {
+    setSelectedGrabadoIdx(idx);
+    setCurrentImgIdx(0);
+  };
+
   const handleAgregar = () => {
     if (necesitaTalla && !tallaSeleccionada) {
       setError(true);
       return;
     }
     // Modificamos el payload para enviar la imagen y el color seleccionado al carrito
-    addItem({ 
-      id, 
-      name, 
-      price, 
-      image: displayImages[0], 
+    addItem({
+      id,
+      name,
+      price,
+      image: displayImages[0],
       talla: tallaSeleccionada ?? undefined,
-      color: displayColorName 
+      color: hasGrabados ? undefined : displayColorName,
+      grabado: grabadoSeleccionado?.name,
+      grabadoColor: hasGrabados ? `${grabadoColor.label} (${grabadoColor.hex})` : undefined,
     });
     setTallaSeleccionada(null);
     setError(false);
@@ -88,7 +119,7 @@ const ProductCard = ({ id, name, price, originalPrice, image, variants, category
 
   return (
     <div className="group bg-card rounded-3xl overflow-hidden border border-border shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full">
-      
+
       {/* SECCIÓN DEL CARRUSEL */}
       <div className="aspect-square overflow-hidden bg-muted relative">
         <button
@@ -133,13 +164,13 @@ const ProductCard = ({ id, name, price, originalPrice, image, variants, category
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
             </button>
-            
+
             {/* Puntos Indicadores */}
             <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
               {displayImages.map((_, idx) => (
-                <div 
-                  key={idx} 
-                  className={`h-1.5 rounded-full transition-all ${idx === currentImgIdx ? 'w-4 bg-white' : 'w-1.5 bg-white/50'}`} 
+                <div
+                  key={idx}
+                  className={`h-1.5 rounded-full transition-all ${idx === currentImgIdx ? 'w-4 bg-white' : 'w-1.5 bg-white/50'}`}
                 />
               ))}
             </div>
@@ -153,24 +184,72 @@ const ProductCard = ({ id, name, price, originalPrice, image, variants, category
           {description && <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{description}</p>}
         </div>
 
-        {/* SELECTOR DE COLORES */}
-        {hasVariants && variants.length > 1 && (
+        {/* SELECTOR DE COLORES (para productos sin grabado) */}
+        {hasVariants && !hasGrabados && (
           <div className="space-y-1.5">
-            <p className="text-xs text-muted-foreground uppercase tracking-wide">Color / Modelo</p>
-            <div className="flex flex-wrap gap-2">
-              {variants.map((v, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => handleColorChange(idx)}
-                  className={`text-xs px-3 py-1.5 rounded-full font-medium border transition-all
-                    ${selectedColorIdx === idx
-                      ? "bg-foreground text-background border-foreground"
-                      : "bg-background text-foreground border-border hover:border-foreground/50"
+            <p className="text-xs text-muted-foreground uppercase tracking-wide">Color</p>
+            {variants!.length > 1 ? (
+              <div className="flex flex-wrap gap-2">
+                {variants!.map((v, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleColorChange(idx)}
+                    className={`text-xs px-3 py-1.5 rounded-full font-medium border transition-all
+                      ${selectedColorIdx === idx
+                        ? "bg-foreground text-background border-foreground"
+                        : "bg-background text-foreground border-border hover:border-foreground/50"
+                      }`}
+                  >
+                    {v.color}
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <p className="text-sm font-medium text-foreground">{variants![0].color}</p>
+            )}
+          </div>
+        )}
+
+        {/* GRABADO: patrón + rueda de color */}
+        {hasGrabados && (
+          <div className="space-y-3">
+            <div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1.5">Grabado</p>
+              <div className="flex flex-wrap gap-2">
+                {grabados!.map((g, idx) => (
+                  <button
+                    key={g.id}
+                    onClick={() => handleGrabadoChange(idx)}
+                    aria-pressed={selectedGrabadoIdx === idx}
+                    className={`w-11 h-11 rounded-full overflow-hidden border-2 transition-all ${
+                      selectedGrabadoIdx === idx ? "border-primary scale-105" : "border-border"
                     }`}
-                >
-                  {v.color}
-                </button>
-              ))}
+                    title={g.name}
+                  >
+                    <img src={g.image} alt={g.name} className="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
+              <p className="text-xs text-muted-foreground mt-1.5">{grabadoSeleccionado?.name}</p>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <ColorWheel
+                hue={wheelHue}
+                radius={wheelRadius}
+                onChange={(h, r) => {
+                  setWheelHue(h);
+                  setWheelRadius(r);
+                }}
+                size={72}
+              />
+              <div className="min-w-0">
+                <p className="text-xs text-muted-foreground uppercase tracking-wide">Tono</p>
+                <p className="text-sm font-semibold text-foreground">{grabadoColor.label}</p>
+                <p className="text-[10px] text-muted-foreground mt-0.5 leading-tight">
+                  Referencia — confirmamos con muestra real
+                </p>
+              </div>
             </div>
           </div>
         )}
