@@ -91,6 +91,14 @@ const products = [
     category: "Carteras",
     description: "Cartera de piel 100% genuina, hecha en México, con portatarjetas y compartimentos.",
     variants: [{ color: "Negro", images: ["/cartera-negra-1.jpg", "/cartera-negra-2.jpg"] }],
+    colorSwatches: [
+      { name: "Negro", hex: "#1a1512" },
+      { name: "Café", hex: "#4a2f1f" },
+      { name: "Miel", hex: "#c9963f" },
+      { name: "Vino", hex: "#5c1f2b" },
+      { name: "Azul marino", hex: "#1b2a4a" },
+      { name: "Combinado", hex: "#4a2f1f", hex2: "#1a1512" },
+    ],
   },
 ];
 

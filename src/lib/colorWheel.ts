@@ -45,16 +45,24 @@ function nearestHueName(hue: number): string {
   return best.name;
 }
 
-/** hue: 0-360, radius: 0 (centro, claro) a 1 (borde, oscuro) */
+/**
+ * hue: 0-360, radius: 0 (centro) a 1 (borde).
+ * La claridad baja de forma constante del centro (claro) al borde (oscuro), pero la
+ * saturación sube y luego BAJA otra vez (pico a media distancia) — así el centro da
+ * casi blanco/Hueso, el borde da casi negro/Negro (ambos con poca saturación), y el
+ * anillo de en medio da los tonos vivos (Vino, Azul, Verde, etc). Antes la saturación
+ * solo subía con el radio, así que el borde nunca bajaba de un color "sucio" y Negro
+ * era imposible de alcanzar.
+ */
 export function sampleWheelColor(hue: number, radius: number): WheelColor {
   const r = Math.max(0, Math.min(1, radius));
-  const saturation = 20 + r * 55; // 20% en el centro, 75% en el borde
-  const lightness = 85 - r * 65; // 85% (claro) en el centro, 20% (oscuro) en el borde
+  const lightness = 85 - r * 70; // 85% en el centro, 15% en el borde
+  const saturation = 15 + 60 * Math.sin(r * Math.PI); // bajo en el centro Y en el borde, alto a la mitad
   const hex = hslToHex(hue, saturation, lightness);
 
   let label: string;
-  if (lightness >= 80) label = "Hueso";
-  else if (lightness <= 22 && saturation <= 35) label = "Negro";
+  if (lightness >= 75) label = "Hueso";
+  else if (lightness <= 25 && saturation <= 40) label = "Negro";
   else label = nearestHueName(hue);
 
   return { hue, radius: r, hex, label };

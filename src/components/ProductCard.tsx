@@ -18,6 +18,12 @@ export interface GrabadoOption {
   image: string;
 }
 
+export interface ColorSwatch {
+  name: string;
+  hex: string;
+  hex2?: string; // si existe, se pinta mitad y mitad (para "Combinado")
+}
+
 interface ProductCardProps {
   id: number;
   name: string;
@@ -28,6 +34,7 @@ interface ProductCardProps {
   image?: string; // Mantenemos image por si algún producto viejo no tiene variantes
   variants?: ProductVariant[]; // Nueva propiedad para colores y carrusel
   grabados?: GrabadoOption[]; // Patrones de piel grabada, con rueda de color
+  colorSwatches?: ColorSwatch[]; // Colores fijos de marca sin foto por color (ej. carteras lisas)
 }
 
 // Tallas por categoría. Carteras/bolsas/sombreros no llevan talla (queda fuera de este mapa).
@@ -39,7 +46,7 @@ const TALLAS_POR_CATEGORIA: Record<string, (number | string)[]> = {
   Cintos: [28, 30, 32, 34, 36, 38, 40, 42],
 };
 
-const ProductCard = ({ id, name, price, originalPrice, image, variants, category, description, grabados }: ProductCardProps) => {
+const ProductCard = ({ id, name, price, originalPrice, image, variants, category, description, grabados, colorSwatches }: ProductCardProps) => {
   const { addItem } = useCart();
   const [tallaSeleccionada, setTallaSeleccionada] = useState<number | string | null>(null);
   const [error, setError] = useState(false);
@@ -48,6 +55,7 @@ const ProductCard = ({ id, name, price, originalPrice, image, variants, category
   const [selectedColorIdx, setSelectedColorIdx] = useState(0);
   const [currentImgIdx, setCurrentImgIdx] = useState(0);
   const [zoomOpen, setZoomOpen] = useState(false);
+  const [selectedSwatchIdx, setSelectedSwatchIdx] = useState(0);
 
   // Estados para grabado + rueda de color
   const [selectedGrabadoIdx, setSelectedGrabadoIdx] = useState(0);
@@ -61,6 +69,8 @@ const ProductCard = ({ id, name, price, originalPrice, image, variants, category
   const necesitaTalla = tallas.length > 0;
 
   const hasGrabados = !!grabados && grabados.length > 0;
+  const hasColorSwatches = !!colorSwatches && colorSwatches.length > 0;
+  const swatchSeleccionado = hasColorSwatches ? colorSwatches![selectedSwatchIdx] : null;
   const grabadoSeleccionado = hasGrabados ? grabados![selectedGrabadoIdx] : null;
   const grabadoColor = sampleWheelColor(wheelHue, wheelRadius);
 
@@ -109,7 +119,7 @@ const ProductCard = ({ id, name, price, originalPrice, image, variants, category
       price,
       image: displayImages[0],
       talla: tallaSeleccionada ?? undefined,
-      color: hasGrabados ? undefined : displayColorName,
+      color: hasColorSwatches ? swatchSeleccionado!.name : hasGrabados ? undefined : displayColorName,
       grabado: grabadoSeleccionado?.name,
       grabadoColor: hasGrabados ? `${grabadoColor.label} (${grabadoColor.hex})` : undefined,
     });
@@ -184,8 +194,33 @@ const ProductCard = ({ id, name, price, originalPrice, image, variants, category
           {description && <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{description}</p>}
         </div>
 
-        {/* SELECTOR DE COLORES (para productos sin grabado) */}
-        {hasVariants && !hasGrabados && (
+        {/* SWATCHES DE COLOR FIJOS DE MARCA (sin foto por color) */}
+        {hasColorSwatches && (
+          <div className="space-y-1.5">
+            <p className="text-xs text-muted-foreground uppercase tracking-wide">Color</p>
+            <div className="flex flex-wrap gap-2.5">
+              {colorSwatches!.map((c, idx) => (
+                <button
+                  key={c.name}
+                  onClick={() => setSelectedSwatchIdx(idx)}
+                  aria-pressed={selectedSwatchIdx === idx}
+                  title={c.name}
+                  className={`w-8 h-8 rounded-full border-2 transition-all ${
+                    selectedSwatchIdx === idx ? "border-primary scale-110" : "border-border"
+                  }`}
+                  style={{
+                    background: c.hex2 ? `linear-gradient(135deg, ${c.hex} 50%, ${c.hex2} 50%)` : c.hex,
+                  }}
+                />
+              ))}
+            </div>
+            <p className="text-xs text-foreground font-medium">{swatchSeleccionado?.name}</p>
+            <p className="text-[10px] text-muted-foreground">Foto de referencia — confirmamos con muestra real</p>
+          </div>
+        )}
+
+        {/* SELECTOR DE COLORES (para productos sin grabado ni swatches fijos) */}
+        {hasVariants && !hasGrabados && !hasColorSwatches && (
           <div className="space-y-1.5">
             <p className="text-xs text-muted-foreground uppercase tracking-wide">Color</p>
             {variants!.length > 1 ? (

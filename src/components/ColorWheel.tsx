@@ -68,8 +68,12 @@ const ColorWheel = ({ hue, radius, onChange, size = 96 }: ColorWheelProps) => {
         width: size,
         height: size,
         background:
-          "radial-gradient(circle at center, hsl(0 20% 85%) 0%, transparent 70%), " +
-          "conic-gradient(from 0deg, hsl(0 75% 20%), hsl(60 75% 20%), hsl(120 75% 20%), hsl(180 75% 20%), hsl(240 75% 20%), hsl(300 75% 20%), hsl(360 75% 20%))",
+          // Centro claro (hacia Hueso)
+          "radial-gradient(circle at center, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.35) 18%, transparent 42%), " +
+          // Borde oscuro (hacia Negro)
+          "radial-gradient(circle at center, transparent 60%, rgba(0,0,0,0.55) 82%, rgba(0,0,0,0.88) 100%), " +
+          // Anillo de tonos vivos a media distancia
+          "conic-gradient(from 0deg, hsl(0 75% 50%), hsl(60 75% 50%), hsl(120 75% 50%), hsl(180 75% 50%), hsl(240 75% 50%), hsl(300 75% 50%), hsl(360 75% 50%))",
       }}
     >
       <div
