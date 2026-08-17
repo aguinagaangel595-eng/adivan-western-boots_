@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useCart } from "@/context/CartContext";
-import { ZoomIn } from "lucide-react";
+import { ZoomIn, ExternalLink } from "lucide-react";
 import ColorWheel from "@/components/ColorWheel";
 import { sampleWheelColor } from "@/lib/colorWheel";
 
@@ -12,17 +13,13 @@ export interface ProductVariant {
   images: string[];
 }
 
-export interface GrabadoOption {
-  id: string;
-  name: string;
-  image: string;
-}
-
 export interface ColorSwatch {
   name: string;
   hex: string;
   hex2?: string; // si existe, se pinta mitad y mitad (para "Combinado")
 }
+
+const OTRO_PATRON = "Otro";
 
 interface ProductCardProps {
   id: number;
@@ -33,8 +30,10 @@ interface ProductCardProps {
   description?: string;
   image?: string; // Mantenemos image por si algún producto viejo no tiene variantes
   variants?: ProductVariant[]; // Nueva propiedad para colores y carrusel
-  grabados?: GrabadoOption[]; // Patrones de piel grabada, con rueda de color
   colorSwatches?: ColorSwatch[]; // Colores fijos de marca sin foto por color (ej. carteras lisas)
+  grabadoPatrones?: string[]; // Nombres de patrones de grabado seleccionables (+ opción "Otro")
+  grabadoImages?: string[]; // Fotos de ejemplo del grabado, no ligadas a un patrón en particular
+  grabadoCatalogUrl?: string; // Link al catálogo completo de grabados
 }
 
 // Tallas por categoría. Carteras/bolsas/sombreros no llevan talla (queda fuera de este mapa).
@@ -46,7 +45,20 @@ const TALLAS_POR_CATEGORIA: Record<string, (number | string)[]> = {
   Cintos: [28, 30, 32, 34, 36, 38, 40, 42],
 };
 
-const ProductCard = ({ id, name, price, originalPrice, image, variants, category, description, grabados, colorSwatches }: ProductCardProps) => {
+const ProductCard = ({
+  id,
+  name,
+  price,
+  originalPrice,
+  image,
+  variants,
+  category,
+  description,
+  colorSwatches,
+  grabadoPatrones,
+  grabadoImages,
+  grabadoCatalogUrl,
+}: ProductCardProps) => {
   const { addItem } = useCart();
   const [tallaSeleccionada, setTallaSeleccionada] = useState<number | string | null>(null);
   const [error, setError] = useState(false);
@@ -57,8 +69,10 @@ const ProductCard = ({ id, name, price, originalPrice, image, variants, category
   const [zoomOpen, setZoomOpen] = useState(false);
   const [selectedSwatchIdx, setSelectedSwatchIdx] = useState(0);
 
-  // Estados para grabado + rueda de color
-  const [selectedGrabadoIdx, setSelectedGrabadoIdx] = useState(0);
+  // Estados para grabado (patrón por nombre) + rueda de color
+  const hasGrabados = !!grabadoPatrones && grabadoPatrones.length > 0;
+  const [selectedPatron, setSelectedPatron] = useState(hasGrabados ? grabadoPatrones![0] : "");
+  const [patronPersonalizado, setPatronPersonalizado] = useState("");
   const [wheelHue, setWheelHue] = useState(30);
   const [wheelRadius, setWheelRadius] = useState(0.5);
 
@@ -68,17 +82,16 @@ const ProductCard = ({ id, name, price, originalPrice, image, variants, category
   const tallas = TALLAS_POR_CATEGORIA[category] ?? [];
   const necesitaTalla = tallas.length > 0;
 
-  const hasGrabados = !!grabados && grabados.length > 0;
   const hasColorSwatches = !!colorSwatches && colorSwatches.length > 0;
   const swatchSeleccionado = hasColorSwatches ? colorSwatches![selectedSwatchIdx] : null;
-  const grabadoSeleccionado = hasGrabados ? grabados![selectedGrabadoIdx] : null;
   const grabadoColor = sampleWheelColor(wheelHue, wheelRadius);
+  const patronFinal = selectedPatron === OTRO_PATRON ? patronPersonalizado.trim() || "Otro (sin especificar)" : selectedPatron;
 
   // Lógica para determinar qué imágenes mostrar
   const hasVariants = variants && variants.length > 0;
   const currentVariant = hasVariants ? variants[selectedColorIdx] : null;
-  const displayImages = hasGrabados
-    ? [grabadoSeleccionado!.image]
+  const displayImages = hasGrabados && grabadoImages && grabadoImages.length > 0
+    ? grabadoImages
     : currentVariant
     ? currentVariant.images
     : image
@@ -102,11 +115,6 @@ const ProductCard = ({ id, name, price, originalPrice, image, variants, category
     setCurrentImgIdx(0); // Regresa a la primera foto al cambiar de color
   };
 
-  const handleGrabadoChange = (idx: number) => {
-    setSelectedGrabadoIdx(idx);
-    setCurrentImgIdx(0);
-  };
-
   const handleAgregar = () => {
     if (necesitaTalla && !tallaSeleccionada) {
       setError(true);
@@ -120,7 +128,7 @@ const ProductCard = ({ id, name, price, originalPrice, image, variants, category
       image: displayImages[0],
       talla: tallaSeleccionada ?? undefined,
       color: hasColorSwatches ? swatchSeleccionado!.name : hasGrabados ? undefined : displayColorName,
-      grabado: grabadoSeleccionado?.name,
+      grabado: hasGrabados ? patronFinal : undefined,
       grabadoColor: hasGrabados ? `${grabadoColor.label} (${grabadoColor.hex})` : undefined,
     });
     setTallaSeleccionada(null);
@@ -245,27 +253,49 @@ const ProductCard = ({ id, name, price, originalPrice, image, variants, category
           </div>
         )}
 
-        {/* GRABADO: patrón + rueda de color */}
+        {/* GRABADO: patrón por nombre + rueda de color */}
         {hasGrabados && (
           <div className="space-y-3">
             <div>
-              <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1.5">Grabado</p>
-              <div className="flex flex-wrap gap-2">
-                {grabados!.map((g, idx) => (
-                  <button
-                    key={g.id}
-                    onClick={() => handleGrabadoChange(idx)}
-                    aria-pressed={selectedGrabadoIdx === idx}
-                    className={`w-11 h-11 rounded-full overflow-hidden border-2 transition-all ${
-                      selectedGrabadoIdx === idx ? "border-primary scale-105" : "border-border"
-                    }`}
-                    title={g.name}
+              <div className="flex items-center justify-between mb-1.5">
+                <p className="text-xs text-muted-foreground uppercase tracking-wide">Grabado</p>
+                {grabadoCatalogUrl && (
+                  <a
+                    href={grabadoCatalogUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="text-[11px] text-[hsl(35,45%,45%)] hover:text-[hsl(35,45%,35%)] underline inline-flex items-center gap-1"
                   >
-                    <img src={g.image} alt={g.name} className="w-full h-full object-cover" />
+                    Ver catálogo <ExternalLink className="h-3 w-3" />
+                  </a>
+                )}
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {[...grabadoPatrones!, OTRO_PATRON].map((patron) => (
+                  <button
+                    key={patron}
+                    onClick={() => setSelectedPatron(patron)}
+                    aria-pressed={selectedPatron === patron}
+                    className={`text-xs px-3 py-1.5 rounded-full font-medium border transition-all ${
+                      selectedPatron === patron
+                        ? "bg-foreground text-background border-foreground"
+                        : "bg-background text-foreground border-border hover:border-foreground/50"
+                    }`}
+                  >
+                    {patron}
                   </button>
                 ))}
               </div>
-              <p className="text-xs text-muted-foreground mt-1.5">{grabadoSeleccionado?.name}</p>
+              {selectedPatron === OTRO_PATRON && (
+                <Input
+                  value={patronPersonalizado}
+                  onChange={(e) => setPatronPersonalizado(e.target.value)}
+                  placeholder="Escribe el grabado que buscas"
+                  className="mt-2 h-8 text-xs"
+                  onClick={(e) => e.stopPropagation()}
+                />
+              )}
             </div>
 
             <div className="flex items-center gap-4">
