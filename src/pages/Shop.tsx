@@ -224,7 +224,7 @@ const products = [
     id: 22,
     name: "Cartera San Judas Tadeo",
     price: 130,
-    originalprice: 189,
+    originalPrice: 189,
     group: "Carteras",
     category: "Carteras",
     description: "Cartera de piel con diseño tallado de San Judas Tadeo.",
