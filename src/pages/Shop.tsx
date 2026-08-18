@@ -14,8 +14,8 @@ const products = [
   {
     id: 1,
     name: "Botas Rosas",
-    price: 999,
-    originalPrice: 1399,
+    price: 1599,
+    originalPrice: 2199,
     group: "Botas",
     category: "Rodeo",
     description: "Botas coquetas en piel rosa, para dama, con pespunte en tono contrastante.",
@@ -24,7 +24,7 @@ const products = [
   {
     id: 2,
     name: "Rodeo Café Enmielado",
-    price: 1199,
+    price: 1599,
     group: "Botas",
     category: "Rodeo",
     description: "Bota rodeo clásica en piel café enmielado, tubo bordado y suela de doble vida.",
@@ -35,7 +35,7 @@ const products = [
   {
     id: 3,
     name: "Rodeo Mango",
-    price: 1199,
+    price: 1599,
     group: "Botas",
     category: "Rodeo",
     description: "Bota rodeo en piel color mango con bordado floral en hilo tono hueso.",
@@ -46,7 +46,7 @@ const products = [
   {
     id: 4,
     name: "Bota Grabada",
-    price: 999,
+    price: 1599,
     originalPrice: 1299,
     group: "Botas",
     category: "Exótica",
@@ -76,7 +76,7 @@ const products = [
   {
     id: 8,
     name: "Tejida Miel",
-    price: 1199,
+    price: 1699,
     group: "Botas",
     category: "Tejida",
     description: "Bota de piel tejida a mano en tono miel, con tubo liso color café.",
@@ -85,7 +85,7 @@ const products = [
   {
     id: 9,
     name: "Cartera Bifold Negra",
-    price: 200,
+    price: 250,
     group: "Carteras",
     category: "Carteras",
     description: "Cartera de piel 100% genuina, hecha en México, con portatarjetas y compartimentos.",
@@ -102,7 +102,7 @@ const products = [
   {
     id: 10,
     name: "Bota Mantarraya Negra",
-    price: 1199,
+    price: 1699,
     group: "Botas",
     category: "Exótica",
     description: "Bota alta en piel negra con textura tipo mantarraya en el empeine, tubo bordado a tono.",
@@ -111,7 +111,7 @@ const products = [
   {
     id: 11,
     name: "Bota Pitón Negra",
-    price: 1199,
+    price: 1599,
     group: "Botas",
     category: "Exótica",
     description: "Bota alta en piel negra con textura tipo pitón tono sobre tono, tubo bordado.",
@@ -120,7 +120,7 @@ const products = [
   {
     id: 12,
     name: "Botín Nubuck",
-    price: 1299,
+    price: 1350,
     group: "Botas",
     category: "Botín",
     description: "Botín corto en piel nubuck con bordado blanco, jaladeras y elástico lateral.",
@@ -132,7 +132,7 @@ const products = [
   {
     id: 13,
     name: "Bota Harness Café",
-    price: 1599,
+    price: 1400,
     group: "Botas",
     category: "Rodeo",
     description: "Bota alta estilo motociclista en piel café rústica, con argolla y hebillas.",
@@ -150,7 +150,7 @@ const products = [
   {
     id: 15,
     name: "Gorra Gallo",
-    price: 189,
+    price: 185,
     group: "Gorras",
     category: "Gorras",
     description: "Gorra trucker con malla y ala en piel grabada, emblema metálico de gallo.",
@@ -161,7 +161,7 @@ const products = [
   {
     id: 16,
     name: "Sombrero de Piel Negro",
-    price: 899,
+    price: 800,
     group: "Sombreros",
     category: "Sombreros",
     description: "Sombrero de piel genuina en negro, banda trenzada y cordón ajustable.",
@@ -170,7 +170,7 @@ const products = [
   {
     id: 17,
     name: "Bolso Colgante",
-    price: 699,
+    price: 750,
     group: "Bolsos",
     category: "Bolsos",
     description: "Bolso pequeño tipo riñonera/colgante, disponible en piel escamada o tallada.",
@@ -181,7 +181,7 @@ const products = [
   {
     id: 18,
     name: "Mariconera chica",
-    price: 799,
+    price: 850,
     group: "Bolsos",
     category: "Bolsos",
     description: "Mariconera chica cruzada con panel en piel grabada tipo avestruz.",
@@ -193,6 +193,7 @@ const products = [
     id: 19,
     name: "Bolsa Yareli",
     price: 1199,
+    originalprice: 1499,
     group: "Bolsos",
     category: "Bolsos",
     description: "Bolsa tipo caja con doble asa y cadena, en piel grabada exótica.",
@@ -203,7 +204,8 @@ const products = [
   {
     id: 20,
     name: "Bolsa Pitón",
-    price: 999,
+    price: 1199,
+    originalprice: 1750,
     group: "Bolsos",
     category: "Bolsos",
     description: "Bolso cruzado tipo cámara en piel grabada tipo pitón, correa ajustable.",
@@ -223,8 +225,8 @@ const products = [
   {
     id: 22,
     name: "Cartera San Judas Tadeo",
-    price: 130,
-    originalPrice: 189,
+    price: 259,
+    originalPrice: 350,
     group: "Carteras",
     category: "Carteras",
     description: "Cartera de piel con diseño tallado de San Judas Tadeo.",
@@ -233,7 +235,7 @@ const products = [
   {
     id: 23,
     name: "Cinto Conchos",
-    price: 249,
+    price: 349,
     group: "Cintos",
     category: "Cintos",
     description: "Cinto de piel color mostaza con conchos metálicos y hebilla grabada.",
@@ -280,10 +282,10 @@ const products = [
   {
     id: 28,
     name: "Set de Tequileros",
-    price: 449,
+    price: 559,
     group: "Otros",
     category: "Otros",
-    description: "Set de 10 caballitos tequileros forrados en piel tallada, diseños surtidos.",
+    description: "Set de 6 caballitos tequileros forrados en piel tallada, diseños surtidos.",
     variants: [{ color: "Surtido", images: ["/tequileros.jpg"] }],
   },
 ];
