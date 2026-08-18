@@ -19,8 +19,15 @@ const featuredProducts = [
       { color: "Café enmielado", images: ["/Rodeo-cafe-enmielado-1.jpeg", "/Rodeo-cafe-enmielado-2.jpeg", "/Rodeo-cafe-enmielado-3.jpeg"] },
     ],
   },
-  { id: 7, name: "Pescado Negro", price: 3499, category: "Originales", image: "/pescado-negro.jpg", description: "Piel exótica original de pescado (pirarucú), tubo bordado a tono." },
-  { id: 8, name: "Tejida Miel", price: 1399, category: "Tejida", image: "/tejida-miel.jpg", description: "Piel tejida a mano en tono miel, tubo liso color café." },
+  { id: 15, name: "Gorra Gallo", price: 189, category: "Gorras", image: "/gorra-gallo.jpg", description: "Gorra trucker con malla y ala en piel grabada, emblema metálico de gallo." },
+  {
+    id: 9,
+    name: "Cartera Bifold Negra",
+    price: 200,
+    category: "Carteras",
+    description: "Cartera de piel 100% genuina, hecha en México, con portatarjetas y compartimentos.",
+    variants: [{ color: "Negro", images: ["/cartera-negra-1.jpg", "/cartera-negra-2.jpg"] }],
+  },
 ];
 
 const Index = () => {
