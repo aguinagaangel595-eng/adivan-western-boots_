@@ -176,7 +176,7 @@ const products = [
   },
   {
     id: 18,
-    name: "Bolso Avestruz",
+    name: "Mariconera chica",
     price: 799,
     group: "Bolsos",
     category: "Bolsos",
@@ -185,7 +185,7 @@ const products = [
   },
   {
     id: 19,
-    name: "Bolsa de Mano",
+    name: "Bolsa Yareli",
     price: 1199,
     group: "Bolsos",
     category: "Bolsos",
@@ -194,7 +194,7 @@ const products = [
   },
   {
     id: 20,
-    name: "Bolso Pitón",
+    name: "Bolsa Pitón",
     price: 999,
     group: "Bolsos",
     category: "Bolsos",
@@ -203,7 +203,7 @@ const products = [
   },
   {
     id: 21,
-    name: "Clutch Cocodrilo",
+    name: "Cartera Dama",
     price: 1299,
     group: "Carteras",
     category: "Carteras",
@@ -222,7 +222,7 @@ const products = [
   },
   {
     id: 23,
-    name: "Cinto Mostaza",
+    name: "Cinto Conchos",
     price: 249,
     group: "Cintos",
     category: "Cintos",
@@ -249,7 +249,7 @@ const products = [
   },
   {
     id: 26,
-    name: "Cinto Trenzado",
+    name: "Cinto Tejido",
     price: 599,
     group: "Cintos",
     category: "Cintos",
@@ -258,7 +258,7 @@ const products = [
   },
   {
     id: 27,
-    name: "Sacabotas Pitón",
+    name: "Sacabotas",
     price: 299,
     group: "Otros",
     category: "Otros",
