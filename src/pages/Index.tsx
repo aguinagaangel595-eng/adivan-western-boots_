@@ -7,28 +7,10 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import craftsmanshipImage from "@/assets/craftsmanship-hands.jpg";
+import { products } from "@/data/products";
 
-const featuredProducts = [
-  {
-    id: 2,
-    name: "Rodeo Café Enmielado",
-    price: 1299,
-    category: "Rodeo",
-    description: "Bota rodeo clásica en piel café enmielado, tubo bordado.",
-    variants: [
-      { color: "Café enmielado", images: ["/Rodeo-cafe-enmielado-1.jpeg", "/Rodeo-cafe-enmielado-2.jpeg", "/Rodeo-cafe-enmielado-3.jpeg"] },
-    ],
-  },
-  { id: 15, name: "Gorra Gallo", price: 189, category: "Gorras", image: "/gorra-gallo.jpg", description: "Gorra trucker con malla y ala en piel grabada, emblema metálico de gallo." },
-  {
-    id: 9,
-    name: "Cartera Bifold Negra",
-    price: 200,
-    category: "Carteras",
-    description: "Cartera de piel 100% genuina, hecha en México, con portatarjetas y compartimentos.",
-    variants: [{ color: "Negro", images: ["/cartera-negra-1.jpg", "/cartera-negra-2.jpg"] }],
-  },
-];
+// Rodeo Café Enmielado, Gorra Gallo, Cartera Bifold Negra
+const featuredProducts = [2, 15, 9].map((id) => products.find((p) => p.id === id)!);
 
 const Index = () => {
   return (

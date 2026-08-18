@@ -71,7 +71,7 @@ const ProductCard = ({
   const [patronTexto, setPatronTexto] = useState("");
 
   const formatPrice = (p: number) =>
-    new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN" }).format(p);
+    `${new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN" }).format(p)} MXN`;
 
   const tallas = TALLAS_POR_CATEGORIA[category] ?? [];
   const necesitaTalla = tallas.length > 0;

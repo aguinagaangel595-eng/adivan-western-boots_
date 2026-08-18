@@ -7,7 +7,7 @@ const CartModal = () => {
   const { items, isOpen, setIsOpen, updateQuantity, removeItem, totalPrice, clearCart } = useCart();
 
   const formatPrice = (price: number) =>
-    new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN" }).format(price);
+    `${new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN" }).format(price)} MXN`;
 
   const handleWhatsApp = () => {
     const numero = "524775547669"; // 👈 Tu número aquí
