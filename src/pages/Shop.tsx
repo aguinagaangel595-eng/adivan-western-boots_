@@ -85,7 +85,7 @@ const products = [
   {
     id: 9,
     name: "Cartera Bifold Negra",
-    price: 599,
+    price: 200,
     group: "Carteras",
     category: "Carteras",
     description: "Cartera de piel 100% genuina, hecha en México, con portatarjetas y compartimentos.",
@@ -102,7 +102,7 @@ const products = [
   {
     id: 10,
     name: "Bota Mantarraya Negra",
-    price: 1999,
+    price: 1199,
     group: "Botas",
     category: "Exótica",
     description: "Bota alta en piel negra con textura tipo mantarraya en el empeine, tubo bordado a tono.",
@@ -111,7 +111,7 @@ const products = [
   {
     id: 11,
     name: "Bota Pitón Negra",
-    price: 1899,
+    price: 1199,
     group: "Botas",
     category: "Exótica",
     description: "Bota alta en piel negra con textura tipo pitón tono sobre tono, tubo bordado.",
@@ -150,7 +150,7 @@ const products = [
   {
     id: 15,
     name: "Gorra Gallo",
-    price: 399,
+    price: 189,
     group: "Gorras",
     category: "Gorras",
     description: "Gorra trucker con malla y ala en piel grabada, emblema metálico de gallo.",
@@ -180,7 +180,7 @@ const products = [
   },
   {
     id: 18,
-    name: "Bolso Avestruz",
+    name: "Mariconera chica",
     price: 799,
     group: "Bolsos",
     category: "Bolsos",
@@ -202,7 +202,7 @@ const products = [
   },
   {
     id: 20,
-    name: "Bolso Pitón",
+    name: "Bolsa Pitón",
     price: 999,
     group: "Bolsos",
     category: "Bolsos",
@@ -223,7 +223,8 @@ const products = [
   {
     id: 22,
     name: "Cartera San Judas Tadeo",
-    price: 649,
+    price: 130,
+    originalprice: 189,
     group: "Carteras",
     category: "Carteras",
     description: "Cartera de piel con diseño tallado de San Judas Tadeo.",
@@ -231,8 +232,8 @@ const products = [
   },
   {
     id: 23,
-    name: "Cinto Mostaza",
-    price: 549,
+    name: "Cinto Conchos",
+    price: 249,
     group: "Cintos",
     category: "Cintos",
     description: "Cinto de piel color mostaza con conchos metálicos y hebilla grabada.",
@@ -241,7 +242,7 @@ const products = [
   {
     id: 24,
     name: "Cinto Clásico Negro",
-    price: 399,
+    price: 159,
     group: "Cintos",
     category: "Cintos",
     description: "Cinto de piel lisa negra, hebilla rectangular sencilla.",
@@ -250,7 +251,7 @@ const products = [
   {
     id: 25,
     name: "Cinto Piteado Negro",
-    price: 799,
+    price: 399,
     group: "Cintos",
     category: "Cintos",
     description: "Cinto ancho tallado estilo piteado, en negro con detalles plateados.",
@@ -258,7 +259,7 @@ const products = [
   },
   {
     id: 26,
-    name: "Cinto Trenzado",
+    name: "Cinto Tejido",
     price: 599,
     group: "Cintos",
     category: "Cintos",
@@ -267,7 +268,7 @@ const products = [
   },
   {
     id: 27,
-    name: "Sacabotas Pitón",
+    name: "Sacabotas",
     price: 299,
     group: "Otros",
     category: "Otros",
@@ -282,7 +283,7 @@ const products = [
     price: 449,
     group: "Otros",
     category: "Otros",
-    description: "Set de caballitos tequileros forrados en piel tallada, diseños surtidos.",
+    description: "Set de 10 caballitos tequileros forrados en piel tallada, diseños surtidos.",
     variants: [{ color: "Surtido", images: ["/tequileros.jpg"] }],
   },
 ];
