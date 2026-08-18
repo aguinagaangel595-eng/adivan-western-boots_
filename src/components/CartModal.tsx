@@ -17,7 +17,6 @@ const CartModal = () => {
         item.talla ? `Talla: ${item.talla}` : null,
         item.color ? `Color: ${item.color}` : null,
         item.grabado ? `Grabado: ${item.grabado}` : null,
-        item.grabadoColor ? `Tono: ${item.grabadoColor}` : null,
       ].filter(Boolean);
       const sufijo = detalles.length ? ` (${detalles.join(", ")})` : "";
       return `• ${item.name}${sufijo} x${item.quantity} — ${formatPrice(item.price * item.quantity)}`;
@@ -57,7 +56,6 @@ const CartModal = () => {
                     {item.talla && <p className="text-xs text-muted-foreground">Talla: {item.talla}</p>}
                     {item.color && <p className="text-xs text-muted-foreground">Color: {item.color}</p>}
                     {item.grabado && <p className="text-xs text-muted-foreground">Grabado: {item.grabado}</p>}
-                    {item.grabadoColor && <p className="text-xs text-muted-foreground">Tono: {item.grabadoColor}</p>}
                     <p className="text-sm text-muted-foreground">{formatPrice(item.price)}</p>
                     <div className="flex items-center gap-2 mt-2">
                       <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => updateQuantity(item.id, item.quantity - 1, item.talla, item.color, item.grabado)}>

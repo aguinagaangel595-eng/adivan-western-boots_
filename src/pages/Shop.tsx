@@ -50,7 +50,7 @@ const products = [
     originalPrice: 1299,
     group: "Botas",
     category: "Exótica",
-    description: "Piel de res con grabado tipo exótico. Elige el patrón y el tono que más te guste.",
+    description: "Piel de res con grabado tipo exótico. Ve el catálogo y dinos qué patrón quieres.",
     grabadoPatrones: ["Avestruz", "Cocodrilo", "Pescado", "Elefante", "Cincelado"],
     grabadoImages: ["/cocologo.jpeg", "/coco-papada.jpg"],
     grabadoCatalogUrl: "https://canva.link/f9olgb75t9hbhv7",

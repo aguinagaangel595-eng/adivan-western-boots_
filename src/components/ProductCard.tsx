@@ -4,8 +4,6 @@ import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useCart } from "@/context/CartContext";
 import { ZoomIn, ExternalLink } from "lucide-react";
-import ColorWheel from "@/components/ColorWheel";
-import { sampleWheelColor } from "@/lib/colorWheel";
 
 // 1. Agregamos la interfaz para las variantes de color/modelo
 export interface ProductVariant {
@@ -18,8 +16,6 @@ export interface ColorSwatch {
   hex: string;
   hex2?: string; // si existe, se pinta mitad y mitad (para "Combinado")
 }
-
-const OTRO_PATRON = "Otro";
 
 interface ProductCardProps {
   id: number;
@@ -69,12 +65,9 @@ const ProductCard = ({
   const [zoomOpen, setZoomOpen] = useState(false);
   const [selectedSwatchIdx, setSelectedSwatchIdx] = useState(0);
 
-  // Estados para grabado (patrón por nombre) + rueda de color
+  // Estado para grabado: el cliente ve el catálogo y escribe qué patrón quiere
   const hasGrabados = !!grabadoPatrones && grabadoPatrones.length > 0;
-  const [selectedPatron, setSelectedPatron] = useState(hasGrabados ? grabadoPatrones![0] : "");
-  const [patronPersonalizado, setPatronPersonalizado] = useState("");
-  const [wheelHue, setWheelHue] = useState(30);
-  const [wheelRadius, setWheelRadius] = useState(0.5);
+  const [patronTexto, setPatronTexto] = useState("");
 
   const formatPrice = (p: number) =>
     new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN" }).format(p);
@@ -84,8 +77,6 @@ const ProductCard = ({
 
   const hasColorSwatches = !!colorSwatches && colorSwatches.length > 0;
   const swatchSeleccionado = hasColorSwatches ? colorSwatches![selectedSwatchIdx] : null;
-  const grabadoColor = sampleWheelColor(wheelHue, wheelRadius);
-  const patronFinal = selectedPatron === OTRO_PATRON ? patronPersonalizado.trim() || "Otro (sin especificar)" : selectedPatron;
 
   // Lógica para determinar qué imágenes mostrar
   const hasVariants = variants && variants.length > 0;
@@ -128,8 +119,7 @@ const ProductCard = ({
       image: displayImages[0],
       talla: tallaSeleccionada ?? undefined,
       color: hasColorSwatches ? swatchSeleccionado!.name : hasGrabados ? undefined : displayColorName,
-      grabado: hasGrabados ? patronFinal : undefined,
-      grabadoColor: hasGrabados ? `${grabadoColor.label} (${grabadoColor.hex})` : undefined,
+      grabado: hasGrabados ? patronTexto.trim() || "Sin especificar" : undefined,
     });
     setTallaSeleccionada(null);
     setError(false);
@@ -256,65 +246,26 @@ const ProductCard = ({
         {/* GRABADO: patrón por nombre + rueda de color */}
         {hasGrabados && (
           <div className="space-y-3">
+            {grabadoCatalogUrl && (
+              <a
+                href={grabadoCatalogUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="flex items-center justify-center gap-2 w-full rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold py-2.5 text-sm transition-colors"
+              >
+                Ver catálogo de grabados <ExternalLink className="h-4 w-4" />
+              </a>
+            )}
             <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <p className="text-xs text-muted-foreground uppercase tracking-wide">Grabado</p>
-                {grabadoCatalogUrl && (
-                  <a
-                    href={grabadoCatalogUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="text-[11px] text-[hsl(35,45%,45%)] hover:text-[hsl(35,45%,35%)] underline inline-flex items-center gap-1"
-                  >
-                    Ver catálogo <ExternalLink className="h-3 w-3" />
-                  </a>
-                )}
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {[...grabadoPatrones!, OTRO_PATRON].map((patron) => (
-                  <button
-                    key={patron}
-                    onClick={() => setSelectedPatron(patron)}
-                    aria-pressed={selectedPatron === patron}
-                    className={`text-xs px-3 py-1.5 rounded-full font-medium border transition-all ${
-                      selectedPatron === patron
-                        ? "bg-foreground text-background border-foreground"
-                        : "bg-background text-foreground border-border hover:border-foreground/50"
-                    }`}
-                  >
-                    {patron}
-                  </button>
-                ))}
-              </div>
-              {selectedPatron === OTRO_PATRON && (
-                <Input
-                  value={patronPersonalizado}
-                  onChange={(e) => setPatronPersonalizado(e.target.value)}
-                  placeholder="Escribe el grabado que buscas"
-                  className="mt-2 h-8 text-xs"
-                  onClick={(e) => e.stopPropagation()}
-                />
-              )}
-            </div>
-
-            <div className="flex items-center gap-4">
-              <ColorWheel
-                hue={wheelHue}
-                radius={wheelRadius}
-                onChange={(h, r) => {
-                  setWheelHue(h);
-                  setWheelRadius(r);
-                }}
-                size={72}
+              <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1.5">¿Qué grabado quieres?</p>
+              <Input
+                value={patronTexto}
+                onChange={(e) => setPatronTexto(e.target.value)}
+                placeholder={grabadoPatrones ? `Ej. ${grabadoPatrones.join(", ")}...` : "Escribe el grabado que buscas"}
+                className="h-9 text-sm"
+                onClick={(e) => e.stopPropagation()}
               />
-              <div className="min-w-0">
-                <p className="text-xs text-muted-foreground uppercase tracking-wide">Tono</p>
-                <p className="text-sm font-semibold text-foreground">{grabadoColor.label}</p>
-                <p className="text-[10px] text-muted-foreground mt-0.5 leading-tight">
-                  Referencia — confirmamos con muestra real
-                </p>
-              </div>
             </div>
           </div>
         )}

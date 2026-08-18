@@ -9,7 +9,6 @@ export interface CartItem {
   talla?: number | string;
   color?: string;
   grabado?: string;
-  grabadoColor?: string;
 }
 
 interface CartContextType {
