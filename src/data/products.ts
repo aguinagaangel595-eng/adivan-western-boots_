@@ -67,33 +67,6 @@ export const products: Product[] = [
     grabadoCatalogUrl: "https://canva.link/f9olgb75t9hbhv7",
   },
   {
-    id: 6,
-    name: "Pescado Chocolate",
-    price: 3499,
-    group: "Botas",
-    category: "Originales",
-    description: "Piel exótica original de pescado (pirarucú) en tono chocolate, tubo bordado café.",
-    variants: [{ color: "Chocolate", images: ["/pescado-choco.jpg"] }],
-  },
-  {
-    id: 7,
-    name: "Pescado Negro",
-    price: 3499,
-    group: "Botas",
-    category: "Originales",
-    description: "Piel exótica original de pescado (pirarucú) en negro, tubo bordado a tono.",
-    variants: [{ color: "Negro", images: ["/pescado-negro.jpg"] }],
-  },
-  {
-    id: 8,
-    name: "Tejida Miel",
-    price: 1699,
-    group: "Botas",
-    category: "Tejida",
-    description: "Bota de piel tejida a mano en tono miel, con tubo liso color café.",
-    variants: [{ color: "Miel", images: ["/tejida-miel.jpg"] }],
-  },
-  {
     id: 9,
     name: "Cartera Bifold Negra",
     price: 250,
@@ -302,4 +275,4 @@ export const products: Product[] = [
 ];
 
 export const GRUPOS = ["Todo", "Ofertas", "Botas", "Carteras", "Bolsos", "Cintos", "Sombreros", "Gorras", "Otros"];
-export const SUBCATEGORIAS_BOTA = ["Todas", "Rodeo", "Exótica", "Originales", "Tejida", "Botín"];
+export const SUBCATEGORIAS_BOTA = ["Todas", "Rodeo", "Exótica", "Botín"];
