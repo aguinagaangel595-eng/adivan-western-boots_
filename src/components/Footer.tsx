@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Instagram, Facebook, MessageCircle } from "lucide-react";
+import { Instagram, MessageCircle } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -41,9 +41,6 @@ const Footer = () => {
             <div className="flex space-x-4">
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[hsl(35,45%,65%)] transition-colors" aria-label="Instagram">
                 <Instagram className="h-5 w-5" />
-              </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[hsl(35,45%,65%)] transition-colors" aria-label="Facebook">
-                <Facebook className="h-5 w-5" />
               </a>
               <a href="https://wa.me/524793203429" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[hsl(35,45%,65%)] transition-colors" aria-label="WhatsApp">
                 <MessageCircle className="h-5 w-5" />
