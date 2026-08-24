@@ -34,7 +34,7 @@ const Hero = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <span className="inline-block border border-[hsl(35,45%,65%)] text-[hsl(35,45%,65%)] text-xs uppercase tracking-[0.25em] px-5 py-2 rounded-full mb-8">
-            Autenticidad en cada puntada
+            Legado en cada paso
           </span>
           <h1 className="font-serif text-5xl md:text-7xl lg:text-[5.5rem] font-bold text-white mb-6 leading-[0.98]">
             La piel cobra vida con <span className="text-[hsl(35,45%,65%)]">ADIVAN.</span>
