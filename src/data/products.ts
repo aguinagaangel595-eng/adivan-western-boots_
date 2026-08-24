@@ -67,6 +67,15 @@ export const products: Product[] = [
     grabadoCatalogUrl: "https://canva.link/f9olgb75t9hbhv7",
   },
   {
+    id: 8,
+    name: "Tejida Miel",
+    price: 1699,
+    group: "Botas",
+    category: "Tejida",
+    description: "Bota de piel tejida a mano en tono miel, con tubo liso color café.",
+    variants: [{ color: "Miel", images: ["/tejida-miel.jpg"] }],
+  },
+  {
     id: 9,
     name: "Cartera Bifold Negra",
     price: 250,
@@ -275,4 +284,4 @@ export const products: Product[] = [
 ];
 
 export const GRUPOS = ["Todo", "Ofertas", "Botas", "Carteras", "Bolsos", "Cintos", "Sombreros", "Gorras", "Otros"];
-export const SUBCATEGORIAS_BOTA = ["Todas", "Rodeo", "Exótica", "Botín"];
+export const SUBCATEGORIAS_BOTA = ["Todas", "Rodeo", "Exótica", "Tejida", "Botín"];

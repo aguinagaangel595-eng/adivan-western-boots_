@@ -117,7 +117,7 @@ const Shop = () => {
                   Todavía no tenemos fotos listas de esta categoría. Escríbenos y te avisamos en cuanto esté disponible.
                 </p>
                 <a
-                  href="https://wa.me/524775547669"
+                  href="https://wa.me/524793203429"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-sm font-semibold px-6 py-3 transition-colors"
