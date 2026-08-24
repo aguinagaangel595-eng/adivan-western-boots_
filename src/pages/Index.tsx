@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import craftsmanshipImage from "@/assets/craftsmanship-hands.jpg";
 import { products } from "@/data/products";
 
-// Rodeo Café Enmielado, Gorra Gallo, Cartera Bifold Negra
+// Rodeo Café Enmielado, Gorra, Cartera Bifold Negra
 const featuredProducts = [2, 15, 9].map((id) => products.find((p) => p.id === id)!);
 
 const Index = () => {

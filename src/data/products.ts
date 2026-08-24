@@ -133,7 +133,7 @@ export const products: Product[] = [
   },
   {
     id: 14,
-    name: "Botín Negro Charol",
+    name: "Botín Negro",
     price: 1399,
     group: "Botas",
     category: "Botín",
@@ -142,7 +142,7 @@ export const products: Product[] = [
   },
   {
     id: 15,
-    name: "Gorra Gallo",
+    name: "Gorra",
     price: 185,
     group: "Gorras",
     category: "Gorras",
