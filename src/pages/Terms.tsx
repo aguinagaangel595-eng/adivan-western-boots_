@@ -128,7 +128,7 @@ const Terms = () => {
                 <a href="mailto:Adivanwesternbooots@gmail.com" className="text-[hsl(35,45%,45%)] underline">
                   Adivanwesternbooots@gmail.com
                 </a>{" "}
-                · +52 (477) 554 7669.
+                · +52 479 320 3429.
               </p>
             </div>
           </div>

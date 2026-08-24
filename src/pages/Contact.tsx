@@ -44,7 +44,7 @@ const Contact = () => {
               {/* Left: Info */}
               <div>
                 <div className="aspect-video overflow-hidden rounded-2xl shadow-xl mb-8">
-                  <img src="/pescado-choco.jpg" alt="Botas ADIVAN hechas a mano" className="w-full h-full object-cover" />
+                  <img src="/Rodeo-cafe-enmielado-1.jpeg" alt="Botas ADIVAN hechas a mano" className="w-full h-full object-cover" />
                 </div>
                 <p className="text-foreground leading-relaxed mb-8">
                   ¿Buscas una talla especial, un par para mayoreo o una colaboración con tu tienda?
@@ -57,7 +57,7 @@ const Contact = () => {
                   </div>
                   <div className="flex items-center gap-3">
                     <Phone className="h-5 w-5 text-[hsl(35,45%,65%)]" />
-                    <span className="text-foreground">+52 (477) 554 7669</span>
+                    <span className="text-foreground">+52 479 320 3429</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <MapPin className="h-5 w-5 text-[hsl(35,45%,65%)]" />

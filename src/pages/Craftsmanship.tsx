@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import craftsmanshipHands from "@/assets/craftsmanship-hands.jpg";
 
 const gallery = [
-  { src: "/pescado-negro.jpg", alt: "Suela grabada ADIVAN en piel de pescado negra" },
+  { src: "/coco-papada.jpg", alt: "Detalle de piel grabada tipo cocodrilo" },
   { src: "/Rodeo-mango-2.jpeg", alt: "Detalle de bordado en bota Rodeo Mango" },
   { src: "/tejida-miel.jpg", alt: "Detalle de piel tejida a mano" },
 ];
