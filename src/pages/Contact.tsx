@@ -14,9 +14,28 @@ const Contact = () => {
     name: "", email: "", phone: "", type: "", message: "",
   });
 
+  const tipoLabels: Record<string, string> = {
+    personal: "Pedido personal",
+    mayoreo: "Mayoreo",
+    corporativo: "Corporativo",
+    otro: "Otro",
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({ title: "¡Mensaje enviado!", description: "Te responderemos lo antes posible." });
+    const numero = "524793203429";
+    const lineas = [
+      "*Nuevo mensaje desde adivanwesternboots.com*",
+      `Nombre: ${formData.name}`,
+      `Correo: ${formData.email}`,
+      formData.phone && `Teléfono: ${formData.phone}`,
+      formData.type && `Tipo de consulta: ${tipoLabels[formData.type] ?? formData.type}`,
+      "",
+      formData.message,
+    ].filter(Boolean).join("\n");
+
+    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(lineas)}`, "_blank");
+    toast({ title: "Abriendo WhatsApp...", description: "Confirma el envío del mensaje para que lo recibamos." });
     setFormData({ name: "", email: "", phone: "", type: "", message: "" });
   };
 
@@ -109,11 +128,8 @@ const Contact = () => {
                     <Textarea id="message" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} placeholder="Comparte detalles de lo que estás buscando..." rows={5} required />
                   </div>
                   <Button type="submit" className="w-full rounded-full bg-primary hover:bg-primary/90 py-6">
-                    Enviar mensaje
+                    Enviar por WhatsApp
                   </Button>
-                  <p className="text-xs text-muted-foreground text-center">
-                    *Este formulario es de demostración. Aquí puedes conectar tu backend de correo o CRM.
-                  </p>
                 </form>
               </div>
             </div>
