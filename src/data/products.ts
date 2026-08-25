@@ -294,11 +294,11 @@ export const products: Product[] = [
   },
   {
     id: 30,
-    name: "Bolsa Grande",
+    name: "Bolsa de pelo",
     price: 690,
     group: "Bolsos",
     category: "Bolsos",
-    description: "Bolsa grande tipo tote en piel de vaca pelo on, asas y jareta de piel lisa.",
+    description: "Bolsa grande en pelo de vaca, asas y jareta de piel lisa.",
     variants: [{ color: "Negro/Turquesa", images: ["/bolsa-grande.jpg"] }],
   },
   {
