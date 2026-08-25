@@ -164,7 +164,7 @@ export const products: Product[] = [
   {
     id: 17,
     name: "Bolso Colgante",
-    price: 300,
+    price: 299,
     group: "Bolsos",
     category: "Bolsos",
     description: "Bolso pequeño tipo riñonera/colgante, disponible en piel escamada o tallada.",
@@ -175,7 +175,7 @@ export const products: Product[] = [
   {
     id: 18,
     name: "Mariconera chica",
-    price: 250,
+    price: 289,
     group: "Bolsos",
     category: "Bolsos",
     description: "Mariconera chica cruzada con panel en piel grabada tipo avestruz.",
@@ -186,7 +186,7 @@ export const products: Product[] = [
   {
     id: 19,
     name: "Bolsa Yareli",
-    price: 499,
+    price: 399,
     originalPrice: 799,
     group: "Bolsos",
     category: "Bolsos",
@@ -198,8 +198,8 @@ export const products: Product[] = [
   {
     id: 20,
     name: "Bolsa Pitón",
-    price: 1199,
-    originalPrice: 1450,
+    price: 499,
+    originalPrice: 699,
     group: "Bolsos",
     category: "Bolsos",
     description: "Bolso cruzado tipo cámara en piel grabada tipo pitón, correa ajustable.",
