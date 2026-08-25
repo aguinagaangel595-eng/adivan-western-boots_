@@ -44,7 +44,7 @@ const Contact = () => {
               {/* Left: Info */}
               <div>
                 <div className="aspect-video overflow-hidden rounded-2xl shadow-xl mb-8">
-                  <img src="/Rodeo-cafe-enmielado-1.jpeg" alt="Botas ADIVAN hechas a mano" className="w-full h-full object-cover" />
+                  <img src="/se-grande.jpeg" alt="Botas ADIVAN hechas a mano" className="w-full h-full object-cover" />
                 </div>
                 <p className="text-foreground leading-relaxed mb-8">
                   ¿Buscas una talla especial, un par para mayoreo o una colaboración con tu tienda?

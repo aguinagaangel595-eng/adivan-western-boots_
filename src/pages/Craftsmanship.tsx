@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
-import craftsmanshipHands from "@/assets/se-grande.jpeg";
 
 const gallery = [
   { src: "/coco-papada.jpg", alt: "Detalle de piel grabada tipo cocodrilo" },
@@ -47,7 +46,7 @@ const Craftsmanship = () => {
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
                 <div className="aspect-[4/5] overflow-hidden rounded-3xl shadow-xl mb-8">
-                  <img src={craftsmanshipHands} alt="Artesano cortando piel a mano" className="w-full h-full object-cover" />
+                  <img src="/Rodeo-cafe-enmielado-1.jpeg" alt="Artesano cortando piel a mano" className="w-full h-full object-cover" />
                 </div>
                 <p className="text-muted-foreground leading-relaxed">
                   Detrás de cada pieza ADIVAN hay manos expertas, herramientas de taller y un respeto profundo
