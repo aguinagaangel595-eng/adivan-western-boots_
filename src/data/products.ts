@@ -309,6 +309,8 @@ export const products: Product[] = [
     category: "Otros",
     description: "Neceser tipo sobaquera en piel lisa con panel grabado, cierre doble y correa de mano.",
     variants: [{ color: "Surtido", images: ["/sobaquera-1.jpg", "/sobaquera-2.jpg", "/sobaquera-3.jpg"] }],
+    grabadoPatrones: ["Avestruz", "Cocodrilo", "Pescado", "Elefante", "Cincelado"],
+    grabadoCatalogUrl: "https://canva.link/f9olgb75t9hbhv7",
   },
   {
     id: 32,
@@ -316,7 +318,7 @@ export const products: Product[] = [
     price: 129,
     group: "Otros",
     category: "Otros",
-    description: "Funda para celular en piel negra con panel grabado tipo exótico y solapa.",
+    description: "Funda para celular en piel, con panel grabado o cincelado.",
     variants: [{ color: "Negro", images: ["/portacelular.jpg"] }],
   },
   {
@@ -325,7 +327,7 @@ export const products: Product[] = [
     price: 40,
     group: "Otros",
     category: "Otros",
-    description: "Funda para navaja en piel con grabado cincelado de cráneo de toro.",
+    description: "Funda para navaja en piel con grabado cincelado (más modelos).",
     variants: [{ color: "Café", images: ["/portanavajas.jpg"] }],
   },
   {
@@ -336,6 +338,14 @@ export const products: Product[] = [
     category: "Carteras",
     description: "Cartera trifold en piel genuina, hecha en México, con portatarjetas y compartimentos.",
     variants: [{ color: "Negro", images: ["/cartera-trifold-1.jpg", "/cartera-trifold-2.jpg"] }],
+    colorSwatches: [
+      { name: "Negro", hex: "#1a1512" },
+      { name: "Café", hex: "#4a2f1f" },
+      { name: "Miel", hex: "#c9963f" },
+      { name: "Vino", hex: "#5c1f2b" },
+      { name: "Azul marino", hex: "#1b2a4a" },
+      { name: "Combinado", hex: "#4a2f1f", hex2: "#1a1512" },
+    ],
   },
 ];
 
