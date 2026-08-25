@@ -25,8 +25,8 @@ export const products: Product[] = [
   {
     id: 1,
     name: "Botas Rosas",
-    price: 1599,
-    originalPrice: 2199,
+    price: 1299,
+    originalPrice: 1800,
     group: "Botas",
     category: "Rodeo",
     description: "Botas coquetas en piel rosa, para dama, con pespunte en tono contrastante.",
@@ -35,7 +35,7 @@ export const products: Product[] = [
   {
     id: 2,
     name: "Rodeo Café Enmielado",
-    price: 1599,
+    price: 1199,
     group: "Botas",
     category: "Rodeo",
     description: "Bota rodeo clásica en piel café enmielado, tubo bordado y suela de doble vida.",
@@ -46,7 +46,7 @@ export const products: Product[] = [
   {
     id: 3,
     name: "Rodeo Mango",
-    price: 1599,
+    price: 1199,
     group: "Botas",
     category: "Rodeo",
     description: "Bota rodeo en piel color mango con bordado floral en hilo tono hueso.",
@@ -57,8 +57,8 @@ export const products: Product[] = [
   {
     id: 4,
     name: "Bota Grabada",
-    price: 1599,
-    originalPrice: 1299,
+    price: 1299,
+    originalPrice: 1600,
     group: "Botas",
     category: "Exótica",
     description: "Piel de res con grabado tipo exótico. Ve el catálogo y dinos qué patrón quieres.",
@@ -69,7 +69,7 @@ export const products: Product[] = [
   {
     id: 8,
     name: "Tejida Miel",
-    price: 1699,
+    price: 1499,
     group: "Botas",
     category: "Tejida",
     description: "Bota de piel tejida a mano en tono miel, con tubo liso color café.",
@@ -78,7 +78,7 @@ export const products: Product[] = [
   {
     id: 9,
     name: "Cartera Bifold Negra",
-    price: 250,
+    price: 150,
     group: "Carteras",
     category: "Carteras",
     description: "Cartera de piel 100% genuina, hecha en México, con portatarjetas y compartimentos.",
@@ -95,7 +95,7 @@ export const products: Product[] = [
   {
     id: 10,
     name: "Bota Mantarraya Negra",
-    price: 1699,
+    price: 1300,
     group: "Botas",
     category: "Exótica",
     description: "Bota alta en piel negra con textura tipo mantarraya en el empeine, tubo bordado a tono.",
@@ -104,7 +104,7 @@ export const products: Product[] = [
   {
     id: 11,
     name: "Bota Pitón Negra",
-    price: 1599,
+    price: 1300,
     group: "Botas",
     category: "Exótica",
     description: "Bota alta en piel negra con textura tipo pitón tono sobre tono, tubo bordado.",
@@ -113,7 +113,7 @@ export const products: Product[] = [
   {
     id: 12,
     name: "Botín Nubuck",
-    price: 1350,
+    price: 1250,
     group: "Botas",
     category: "Botín",
     description: "Botín corto en piel nubuck con bordado blanco, jaladeras y elástico lateral.",
@@ -125,7 +125,7 @@ export const products: Product[] = [
   {
     id: 13,
     name: "Bota Harness Café",
-    price: 1400,
+    price: 1200,
     group: "Botas",
     category: "Rodeo",
     description: "Bota alta estilo motociclista en piel café rústica, con argolla y hebillas.",
@@ -134,7 +134,8 @@ export const products: Product[] = [
   {
     id: 14,
     name: "Botín Negro",
-    price: 1399,
+    price: 999,
+    originalPrice: 1299,
     group: "Botas",
     category: "Botín",
     description: "Botín corto en piel negra brillante, bordado a tono y jaladeras rojas.",
@@ -152,7 +153,7 @@ export const products: Product[] = [
   {
     id: 15,
     name: "Gorra",
-    price: 185,
+    price: 160,
     group: "Gorras",
     category: "Gorras",
     description: "Gorra trucker con malla y ala en piel grabada, emblema metálico de gallo.",
@@ -172,7 +173,7 @@ export const products: Product[] = [
   {
     id: 17,
     name: "Bolso Colgante",
-    price: 750,
+    price: 299,
     group: "Bolsos",
     category: "Bolsos",
     description: "Bolso pequeño tipo riñonera/colgante, disponible en piel escamada o tallada.",
@@ -183,7 +184,7 @@ export const products: Product[] = [
   {
     id: 18,
     name: "Mariconera chica",
-    price: 850,
+    price: 289,
     group: "Bolsos",
     category: "Bolsos",
     description: "Mariconera chica cruzada con panel en piel grabada tipo avestruz.",
@@ -194,8 +195,8 @@ export const products: Product[] = [
   {
     id: 19,
     name: "Bolsa Yareli",
-    price: 1199,
-    originalPrice: 1499,
+    price: 399,
+    originalPrice: 799,
     group: "Bolsos",
     category: "Bolsos",
     description: "Bolsa tipo caja con doble asa y cadena, en piel grabada exótica.",
@@ -206,8 +207,8 @@ export const products: Product[] = [
   {
     id: 20,
     name: "Crossbody",
-    price: 1199,
-    originalPrice: 1750,
+    price: 499,
+    originalPrice: 699,
     group: "Bolsos",
     category: "Bolsos",
     description: "Bolso cruzado tipo cámara en piel grabada tipo pitón, correa ajustable.",
@@ -216,7 +217,8 @@ export const products: Product[] = [
   {
     id: 21,
     name: "Cartera Dama",
-    price: 1299,
+    price: 219,
+    originalPrice: 290,
     group: "Carteras",
     category: "Carteras",
     description: "Clutch grande para dama en piel grabada tipo cocodrilo, cierre y cadena dorados.",
@@ -227,8 +229,8 @@ export const products: Product[] = [
   {
     id: 22,
     name: "Cartera San Judas Tadeo",
-    price: 259,
-    originalPrice: 350,
+    price: 100,
+    originalPrice: 150,
     group: "Carteras",
     category: "Carteras",
     description: "Cartera de piel con diseño tallado de San Judas Tadeo.",
@@ -237,7 +239,7 @@ export const products: Product[] = [
   {
     id: 23,
     name: "Cinto Conchos",
-    price: 349,
+    price: 199,
     group: "Cintos",
     category: "Cintos",
     description: "Cinto de piel color mostaza con conchos metálicos y hebilla grabada.",
@@ -246,7 +248,7 @@ export const products: Product[] = [
   {
     id: 24,
     name: "Cinto Clásico Negro",
-    price: 159,
+    price: 115,
     group: "Cintos",
     category: "Cintos",
     description: "Cinto de piel lisa negra, hebilla rectangular sencilla.",
@@ -255,7 +257,7 @@ export const products: Product[] = [
   {
     id: 25,
     name: "Cinto Piteado Negro",
-    price: 399,
+    price: 220,
     group: "Cintos",
     category: "Cintos",
     description: "Cinto ancho tallado estilo piteado, en negro con detalles plateados.",
@@ -264,7 +266,7 @@ export const products: Product[] = [
   {
     id: 26,
     name: "Cinto Tejido",
-    price: 599,
+    price: 380,
     group: "Cintos",
     category: "Cintos",
     description: "Cinto de piel trenzada en negro, hebilla con pedrería.",
@@ -273,7 +275,7 @@ export const products: Product[] = [
   {
     id: 27,
     name: "Sacabotas",
-    price: 299,
+    price: 220,
     group: "Otros",
     category: "Otros",
     description: "Jalador de botas en piel grabada tipo pitón, con tachuelas doradas.",
