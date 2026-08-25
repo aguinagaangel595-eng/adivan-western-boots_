@@ -208,7 +208,8 @@ export const products: Product[] = [
   {
     id: 21,
     name: "Cartera Dama",
-    price: 350,
+    price: 219,
+    originalPrice: 290,
     group: "Carteras",
     category: "Carteras",
     description: "Clutch grande para dama en piel grabada tipo cocodrilo, cierre y cadena dorados.",
@@ -229,7 +230,7 @@ export const products: Product[] = [
   {
     id: 23,
     name: "Cinto Conchos",
-    price: 349,
+    price: 199,
     group: "Cintos",
     category: "Cintos",
     description: "Cinto de piel color mostaza con conchos metálicos y hebilla grabada.",
@@ -238,7 +239,7 @@ export const products: Product[] = [
   {
     id: 24,
     name: "Cinto Clásico Negro",
-    price: 130,
+    price: 115,
     group: "Cintos",
     category: "Cintos",
     description: "Cinto de piel lisa negra, hebilla rectangular sencilla.",
@@ -247,7 +248,7 @@ export const products: Product[] = [
   {
     id: 25,
     name: "Cinto Piteado Negro",
-    price: 399,
+    price: 220,
     group: "Cintos",
     category: "Cintos",
     description: "Cinto ancho tallado estilo piteado, en negro con detalles plateados.",
@@ -256,7 +257,7 @@ export const products: Product[] = [
   {
     id: 26,
     name: "Cinto Tejido",
-    price: 599,
+    price: 380,
     group: "Cintos",
     category: "Cintos",
     description: "Cinto de piel trenzada en negro, hebilla con pedrería.",
