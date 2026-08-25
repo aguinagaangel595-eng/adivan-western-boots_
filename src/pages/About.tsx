@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Check, Hammer, Leaf, Award } from "lucide-react";
 import { motion } from "framer-motion";
-import craftsmanshipImage from "@/assets/se-grande.jpeg";
+import craftsmanshipImage from "@/assets/caja-bota.jpg";
 
 const values = [
   {
@@ -142,7 +142,7 @@ const About = () => {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
             >
-              <img src={craftsmanshipImage} alt="Artesano trabajando la piel" className="w-full h-full object-cover" />
+              <img src={craftsmanshipImage} alt="ADIVAN — Legado en cada paso" className="w-full h-full object-cover" />
             </motion.div>
           </div>
         </section>
