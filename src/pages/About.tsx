@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Check, Hammer, Leaf, Award } from "lucide-react";
 import { motion } from "framer-motion";
-import craftsmanshipImage from "@/assets/craftsmanship-hands.jpg";
+import craftsmanshipImage from "@/assets/se-grande.jpeg";
 
 const values = [
   {

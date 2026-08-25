@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
-import craftsmanshipHands from "@/assets/craftsmanship-hands.jpg";
+import craftsmanshipHands from "@/assets/se-grande.jpeg";
 
 const gallery = [
   { src: "/coco-papada.jpg", alt: "Detalle de piel grabada tipo cocodrilo" },

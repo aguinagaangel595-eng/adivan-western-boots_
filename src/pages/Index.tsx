@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import craftsmanshipImage from "@/assets/craftsmanship-hands.jpg";
+import craftsmanshipImage from "@/assets/se-grande.jpeg";
 import { products } from "@/data/products";
 
 // Rodeo Café Enmielado, Gorra, Cartera Bifold Negra
