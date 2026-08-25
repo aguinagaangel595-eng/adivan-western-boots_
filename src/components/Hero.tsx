@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import heroBoots from "@/assets/hero-boots.jpg";
+import heroBoots from "@/assets/se-grande.jpeg";
 
 const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
