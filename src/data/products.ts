@@ -77,7 +77,7 @@ export const products: Product[] = [
   },
   {
     id: 9,
-    name: "Cartera Bifold Negra",
+    name: "Cartera Bifold",
     price: 150,
     group: "Carteras",
     category: "Carteras",
@@ -320,6 +320,8 @@ export const products: Product[] = [
     category: "Otros",
     description: "Funda para celular en piel, con panel grabado o cincelado.",
     variants: [{ color: "Negro", images: ["/portacelular.jpg"] }],
+    grabadoPatrones: ["Avestruz", "Cocodrilo", "Pescado", "Elefante", "Cincelado"],
+    grabadoCatalogUrl: "https://canva.link/f9olgb75t9hbhv7",
   },
   {
     id: 33,
