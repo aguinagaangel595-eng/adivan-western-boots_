@@ -308,7 +308,7 @@ export const products: Product[] = [
     group: "Bolsos",
     category: "Bolsos",
     description: "Bolsa grande en pelo de vaca, asas y jareta de piel lisa.",
-    variants: [{ color: "Negro/Turquesa", images: ["/bolsa-grande.jpg"] }],
+    variants: [{ color: "Único", images: ["/bolsa-grande.jpg"] }],
   },
   {
     id: 31,
