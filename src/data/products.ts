@@ -171,6 +171,15 @@ export const products: Product[] = [
     variants: [{ color: "Negro", images: ["/sombrero-piel-negro.jpg"] }],
   },
   {
+    id: 35,
+    name: "Sombrero Laredo",
+    price: 380,
+    group: "Sombreros",
+    category: "Sombreros",
+    description: "Sombrero de palma tipo vaquero, marca Laredo Hats, ala ancha y toquilla trenzada.",
+    variants: [{ color: "Natural", images: ["/sombrero-laredo.jpg"] }],
+  },
+  {
     id: 17,
     name: "Bolso Colgante",
     price: 299,
