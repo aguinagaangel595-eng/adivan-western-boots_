@@ -164,7 +164,7 @@ export const products: Product[] = [
   {
     id: 16,
     name: "Sombrero de Piel Negro",
-    price: 800,
+    price: 480,
     group: "Sombreros",
     category: "Sombreros",
     description: "Sombrero de piel genuina en negro, banda trenzada y cordón ajustable.",
