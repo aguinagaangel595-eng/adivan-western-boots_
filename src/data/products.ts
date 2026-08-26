@@ -216,8 +216,8 @@ export const products: Product[] = [
   {
     id: 20,
     name: "Crossbody",
-    price: 499,
-    originalPrice: 699,
+    price: 299,
+    originalPrice: 499,
     group: "Bolsos",
     category: "Bolsos",
     description: "Bolso cruzado tipo cámara en piel grabada tipo pitón, correa ajustable.",
