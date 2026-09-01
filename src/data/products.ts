@@ -68,7 +68,7 @@ export const products: Product[] = [
   },
   {
     id: 8,
-    name: "Tejida Miel",
+    name: "Tejida Original Miel",
     price: 1499,
     group: "Botas",
     category: "Tejida",
@@ -121,15 +121,6 @@ export const products: Product[] = [
       { color: "Negro", images: ["/botin-negro.jpg"] },
       { color: "Café", images: ["/botin-cafe.jpg"] },
     ],
-  },
-  {
-    id: 13,
-    name: "Bota Harness Café",
-    price: 1200,
-    group: "Botas",
-    category: "Rodeo",
-    description: "Bota alta estilo motociclista en piel café rústica, con argolla y hebillas.",
-    variants: [{ color: "Café", images: ["/bota-harness-cafe.jpg"] }],
   },
   {
     id: 14,
