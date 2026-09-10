@@ -17,17 +17,16 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-[hsl(0,0%,5%)] border-b border-[hsl(0,0%,15%)]">
+    <header className="sticky top-0 z-50 bg-[hsl(30,9%,6%)] border-b border-[hsl(30,8%,16%)]">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
         <div className="flex h-20 items-center justify-between">
-          <div className="flex flex-col items-start">
-            <Link to="/" className="flex flex-col">
-            <img src="/ADIVAN LOGO BLANCO.png" alt="Adivan" className="h-10" />
-              <span className="text-[10px] uppercase tracking-[0.35em] text-[hsl(35,45%,65%)]">
-                Western Boots
-              </span>
-            </Link>
-          </div>
+          <Link to="/" className="flex items-center">
+            <img
+              src="/adivan-logo-legado.png"
+              alt="ADIVAN — Legado en cada paso"
+              className="h-14 w-auto"
+            />
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center md:space-x-8">
@@ -35,7 +34,7 @@ const Header = () => {
               <Link
                 key={link.name}
                 to={link.href}
-                className="text-xs font-medium uppercase tracking-[0.2em] text-white/80 hover:text-[hsl(35,45%,65%)] transition-colors"
+                className="text-xs font-medium uppercase tracking-[0.2em] text-white/80 hover:text-[hsl(30,43%,58%)] transition-colors"
               >
                 {link.name}
               </Link>
@@ -43,12 +42,12 @@ const Header = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="relative text-white hover:text-[hsl(35,45%,65%)] hover:bg-white/10"
+              className="relative text-white hover:text-[hsl(30,43%,58%)] hover:bg-white/10"
               onClick={() => setIsOpen(true)}
             >
               <ShoppingBag className="h-5 w-5" />
               {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[hsl(35,45%,65%)] text-[hsl(0,0%,5%)] text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-[hsl(30,43%,58%)] text-[hsl(30,9%,6%)] text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
                   {totalItems}
                 </span>
               )}
@@ -65,7 +64,7 @@ const Header = () => {
             >
               <ShoppingBag className="h-5 w-5" />
               {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[hsl(35,45%,65%)] text-[hsl(0,0%,5%)] text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-[hsl(30,43%,58%)] text-[hsl(30,9%,6%)] text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
                   {totalItems}
                 </span>
               )}
@@ -87,7 +86,7 @@ const Header = () => {
               <Link
                 key={link.name}
                 to={link.href}
-                className="block px-3 py-2 text-sm uppercase tracking-[0.15em] font-medium text-white/80 hover:text-[hsl(35,45%,65%)] hover:bg-white/5 rounded-md transition-colors"
+                className="block px-3 py-2 text-sm uppercase tracking-[0.15em] font-medium text-white/80 hover:text-[hsl(30,43%,58%)] hover:bg-white/5 rounded-md transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.name}

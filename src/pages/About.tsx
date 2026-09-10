@@ -29,7 +29,7 @@ const About = () => {
 
       <main className="flex-1">
         {/* Hero */}
-        <section className="bg-[hsl(0,0%,5%)] py-20 px-4 sm:px-6 lg:px-8">
+        <section className="bg-[hsl(30,9%,6%)]/45 py-20 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="font-serif text-4xl md:text-6xl font-bold text-white mb-6">Nuestra Historia</h1>
             <p className="text-lg text-white/60">ADIVAN: donde la tradición se encuentra con lo moderno</p>
@@ -74,8 +74,8 @@ const About = () => {
                     "Diseño Western con sensibilidad moderna",
                   ].map((item) => (
                     <li key={item} className="flex items-center gap-3">
-                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[hsl(35,45%,65%)] flex items-center justify-center">
-                        <Check className="h-4 w-4 text-[hsl(0,0%,5%)]" />
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[hsl(30,43%,58%)] flex items-center justify-center">
+                        <Check className="h-4 w-4 text-[hsl(30,9%,6%)]" />
                       </span>
                       <span className="text-foreground">{item}</span>
                     </li>
@@ -108,8 +108,8 @@ const About = () => {
                   viewport={{ once: true, amount: 0.4 }}
                   transition={{ duration: 0.5, ease: "easeOut", delay: i * 0.1 }}
                 >
-                  <div className="mx-auto mb-5 w-16 h-16 rounded-full bg-[hsl(35,30%,92%)] flex items-center justify-center">
-                    <v.icon className="h-7 w-7 text-[hsl(35,45%,45%)]" />
+                  <div className="mx-auto mb-5 w-16 h-16 rounded-full bg-[hsl(35,25%,90%)] flex items-center justify-center">
+                    <v.icon className="h-7 w-7 text-[hsl(30,45%,40%)]" />
                   </div>
                   <h3 className="font-serif text-xl font-semibold text-foreground mb-2">{v.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{v.desc}</p>
@@ -120,7 +120,7 @@ const About = () => {
         </section>
 
         {/* Taller */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[hsl(0,0%,5%)]">
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[hsl(30,9%,6%)]/80">
           <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}

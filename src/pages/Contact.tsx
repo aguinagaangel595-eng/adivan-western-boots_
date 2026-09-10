@@ -45,7 +45,7 @@ const Contact = () => {
 
       <main className="flex-1">
         {/* Hero */}
-        <section className="bg-[hsl(0,0%,5%)] py-20 px-4 sm:px-6 lg:px-8">
+        <section className="bg-[hsl(30,9%,6%)]/45 py-20 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="font-serif text-4xl md:text-6xl font-bold text-white mb-6">
               Contacto
@@ -71,15 +71,15 @@ const Contact = () => {
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <Mail className="h-5 w-5 text-[hsl(35,45%,65%)]" />
+                    <Mail className="h-5 w-5 text-[hsl(30,43%,58%)]" />
                     <span className="text-foreground">Adivanwesternbooots@gmail.com</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Phone className="h-5 w-5 text-[hsl(35,45%,65%)]" />
+                    <Phone className="h-5 w-5 text-[hsl(30,43%,58%)]" />
                     <span className="text-foreground">+52 479 320 3429</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <MapPin className="h-5 w-5 text-[hsl(35,45%,65%)]" />
+                    <MapPin className="h-5 w-5 text-[hsl(30,43%,58%)]" />
                     <span className="text-foreground">México · Envíos nacionales</span>
                   </div>
                 </div>

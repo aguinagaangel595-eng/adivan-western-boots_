@@ -22,8 +22,8 @@ All colors MUST be HSL.
     --primary: 0 0% 9%;
     --primary-foreground: 0 0% 98%;
 
-    /* Warm camel */
-    --secondary: 35 45% 65%;
+    /* Bronce ADIVAN */
+    --secondary: 30 43% 58%;
     --secondary-foreground: 30 15% 15%;
 
     --muted: 35 20% 88%;
@@ -45,7 +45,7 @@ All colors MUST be HSL.
     /* Custom design tokens */
     --leather-dark: 20 40% 20%;
     --leather-medium: 25 55% 35%;
-    --leather-light: 35 45% 65%;
+    --leather-light: 30 43% 58%;
     --cream: 35 30% 96%;
     --warm-white: 35 20% 98%;
 
@@ -85,7 +85,7 @@ All colors MUST be HSL.
     --muted: 25 25% 20%;
     --muted-foreground: 35 20% 70%;
 
-    --accent: 35 45% 65%;
+    --accent: 30 43% 58%;
     --accent-foreground: 20 25% 12%;
 
     --destructive: 0 62.8% 30.6%;
@@ -93,16 +93,16 @@ All colors MUST be HSL.
 
     --border: 25 25% 25%;
     --input: 25 25% 22%;
-    --ring: 35 45% 65%;
+    --ring: 30 43% 58%;
 
     --sidebar-background: 20 25% 12%;
     --sidebar-foreground: 35 30% 96%;
-    --sidebar-primary: 35 45% 65%;
+    --sidebar-primary: 30 43% 58%;
     --sidebar-primary-foreground: 20 25% 12%;
     --sidebar-accent: 25 25% 20%;
     --sidebar-accent-foreground: 35 30% 96%;
     --sidebar-border: 25 25% 25%;
-    --sidebar-ring: 35 45% 65%;
+    --sidebar-ring: 30 43% 58%;
   }
 }
 
@@ -112,8 +112,20 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
     font-family: 'Inter', sans-serif;
+    background-color: hsl(30 9% 6%);
+  }
+
+  /* Fondo desierto ADIVAN, fijo detrás de todo */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(to bottom, hsl(30 9% 6% / 0.55), hsl(30 9% 5% / 0.74)),
+      url('/fondo.jpg') center center / cover no-repeat;
   }
 
   h1, h2, h3, h4, h5, h6 {

@@ -23,7 +23,7 @@ const Craftsmanship = () => {
 
       <main className="flex-1">
         {/* Hero */}
-        <section className="bg-[hsl(0,0%,5%)] py-20 px-4 sm:px-6 lg:px-8">
+        <section className="bg-[hsl(30,9%,6%)]/45 py-20 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="font-serif text-4xl md:text-6xl font-bold text-white mb-6">
               Oficio
@@ -63,14 +63,14 @@ const Craftsmanship = () => {
                 {steps.map((step, i) => (
                   <motion.div
                     key={step.num}
-                    className="border-l-2 border-[hsl(35,45%,65%)] pl-8 pb-10 relative"
+                    className="border-l-2 border-[hsl(30,43%,58%)] pl-8 pb-10 relative"
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.5, ease: "easeOut", delay: i * 0.1 }}
                   >
-                    <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-[hsl(35,45%,65%)]" />
-                    <span className="text-xs uppercase tracking-[0.2em] text-[hsl(35,45%,65%)] font-bold">
+                    <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-[hsl(30,43%,58%)]" />
+                    <span className="text-xs uppercase tracking-[0.2em] text-[hsl(30,43%,58%)] font-bold">
                       Paso {step.num}
                     </span>
                     <h3 className="font-serif text-xl font-semibold text-foreground mt-1 mb-2">{step.title}</h3>

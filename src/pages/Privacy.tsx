@@ -7,7 +7,7 @@ const Privacy = () => {
       <Header />
 
       <main className="flex-1">
-        <section className="bg-[hsl(0,0%,5%)] py-20 px-4 sm:px-6 lg:px-8">
+        <section className="bg-[hsl(30,9%,6%)]/45 py-20 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="font-serif text-4xl md:text-6xl font-bold text-white mb-6">
               Aviso de Privacidad
@@ -24,7 +24,7 @@ const Privacy = () => {
               <h2 className="font-serif text-2xl font-bold mb-3">1. Responsable de tus datos</h2>
               <p>
                 ADIVAN ("nosotros"), con domicilio en México y correo de contacto{" "}
-                <a href="mailto:Adivanwesternbooots@gmail.com" className="text-[hsl(35,45%,45%)] underline">
+                <a href="mailto:Adivanwesternbooots@gmail.com" className="text-[hsl(30,45%,40%)] underline">
                   Adivanwesternbooots@gmail.com
                 </a>
                 , es responsable del tratamiento de tus datos personales conforme a este aviso de privacidad.
@@ -71,7 +71,7 @@ const Privacy = () => {
                 Tienes derecho a Acceder, Rectificar, Cancelar u Oponerte (derechos ARCO) al tratamiento de
                 tus datos personales, así como a revocar tu consentimiento en cualquier momento. Para
                 ejercer estos derechos, escríbenos a{" "}
-                <a href="mailto:Adivanwesternbooots@gmail.com" className="text-[hsl(35,45%,45%)] underline">
+                <a href="mailto:Adivanwesternbooots@gmail.com" className="text-[hsl(30,45%,40%)] underline">
                   Adivanwesternbooots@gmail.com
                 </a>{" "}
                 indicando tu nombre y la solicitud específica. Responderemos en un plazo razonable conforme
@@ -126,7 +126,7 @@ const Privacy = () => {
               <h2 className="font-serif text-2xl font-bold mb-3">9. Contacto</h2>
               <p>
                 Si tienes dudas sobre este aviso de privacidad, escríbenos a{" "}
-                <a href="mailto:Adivanwesternbooots@gmail.com" className="text-[hsl(35,45%,45%)] underline">
+                <a href="mailto:Adivanwesternbooots@gmail.com" className="text-[hsl(30,45%,40%)] underline">
                   Adivanwesternbooots@gmail.com
                 </a>{" "}
                 o al teléfono +52 479 320 3429.

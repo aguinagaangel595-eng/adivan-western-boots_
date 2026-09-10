@@ -27,9 +27,9 @@ const reviews = [
     text: "Las botas de súper buena calidad y el precio súper bien.",
   },
   {
-    name: "Jrtorres",
-    rating: 4,
-    text: "Productos económicos y buen precio. Las botas si es de lo mejor que hay, súper cómodas y el precio no se diga 👌👌👌👌",
+    name: "Ángel Aguiñaga",
+    rating: 5,
+    text: "La neta, por el precio no esperaba tanta calidad. Piel 100% genuina y acabados de primera. Cuestan una fracción de lo que te cobran otras marcas y están mil veces mejor. ¡Joyita de compra!",
   },
 ];
 
@@ -140,7 +140,7 @@ const Index = () => {
                 Lo que dicen nuestros clientes
               </h2>
               <div className="flex items-center justify-center gap-2 text-muted-foreground">
-                <span className="flex items-center gap-1 text-[hsl(35,45%,45%)] font-bold text-lg">
+                <span className="flex items-center gap-1 text-[hsl(30,45%,40%)] font-bold text-lg">
                   4.8
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star key={i} className="h-4 w-4 fill-current" />
@@ -167,7 +167,7 @@ const Index = () => {
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{ duration: 0.5, ease: "easeOut", delay: i * 0.1 }}
                 >
-                  <div className="flex gap-0.5 text-[hsl(35,45%,45%)] mb-3">
+                  <div className="flex gap-0.5 text-[hsl(30,45%,40%)] mb-3">
                     {Array.from({ length: 5 }).map((_, s) => (
                       <Star key={s} className={`h-4 w-4 ${s < review.rating ? "fill-current" : "fill-none"}`} />
                     ))}
@@ -181,7 +181,7 @@ const Index = () => {
         </section>
 
         {/* CTA */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[hsl(0,0%,5%)] text-white">
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[hsl(30,9%,6%)]/85 text-white">
           <motion.div
             className="mx-auto max-w-4xl text-center"
             initial={{ opacity: 0, y: 20 }}
@@ -196,7 +196,7 @@ const Index = () => {
               Explora nuestra colección de artículos de piel hechos a mano o contáctanos para pedidos personalizados
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild className="rounded-full bg-[hsl(35,45%,65%)] hover:bg-[hsl(35,45%,55%)] text-[hsl(0,0%,5%)] px-8">
+              <Button size="lg" asChild className="rounded-full bg-[hsl(30,43%,58%)] hover:bg-[hsl(30,43%,48%)] text-[hsl(30,9%,6%)] px-8">
                 <Link to="/shop">Comprar Ahora</Link>
               </Button>
               <Button size="lg" variant="outline" asChild className="rounded-full border-white/30 text-white hover:bg-white/10 bg-transparent px-8">

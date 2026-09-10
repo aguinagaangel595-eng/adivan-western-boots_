@@ -45,7 +45,7 @@ const Shop = () => {
 
       <main className="flex-1">
         {/* Page Header */}
-        <section className="bg-[hsl(0,0%,5%)] py-16 px-4 sm:px-6 lg:px-8">
+        <section className="bg-[hsl(30,9%,6%)]/45 py-16 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl text-center">
             <h1 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4">Tienda</h1>
             <p className="text-base text-white/60 max-w-2xl mx-auto">
@@ -55,7 +55,7 @@ const Shop = () => {
         </section>
 
         {/* Filters */}
-        <section className="py-8 px-4 sm:px-6 lg:px-8 border-b border-border">
+        <section className="py-8 px-4 sm:px-6 lg:px-8 border-b border-border bg-background">
           <div className="mx-auto max-w-7xl flex flex-wrap items-center justify-center gap-3">
             {GRUPOS.map((grupo) => (
               <button
@@ -96,8 +96,8 @@ const Shop = () => {
                   onClick={() => setActiveSub(sub)}
                   className={`px-4 py-1.5 rounded-full text-[11px] uppercase tracking-[0.12em] font-medium border transition-colors ${
                     activeSub === sub
-                      ? "bg-[hsl(35,45%,65%)] text-[hsl(0,0%,5%)] border-[hsl(35,45%,65%)]"
-                      : "bg-transparent text-muted-foreground border-border hover:border-[hsl(35,45%,65%)]"
+                      ? "bg-[hsl(30,43%,58%)] text-[hsl(30,9%,6%)] border-[hsl(30,43%,58%)]"
+                      : "bg-transparent text-muted-foreground border-border hover:border-[hsl(30,43%,58%)]"
                   }`}
                 >
                   {sub}
@@ -108,7 +108,7 @@ const Shop = () => {
         </section>
 
         {/* Products Grid */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-background">
           <div className="mx-auto max-w-7xl">
             {showEmptyState ? (
               <div className="text-center py-16">

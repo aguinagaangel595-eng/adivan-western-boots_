@@ -148,7 +148,7 @@ const ProductCard = ({
           <ZoomIn className="h-4 w-4" />
         </div>
 
-        <span className="absolute top-4 left-4 bg-[hsl(0,0%,5%)] text-white text-[10px] uppercase tracking-[0.2em] px-3 py-1.5 rounded-full z-10">
+        <span className="absolute top-4 left-4 bg-[hsl(30,9%,6%)] text-white text-[10px] uppercase tracking-[0.2em] px-3 py-1.5 rounded-full z-10">
           {category}
         </span>
 

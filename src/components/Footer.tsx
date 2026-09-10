@@ -5,12 +5,12 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[hsl(0,0%,5%)] text-white">
+    <footer className="bg-[hsl(30,9%,6%)]/90 text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <Link to="/" className="inline-block mb-3">
-              <span className="font-serif text-2xl font-bold tracking-tight">ADIVAN</span>
+            <Link to="/" className="inline-block mb-4">
+              <img src="/adivan-logo-legado.png" alt="ADIVAN — Legado en cada paso" className="h-16 w-auto" />
             </Link>
             <p className="text-sm text-white/60 max-w-xs">
               Artículos de piel genuina hechos a mano con tradición Western y diseño moderno.
@@ -18,7 +18,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-xs uppercase tracking-[0.2em] text-[hsl(35,45%,65%)] mb-4 font-semibold">Enlaces</h3>
+            <h3 className="text-xs uppercase tracking-[0.2em] text-[hsl(30,43%,58%)] mb-4 font-semibold">Enlaces</h3>
             <ul className="space-y-2">
               {[
                 { name: "Inicio", href: "/" },
@@ -28,7 +28,7 @@ const Footer = () => {
                 { name: "Términos de compra", href: "/terms" },
               ].map((l) => (
                 <li key={l.name}>
-                  <Link to={l.href} className="text-sm text-white/60 hover:text-[hsl(35,45%,65%)] transition-colors">
+                  <Link to={l.href} className="text-sm text-white/60 hover:text-[hsl(30,43%,58%)] transition-colors">
                     {l.name}
                   </Link>
                 </li>
@@ -37,15 +37,15 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-xs uppercase tracking-[0.2em] text-[hsl(35,45%,65%)] mb-4 font-semibold">Redes</h3>
+            <h3 className="text-xs uppercase tracking-[0.2em] text-[hsl(30,43%,58%)] mb-4 font-semibold">Redes</h3>
             <div className="flex space-x-4">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[hsl(35,45%,65%)] transition-colors" aria-label="Instagram">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[hsl(30,43%,58%)] transition-colors" aria-label="Instagram">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="https://wa.me/524793203429" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[hsl(35,45%,65%)] transition-colors" aria-label="WhatsApp">
+              <a href="https://wa.me/524793203429" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[hsl(30,43%,58%)] transition-colors" aria-label="WhatsApp">
                 <MessageCircle className="h-5 w-5" />
               </a>
-              <a href="https://www.tiktok.com/@adivan.western" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[hsl(35,45%,65%)] transition-colors" aria-label="TikTok">
+              <a href="https://www.tiktok.com/@adivan.western" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[hsl(30,43%,58%)] transition-colors" aria-label="TikTok">
                 <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.88-2.88 2.89 2.89 0 012.88-2.88c.28 0 .56.04.82.11v-3.5a6.37 6.37 0 00-.82-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.87a8.16 8.16 0 003.76.92V6.34a4.85 4.85 0 01-.01.35z"/></svg>
               </a>
             </div>
