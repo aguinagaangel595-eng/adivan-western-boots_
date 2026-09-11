@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import heroBoots from "@/assets/hero-boots.jpg";
+
+const heroBoots = "/fondo.jpg";
 
 const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -19,8 +20,8 @@ const Hero = () => {
       <motion.div className="absolute inset-0" style={{ y: imageY }}>
         <img
           src={heroBoots}
-          alt="Botas ADIVAN hechas a mano en piel genuina"
-          className="w-full h-full object-cover object-[62%_78%] scale-110"
+          alt="Atardecer en el desierto — ADIVAN"
+          className="w-full h-full object-cover object-center scale-105"
         />
       </motion.div>
       <div className="absolute inset-0 bg-gradient-to-r from-[hsl(30,9%,5%)] via-[hsl(30,9%,5%)]/70 to-[hsl(30,9%,5%)]/10" />

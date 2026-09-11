@@ -57,7 +57,7 @@ const Contact = () => {
         </section>
 
         {/* Content */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
           <div className="mx-auto max-w-6xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Left: Info */}

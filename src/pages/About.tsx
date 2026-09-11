@@ -47,7 +47,7 @@ const About = () => {
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
                 <div className="aspect-[4/5] overflow-hidden rounded-3xl shadow-xl">
-                  <img src="/nosotros.jpeg" alt="Botas ADIVAN en exhibición" className="w-full h-full object-cover" />
+                  <img src="/nosotros-isotipo.jpg" alt="Isotipo ADIVAN — la estrella de nuestro legado" className="w-full h-full object-cover" />
                 </div>
               </motion.div>
               <motion.div
@@ -87,7 +87,7 @@ const About = () => {
         </section>
 
         {/* Valores */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[hsl(30,9%,6%)]/60">
           <div className="mx-auto max-w-6xl">
             <motion.div
               className="text-center mb-14"
@@ -96,7 +96,7 @@ const About = () => {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">Lo que nos define</h2>
+              <h2 className="font-serif text-3xl md:text-4xl font-bold text-white mb-4">Lo que nos define</h2>
             </motion.div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
               {values.map((v, i) => (
@@ -108,11 +108,11 @@ const About = () => {
                   viewport={{ once: true, amount: 0.4 }}
                   transition={{ duration: 0.5, ease: "easeOut", delay: i * 0.1 }}
                 >
-                  <div className="mx-auto mb-5 w-16 h-16 rounded-full bg-[hsl(35,25%,90%)] flex items-center justify-center">
-                    <v.icon className="h-7 w-7 text-[hsl(30,45%,40%)]" />
+                  <div className="mx-auto mb-5 w-16 h-16 rounded-full bg-[hsl(30,43%,58%)] flex items-center justify-center">
+                    <v.icon className="h-7 w-7 text-[hsl(30,9%,10%)]" />
                   </div>
-                  <h3 className="font-serif text-xl font-semibold text-foreground mb-2">{v.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{v.desc}</p>
+                  <h3 className="font-serif text-xl font-semibold text-white mb-2">{v.title}</h3>
+                  <p className="text-white/70 leading-relaxed">{v.desc}</p>
                 </motion.div>
               ))}
             </div>

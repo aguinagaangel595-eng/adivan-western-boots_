@@ -18,7 +18,7 @@ const Terms = () => {
           </div>
         </section>
 
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-background">
           <div className="mx-auto max-w-3xl text-foreground leading-relaxed space-y-8">
             <div>
               <h2 className="font-serif text-2xl font-bold mb-3">1. Aceptación de los términos</h2>
