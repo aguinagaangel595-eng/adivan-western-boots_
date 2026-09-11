@@ -36,7 +36,6 @@ interface ProductCardProps {
 const TALLAS_POR_CATEGORIA: Record<string, (number | string)[]> = {
   Rodeo: [22, 23, 24, 25, 26, 27, 28, 29],
   Exótica: [22, 23, 24, 25, 26, 27, 28, 29],
-  Originales: [22, 23, 24, 25, 26, 27, 28, 29],
   Tejida: [22, 23, 24, 25, 26, 27, 28, 29],
   Botín: [22, 23, 24, 25, 26, 27, 28, 29],
   Cintos: [28, 30, 32, 34, 36, 38, 40, 42],

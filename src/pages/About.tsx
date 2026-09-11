@@ -13,7 +13,7 @@ const values = [
   {
     icon: Leaf,
     title: "Piel genuina",
-    desc: "Trabajamos piel de res y exóticas (cocodrilo, pescado) seleccionadas por su calidad.",
+    desc: "Trabajamos piel de res genuina con grabados tipo exótico (cocodrilo, avestruz, pescado y más).",
   },
   {
     icon: Award,

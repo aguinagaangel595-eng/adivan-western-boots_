@@ -3,7 +3,7 @@ import type { ProductVariant, ColorSwatch } from "@/components/ProductCard";
 // Fuente única del catálogo — la Tienda y los destacados del Inicio leen de aquí,
 // así que un cambio de precio/nombre/foto se refleja en todo el sitio a la vez.
 // Precios de boceto/referencia.
-// "Exótica" = piel de res con grabado (imitación). "Originales" = piel exótica genuina.
+// "Exótica" = piel de res con grabado tipo exótico (grabado, no piel exótica genuina).
 
 export interface Product {
   id: number;
@@ -199,7 +199,7 @@ export const products: Product[] = [
     originalPrice: 799,
     group: "Bolsos",
     category: "Bolsos",
-    description: "Bolsa tipo caja con doble asa y cadena, en piel grabada exótica.",
+    description: "Bolsa tipo caja con doble asa y cadena, en piel de res con grabado tipo exótico.",
     variants: [{ color: "Único", images: ["/bolsa-de-mano.jpg"] }],
     grabadoPatrones: ["Avestruz", "Cocodrilo", "Pescado", "Elefante", "Cincelado"],
     grabadoCatalogUrl: "https://canva.link/f9olgb75t9hbhv7",

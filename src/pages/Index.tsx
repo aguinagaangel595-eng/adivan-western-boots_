@@ -17,9 +17,9 @@ const GOOGLE_REVIEWS_URL =
 
 const reviews = [
   {
-    name: "Manuel Ignacio Mejía Castro",
-    rating: 5,
-    text: "Excelente atención al cliente, pieles exóticas de buena calidad y muy buenas promociones. Recomiendo las botas de piel de pitón 🔝",
+    name: "Jrtorres",
+    rating: 4,
+    text: "Productos económicos y buen precio. Las botas si es de lo mejor que hay, súper cómodas y el precio no se diga 👌👌👌👌",
   },
   {
     name: "Ivan González",
