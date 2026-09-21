@@ -357,10 +357,11 @@ export const products: Product[] = [
     group: "Chamarras",
     category: "Chamarras",
     description: "Chamarra tipo camisola en gamuza, con bolsas de solapa y botones de presión metálicos. Forro interior.",
-    variants: [
-      { color: "Café oscuro", images: ["/chamarra-cafe.jpg"] },
-      { color: "Verde musgo", images: ["/chamarra-verde.jpg"] },
-      { color: "Miel", images: ["/chamarra-miel.jpg"] },
+    variants: [{ color: "Colores disponibles", images: ["/chamarra-colores.jpg"] }],
+    colorSwatches: [
+      { name: "Café oscuro", hex: "#4a2f24" },
+      { name: "Verde musgo", hex: "#5b5a35" },
+      { name: "Miel", hex: "#c47a2e" },
     ],
   },
   {
