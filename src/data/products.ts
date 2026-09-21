@@ -351,12 +351,12 @@ export const products: Product[] = [
   },
   {
     id: 36,
-    name: "Chamarra de Gamuza",
+    name: "Chamarra de Nobuck",
     price: 1700,
     originalPrice: 2000,
     group: "Chamarras",
     category: "Chamarras",
-    description: "Chamarra tipo camisola en gamuza, con bolsas de solapa y botones de presión metálicos. Forro interior.",
+    description: "Chamarra tipo camisola en nobuck, con bolsas de solapa y botones de presión metálicos. Forro interior.",
     variants: [{ color: "Colores disponibles", images: ["/chamarra-colores.jpg"] }],
     colorSwatches: [
       { name: "Café oscuro", hex: "#4a2f24" },
