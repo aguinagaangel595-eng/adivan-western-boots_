@@ -349,7 +349,30 @@ export const products: Product[] = [
       { name: "Combinado", hex: "#4a2f1f", hex2: "#1a1512" },
     ],
   },
+  {
+    id: 36,
+    name: "Chamarra de Gamuza",
+    price: 1700,
+    originalPrice: 2000,
+    group: "Chamarras",
+    category: "Chamarras",
+    description: "Chamarra tipo camisola en gamuza, con bolsas de solapa y botones de presión metálicos. Forro interior.",
+    variants: [
+      { color: "Café oscuro", images: ["/chamarra-cafe.jpg"] },
+      { color: "Verde musgo", images: ["/chamarra-verde.jpg"] },
+      { color: "Miel", images: ["/chamarra-miel.jpg"] },
+    ],
+  },
+  {
+    id: 37,
+    name: "Mandil de Piel",
+    price: 600,
+    group: "Otros",
+    category: "Otros",
+    description: "Mandil de piel negra con bolsas y porta-herramientas en piel café, correas ajustables y costura reforzada.",
+    variants: [{ color: "Negro", images: ["/mandil-piel.jpg"] }],
+  },
 ];
 
-export const GRUPOS = ["Todo", "Ofertas", "Botas", "Carteras", "Bolsos", "Cintos", "Sombreros", "Gorras", "Otros"];
+export const GRUPOS = ["Todo", "Ofertas", "Botas", "Carteras", "Bolsos", "Cintos", "Sombreros", "Gorras", "Chamarras", "Otros"];
 export const SUBCATEGORIAS_BOTA = ["Todas", "Rodeo", "Exótica", "Tejida", "Botín"];
