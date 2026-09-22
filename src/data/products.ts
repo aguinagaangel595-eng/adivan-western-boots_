@@ -373,6 +373,21 @@ export const products: Product[] = [
     description: "Mandil de piel negra con bolsas y porta-herramientas en piel café, correas ajustables y costura reforzada.",
     variants: [{ color: "Negro", images: ["/mandil-piel.jpg"] }],
   },
+  {
+    id: 38,
+    name: "Bota de Dama Retro",
+    price: 1299,
+    originalPrice: 1700,
+    group: "Botas",
+    category: "Rodeo",
+    description: "Bota de dama estilo retro, caña alta con bordado floral tono sobre tono y punta fina.",
+    variants: [{ color: "Colores disponibles", images: ["/bota-retro.jpg"] }],
+    colorSwatches: [
+      { name: "Miel", hex: "#c48a55" },
+      { name: "Caoba", hex: "#8b3a1e" },
+      { name: "Blanco", hex: "#f3efe8" },
+    ],
+  },
 ];
 
 export const GRUPOS = ["Todo", "Ofertas", "Botas", "Carteras", "Bolsos", "Cintos", "Sombreros", "Gorras", "Chamarras", "Otros"];
