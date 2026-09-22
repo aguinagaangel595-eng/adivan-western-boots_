@@ -12,8 +12,10 @@ export interface Product {
   originalPrice?: number;
   group: string;
   category: string;
+  genero?: "Dama" | "Hombre"; // Solo para group "Botas" — habilita el filtro Dama/Hombre en la Tienda
   description: string;
   image?: string;
+  referenceImage?: boolean; // true = la foto es una imagen de referencia (no la foto real del producto)
   variants?: ProductVariant[];
   colorSwatches?: ColorSwatch[];
   grabadoPatrones?: string[];
@@ -29,6 +31,7 @@ export const products: Product[] = [
     originalPrice: 1800,
     group: "Botas",
     category: "Rodeo",
+    genero: "Dama",
     description: "Botas coquetas en piel rosa, para dama, con pespunte en tono contrastante.",
     variants: [{ color: "Rosa", images: ["/Botasrosas.jpg"] }],
   },
@@ -38,6 +41,7 @@ export const products: Product[] = [
     price: 1199,
     group: "Botas",
     category: "Rodeo",
+    genero: "Hombre",
     description: "Bota rodeo clásica en piel café enmielado, tubo bordado y suela de doble vida.",
     variants: [
       { color: "Café enmielado", images: ["/Rodeo-cafe-enmielado-1.jpeg", "/Rodeo-cafe-enmielado-2.jpeg", "/Rodeo-cafe-enmielado-3.jpeg"] },
@@ -49,6 +53,7 @@ export const products: Product[] = [
     price: 1199,
     group: "Botas",
     category: "Rodeo",
+    genero: "Hombre",
     description: "Bota rodeo en piel color mango con bordado floral en hilo tono hueso.",
     variants: [
       { color: "Mango", images: ["/Rodeo-mango-1.jpeg", "/Rodeo-mango-2.jpeg", "/Rodeo-mango-3.jpeg"] },
@@ -61,6 +66,7 @@ export const products: Product[] = [
     originalPrice: 1600,
     group: "Botas",
     category: "Exótica",
+    genero: "Hombre",
     description: "Piel de res con grabado tipo exótico. Ve el catálogo y dinos qué patrón quieres.",
     grabadoPatrones: ["Avestruz", "Cocodrilo", "Pescado", "Elefante", "Cincelado"],
     grabadoImages: ["/cocologo.jpeg", "/coco-papada.jpg"],
@@ -72,6 +78,7 @@ export const products: Product[] = [
     price: 1499,
     group: "Botas",
     category: "Tejida",
+    genero: "Hombre",
     description: "Bota de piel tejida a mano en tono miel, con tubo liso color café.",
     variants: [{ color: "Miel", images: ["/tejida-miel.jpg"] }],
   },
@@ -98,6 +105,7 @@ export const products: Product[] = [
     price: 1300,
     group: "Botas",
     category: "Exótica",
+    genero: "Hombre",
     description: "Bota alta en piel de res negra con grabado tipo mantarraya en el empeine, tubo bordado a tono.",
     variants: [{ color: "Negro", images: ["/bota-mantarraya-negra.jpg"] }],
   },
@@ -107,6 +115,7 @@ export const products: Product[] = [
     price: 1300,
     group: "Botas",
     category: "Exótica",
+    genero: "Hombre",
     description: "Bota alta en piel de res negra con grabado tipo pitón tono sobre tono, tubo bordado.",
     variants: [{ color: "Negro", images: ["/bota-piton-negra.jpg"] }],
   },
@@ -116,6 +125,7 @@ export const products: Product[] = [
     price: 1250,
     group: "Botas",
     category: "Botín",
+    genero: "Hombre",
     description: "Botín corto en piel nubuck con bordado blanco, jaladeras y elástico lateral.",
     variants: [
       { color: "Negro", images: ["/botin-negro.jpg"] },
@@ -129,6 +139,7 @@ export const products: Product[] = [
     originalPrice: 1299,
     group: "Botas",
     category: "Botín",
+    genero: "Hombre",
     description: "Botín corto en piel negra brillante, bordado a tono y jaladeras rojas.",
     variants: [{ color: "Negro", images: ["/botin-negro-charol.jpg"] }],
   },
@@ -138,6 +149,7 @@ export const products: Product[] = [
     price: 890,
     group: "Botas",
     category: "Botín",
+    genero: "Dama",
     description: "Botina de tacón para dama, piel grabada con bordado tipo talavera y hebilla.",
     variants: [{ color: "Surtido", images: ["/botina-dama-1.jpg", "/botina-dama-2.jpg"] }],
   },
@@ -380,6 +392,8 @@ export const products: Product[] = [
     originalPrice: 1700,
     group: "Botas",
     category: "Rodeo",
+    genero: "Dama",
+    referenceImage: true,
     description: "Bota de dama estilo retro, caña alta con bordado floral tono sobre tono y punta fina.",
     variants: [{ color: "Colores disponibles", images: ["/bota-retro.jpg"] }],
     colorSwatches: [

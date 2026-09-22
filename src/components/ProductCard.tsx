@@ -30,6 +30,7 @@ interface ProductCardProps {
   grabadoPatrones?: string[]; // Nombres de patrones de grabado seleccionables (+ opción "Otro")
   grabadoImages?: string[]; // Fotos de ejemplo del grabado, no ligadas a un patrón en particular
   grabadoCatalogUrl?: string; // Link al catálogo completo de grabados
+  referenceImage?: boolean; // true = la foto es una imagen de referencia, no la foto real del producto
 }
 
 // Tallas por categoría. Carteras/bolsas/sombreros no llevan talla (queda fuera de este mapa).
@@ -55,6 +56,7 @@ const ProductCard = ({
   grabadoPatrones,
   grabadoImages,
   grabadoCatalogUrl,
+  referenceImage,
 }: ProductCardProps) => {
   const { addItem } = useCart();
   const [tallaSeleccionada, setTallaSeleccionada] = useState<number | string | null>(null);
@@ -155,6 +157,12 @@ const ProductCard = ({
         {originalPrice && (
           <span className="absolute top-4 right-4 bg-destructive text-destructive-foreground text-[10px] uppercase tracking-[0.15em] font-bold px-3 py-1.5 rounded-full z-10">
             Oferta
+          </span>
+        )}
+
+        {referenceImage && (
+          <span className="absolute bottom-3 left-3 bg-black/60 text-white text-[9px] uppercase tracking-[0.12em] font-medium px-2.5 py-1 rounded-full z-10">
+            Imagen de referencia
           </span>
         )}
 

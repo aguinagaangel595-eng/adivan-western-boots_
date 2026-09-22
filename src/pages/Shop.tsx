@@ -13,11 +13,13 @@ type SortOrder = "default" | "price-asc" | "price-desc";
 const Shop = () => {
   const [activeGroup, setActiveGroup] = useState("Todo");
   const [activeSub, setActiveSub] = useState("Todas");
+  const [activeGenero, setActiveGenero] = useState<"Todos" | "Dama" | "Hombre">("Todos");
   const [sortOrder, setSortOrder] = useState<SortOrder>("default");
 
   const handleGroupClick = (grupo: string) => {
     setActiveGroup(grupo);
     setActiveSub("Todas");
+    setActiveGenero("Todos");
   };
 
   const filtered = useMemo(() => {
@@ -29,13 +31,16 @@ const Shop = () => {
       if (activeGroup === "Botas" && activeSub !== "Todas") {
         base = base.filter((p) => p.category === activeSub);
       }
+      if (activeGroup === "Botas" && activeGenero !== "Todos") {
+        base = base.filter((p) => p.genero === activeGenero);
+      }
     }
 
     if (sortOrder === "default") return base;
     const sorted = [...base];
     sorted.sort((a, b) => (sortOrder === "price-asc" ? a.price - b.price : b.price - a.price));
     return sorted;
-  }, [activeGroup, activeSub, sortOrder]);
+  }, [activeGroup, activeSub, activeGenero, sortOrder]);
 
   const showEmptyState = filtered.length === 0 && activeGroup !== "Ofertas";
 
@@ -101,6 +106,25 @@ const Shop = () => {
                   }`}
                 >
                   {sub}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Filtro Dama / Hombre para Botas */}
+          {activeGroup === "Botas" && (
+            <div className="mx-auto max-w-7xl flex flex-wrap items-center justify-center gap-2 mt-2">
+              {(["Todos", "Dama", "Hombre"] as const).map((g) => (
+                <button
+                  key={g}
+                  onClick={() => setActiveGenero(g)}
+                  className={`px-4 py-1.5 rounded-full text-[11px] uppercase tracking-[0.12em] font-medium border transition-colors ${
+                    activeGenero === g
+                      ? "bg-foreground text-background border-foreground"
+                      : "bg-transparent text-muted-foreground border-border hover:border-foreground"
+                  }`}
+                >
+                  {g}
                 </button>
               ))}
             </div>
