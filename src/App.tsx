@@ -15,6 +15,9 @@ import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminPedidos from "./pages/admin/AdminPedidos";
+import RequireAuth from "./components/admin/RequireAuth";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +36,15 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route
+              path="/admin/pedidos"
+              element={
+                <RequireAuth>
+                  <AdminPedidos />
+                </RequireAuth>
+              }
+            />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
