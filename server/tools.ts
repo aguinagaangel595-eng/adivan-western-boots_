@@ -15,7 +15,8 @@ export const TOOLS: Anthropic.Tool[] = [
         nombre: { type: "string", description: "Nombre completo del cliente." },
         telefono: {
           type: "string",
-          description: "Teléfono de contacto. Si el cliente no da uno distinto, usa el número desde el que escribe.",
+          description:
+            "Solo llena este campo si el cliente te da un número de dígitos DISTINTO al que está usando para escribirte (ej. '3312345678'). Si dice que uses 'el mismo número' o no menciona otro, déjalo vacío — el sistema ya sabe cuál es.",
         },
         producto_id: {
           type: "integer",
@@ -58,6 +59,11 @@ export const TOOLS: Anthropic.Tool[] = [
   },
 ];
 
+function normalizarTelefono(valor: unknown, telefonoConversacion: string): string {
+  const soloDigitos = String(valor ?? "").replace(/\D/g, "");
+  return soloDigitos.length >= 8 ? soloDigitos : telefonoConversacion;
+}
+
 interface ContextoTools {
   conversacionId: string;
   telefonoConversacion: string;
@@ -88,7 +94,11 @@ async function ejecutarRegistrarPedido(
   ctx: ContextoTools
 ): Promise<ResultadoTool> {
   const nombre = String(input.nombre ?? "").trim();
-  const telefono = String(input.telefono ?? ctx.telefonoConversacion).trim();
+  // El modelo no conoce el número real de WhatsApp del cliente, así que cuando
+  // el cliente dice "el mismo número" puede mandar esa frase tal cual en vez de
+  // dígitos. Si lo que llega no parece un teléfono real, usamos el número real
+  // de la conversación (siempre correcto, porque es de ahí de donde escribió).
+  const telefono = normalizarTelefono(input.telefono, ctx.telefonoConversacion);
   const productoNombre = String(input.producto_nombre ?? "").trim();
   const color = String(input.color ?? "").trim();
   const cantidad = Number(input.cantidad ?? 1);
