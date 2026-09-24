@@ -1,13 +1,13 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { correrAgente, enviarNotificacionesDueno } from "../server/agent";
-import { fetchCatalogo } from "../server/catalog";
+import { correrAgente, enviarNotificacionesDueno } from "../server/agent.js";
+import { fetchCatalogo } from "../server/catalog.js";
 import {
   getHistorialReciente,
   getOrCreateConversacion,
   guardarMensaje,
   mensajeYaProcesado,
-} from "../server/db";
-import { enviarTexto, extraerMensajeEntrante, verificarFirmaMeta } from "../server/whatsappClient";
+} from "../server/db.js";
+import { enviarTexto, extraerMensajeEntrante, verificarFirmaMeta } from "../server/whatsappClient.js";
 
 // Desactivamos el body parser automático de Vercel: necesitamos el cuerpo
 // crudo (bytes exactos) para validar la firma X-Hub-Signature-256 de Meta.

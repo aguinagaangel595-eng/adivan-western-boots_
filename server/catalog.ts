@@ -1,5 +1,5 @@
-import { getSupabaseAdmin } from "./supabaseAdmin";
-import type { ProductoDB } from "./types";
+import { getSupabaseAdmin } from "./supabaseAdmin.js";
+import type { ProductoDB } from "./types.js";
 
 /**
  * Trae el catálogo completo y vigente desde Supabase. Se llama en cada

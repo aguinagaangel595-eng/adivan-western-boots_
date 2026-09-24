@@ -1,7 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
-import { formatCatalogoParaPrompt } from "./catalog";
-import { TOOLS, ejecutarTool, notificarDueno, type ResultadoTool } from "./tools";
-import type { MensajeDB, ProductoDB } from "./types";
+import { formatCatalogoParaPrompt } from "./catalog.js";
+import { TOOLS, ejecutarTool, notificarDueno, type ResultadoTool } from "./tools.js";
+import type { MensajeDB, ProductoDB } from "./types.js";
 
 const MODEL = "claude-sonnet-5";
 const MAX_TOOL_ITERACIONES = 4;

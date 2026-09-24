@@ -1,8 +1,8 @@
 import type Anthropic from "@anthropic-ai/sdk";
-import { registrarPedido as insertarPedido } from "./db";
-import { setEstadoConversacion } from "./db";
-import { enviarPlantilla } from "./whatsappClient";
-import type { ProductoDB } from "./types";
+import { registrarPedido as insertarPedido } from "./db.js";
+import { setEstadoConversacion } from "./db.js";
+import { enviarPlantilla } from "./whatsappClient.js";
+import type { ProductoDB } from "./types.js";
 
 export const TOOLS: Anthropic.Tool[] = [
   {

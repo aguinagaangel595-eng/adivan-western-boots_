@@ -1,4 +1,4 @@
-import { getSupabaseAdmin } from "./supabaseAdmin";
+import { getSupabaseAdmin } from "./supabaseAdmin.js";
 import type {
   ConversacionDB,
   DireccionMensaje,
@@ -7,7 +7,7 @@ import type {
   PedidoDB,
   RegistrarPedidoInput,
   RolMensaje,
-} from "./types";
+} from "./types.js";
 
 export async function getOrCreateConversacion(
   telefono: string,
