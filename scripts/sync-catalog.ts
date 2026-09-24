@@ -8,18 +8,7 @@
 
 import "dotenv/config";
 import { createClient } from "@supabase/supabase-js";
-import { products } from "../src/data/products";
-
-// Debe reflejar exactamente TALLAS_POR_CATEGORIA de src/components/ProductCard.tsx.
-// Si agregas una categoría nueva con tallas allá, agrégala aquí también.
-const TALLAS_POR_CATEGORIA: Record<string, (number | string)[]> = {
-  Rodeo: [22, 23, 24, 25, 26, 27, 28, 29],
-  Exótica: [22, 23, 24, 25, 26, 27, 28, 29],
-  Tejida: [22, 23, 24, 25, 26, 27, 28, 29],
-  Botín: [22, 23, 24, 25, 26, 27, 28, 29],
-  Cintos: [28, 30, 32, 34, 36, 38, 40, 42],
-  Chamarras: ["S", "M", "L", "XL", "XXL"],
-};
+import { products, tallasDe } from "../src/data/products";
 
 function colores(p: (typeof products)[number]): string[] {
   const deVariantes = (p.variants ?? []).map((v) => v.color);
@@ -47,7 +36,7 @@ async function main() {
     categoria: p.category,
     genero: p.genero ?? null,
     descripcion: p.description,
-    tallas: TALLAS_POR_CATEGORIA[p.category] ?? [],
+    tallas: tallasDe(p),
     colores: colores(p),
     grabado_personalizable: Array.isArray(p.grabadoPatrones) && p.grabadoPatrones.length > 0,
     actualizado_en: new Date().toISOString(),

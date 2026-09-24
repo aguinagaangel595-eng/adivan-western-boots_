@@ -10,22 +10,12 @@ import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { products, GRUPOS, SUBCATEGORIAS_BOTA } from "../src/data/products";
+import { products, GRUPOS, SUBCATEGORIAS_BOTA, tallasDe } from "../src/data/products";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PUB = path.join(ROOT, "public");
 const SITE = path.join(ROOT, "site");
 const DIST = path.join(ROOT, "dist");
-
-// Debe coincidir con scripts/sync-catalog.ts (tallas por categoría).
-const TALLAS: Record<string, (number | string)[]> = {
-  Rodeo: [22, 23, 24, 25, 26, 27, 28, 29],
-  Exótica: [22, 23, 24, 25, 26, 27, 28, 29],
-  Tejida: [22, 23, 24, 25, 26, 27, 28, 29],
-  Botín: [22, 23, 24, 25, 26, 27, 28, 29],
-  Cintos: [28, 30, 32, 34, 36, 38, 40, 42],
-  Chamarras: ["S", "M", "L", "XL", "XXL"],
-};
 
 fs.rmSync(DIST, { recursive: true, force: true });
 fs.cpSync(PUB, DIST, { recursive: true });
@@ -54,7 +44,7 @@ const data = {
     genero: p.genero ?? null,
     description: p.description,
     referenceImage: !!p.referenceImage,
-    tallas: TALLAS[p.category] ?? [],
+    tallas: tallasDe(p),
     variants: (p.variants ?? []).map((v) => ({ color: v.color, images: v.images.map(img) })),
     swatches: p.colorSwatches ?? [],
     grabadoPatrones: p.grabadoPatrones ?? [],

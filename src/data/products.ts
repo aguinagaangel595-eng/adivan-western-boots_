@@ -415,3 +415,12 @@ export const products: Product[] = [
 
 export const GRUPOS = ["Todo", "Ofertas", "Botas", "Carteras", "Bolsos", "Cintos", "Sombreros", "Gorras", "Chamarras", "Otros"];
 export const SUBCATEGORIAS_BOTA = ["Todas", "Rodeo", "Exótica", "Tejida", "Botín"];
+
+// Tallas por producto. Botas: hombre 22 a 31, dama 22 a 27. Se usa en la tienda y en el agente de WhatsApp.
+const rango = (a: number, b: number) => Array.from({ length: b - a + 1 }, (_, i) => a + i);
+export function tallasDe(p: Pick<Product, "group" | "category" | "genero">): (number | string)[] {
+  if (p.group === "Botas") return p.genero === "Dama" ? rango(22, 27) : rango(22, 31);
+  if (p.category === "Cintos") return [28, 30, 32, 34, 36, 38, 40, 42];
+  if (p.category === "Chamarras") return ["S", "M", "L", "XL", "XXL"];
+  return [];
+}
