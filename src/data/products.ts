@@ -130,12 +130,12 @@ export const products: Product[] = [
   },
   {
     id: 12,
-    name: "Botín Nubuck",
+    name: "Botín Nobuck",
     price: 1250,
     group: "Botas",
     category: "Botín",
     genero: "Hombre",
-    description: "Botín corto en piel nubuck con bordado blanco, jaladeras y elástico lateral.",
+    description: "Botín corto en piel nobuck con bordado blanco, jaladeras y elástico lateral.",
     variants: [
       { color: "Negro", images: ["/botin-negro.jpg"] },
       { color: "Café", images: ["/botin-cafe.jpg"] },
