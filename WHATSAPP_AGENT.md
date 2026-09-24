@@ -30,8 +30,8 @@ src/data/products.ts  ──(npm run sync:catalogo)──▶  tabla `productos` 
 1. Entra a [supabase.com](https://supabase.com) → **New project**. Elige una contraseña de base de datos y guárdala.
 2. Cuando termine de aprovisionarse, ve a **SQL Editor** → **New query**, pega el contenido de [`supabase/migrations/0001_init.sql`](./supabase/migrations/0001_init.sql) y ejecútalo. Esto crea las tablas `productos`, `conversaciones`, `mensajes`, `pedidos` y sus políticas de seguridad.
 3. Ve a **Project Settings → API** y copia:
-   - **Project URL** → lo usarás como `SUPABASE_URL` y `VITE_SUPABASE_URL`.
-   - **anon public key** → `VITE_SUPABASE_ANON_KEY`.
+   - **Project URL** → lo usarás como `SUPABASE_URL`.
+   - **anon public key** → `SUPABASE_ANON_KEY`.
    - **service_role key** → `SUPABASE_SERVICE_ROLE_KEY` (¡secreta! nunca la pongas en variables `VITE_*` ni en código de navegador).
 4. Crea tu usuario para entrar al panel: **Authentication → Users → Add user**, con tu correo y una contraseña. Con eso entras en `/admin/pedidos`.
 
@@ -79,7 +79,7 @@ Copia `.env.example` a `.env` y llena todo con lo que juntaste arriba, incluyend
 - `OWNER_PHONE`: tu número con código de país, sin `+` (ej. `524791234567`).
 - `ANTHROPIC_API_KEY`: de [console.anthropic.com](https://console.anthropic.com).
 
-Sube las mismas variables a **Vercel → Project Settings → Environment Variables** (todas como server-side, excepto `VITE_SUPABASE_URL` y `VITE_SUPABASE_ANON_KEY`, que si necesitan ir también expuestas al build del frontend — en Vercel, cualquier variable con prefijo `VITE_` ya se incluye correctamente en el build de Vite).
+Sube las mismas variables a **Vercel → Project Settings → Environment Variables** (el panel `/admin/pedidos` usa `SUPABASE_URL` y `SUPABASE_ANON_KEY`, que el build publica en `dist/assets/config.js`; la `SUPABASE_SERVICE_ROLE_KEY` nunca sale del servidor. Si también pones `SUPABASE_SERVICE_ROLE_KEY` en Vercel, el catálogo del agente se sincroniza solo en cada publicación).
 
 ## 5. Instalar, sincronizar catálogo y probar local
 
@@ -91,7 +91,7 @@ npm run test:agente     # conversación por consola, sin tocar WhatsApp real
 
 `test:agente` usa Supabase y Claude reales, así que sí necesitas `.env` lleno (menos las variables de `WHATSAPP_*`, esas no se usan en la prueba local — los avisos al dueño solo se imprimen en la terminal).
 
-Corre `npm run sync:catalogo` cada vez que cambies precios/productos en `products.ts`. Si prefieres que sea automático, cambia el build command de Vercel a `npm run sync:catalogo && npm run build` (necesita `SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY` disponibles en tiempo de build, que ya estarán si las agregaste en el paso 4).
+El catálogo del agente se sincroniza solo en cada publicación del sitio (si `SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY` están en Vercel). También puedes correrlo a mano con `npm run sync:catalogo`.
 
 ## 6. Deploy y conectar el webhook
 

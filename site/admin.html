@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<base href="/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Panel de pedidos | ADIVAN</title>
+<meta name="theme-color" content="#140d09">
+<link rel="icon" type="image/png" href="assets/favicon-adivan.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+body{opacity:1;background:var(--canvas)}
+.a-wrap{width:min(1240px,94vw);margin:0 auto;padding:30px 0 80px}
+.a-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.a-top h1{font-size:44px}
+.a-top div{display:flex;gap:10px}
+.a-sec h2{font-size:30px;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.a-sec{margin-bottom:46px}
+.a-badge{font-family:var(--mono);font-size:12px;background:var(--accent);color:#1a0d05;border-radius:999px;padding:2px 10px}
+.a-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.a-card p{color:var(--text-secondary);font-size:14px}
+.a-card small{color:#8e7b66;font-family:var(--mono);font-size:11px}
+.a-card .acts{display:flex;gap:8px;flex-wrap:wrap}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+table{width:100%;border-collapse:collapse;min-width:820px}
+th{font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-secondary);text-align:left;padding:14px}
+td{padding:14px;border-top:1px solid var(--line);font-size:14px;vertical-align:top}
+td small{display:block;color:var(--text-secondary);font-size:12px}
+.pill.sm{padding:8px 16px;font-size:13px}
+.login{min-height:100vh;display:grid;place-items:center;padding:20px}
+.login form{width:min(380px,100%);background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:32px;display:grid;gap:16px}
+.login img{height:52px;margin:0 auto}
+.login h1{font-size:34px;text-align:center}
+.login label{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-secondary);display:grid;gap:8px}
+.login input{background:#140d09;border:1px solid rgba(193,150,106,.4);border-radius:10px;padding:13px 14px;color:var(--text-primary);font:inherit;font-size:16px}
+.login input:focus{border-color:var(--accent);outline:none}
+.login .pill{justify-content:center}
+.msg{color:#ff9a7a;font-size:14px;min-height:1.2em}
+.hidden{display:none !important}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="assets/config.js"></script>
+<script src="assets/admin.js"></script>
+</body>
+</html>

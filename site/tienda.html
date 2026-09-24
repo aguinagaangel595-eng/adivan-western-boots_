@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tienda | ADIVAN</title>
+<meta name="description" content="Botas, cintos, carteras, bolsos, chamarras y más, hechos a mano en piel genuina. Pide por WhatsApp. Envíos a todo México.">
+<meta name="theme-color" content="#140d09">
+<link rel="canonical" href="https://adivanwesternboots.com/tienda">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ADIVAN">
+<meta property="og:title" content="Tienda | ADIVAN">
+<meta property="og:description" content="Botas, cintos, carteras, bolsos, chamarras y más, hechos a mano en piel genuina. Pide por WhatsApp. Envíos a todo México.">
+<meta property="og:url" content="https://adivanwesternboots.com/tienda">
+<meta property="og:image" content="https://adivanwesternboots.com/Rodeo-cafe-enmielado-1.jpeg">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="1350">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://adivanwesternboots.com/Rodeo-cafe-enmielado-1.jpeg">
+
+<link rel="icon" type="image/png" href="assets/favicon-adivan.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/pages.css">
+</head>
+<body data-page="tienda">
+<main id="main" tabindex="-1">
+  <section class="page-hero" aria-labelledby="h-tienda">
+    <div class="ph-star" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#star"/></svg></div>
+    <div class="wrap">
+      <p class="label" data-r>Colección</p>
+      <h1 id="h-tienda" data-r style="--d:.06s">Tienda</h1>
+      <p class="sub" data-r style="--d:.14s">Botas y artículos de piel genuina ADIVAN, hechos a mano uno por uno.</p>
+    </div>
+  </section>
+
+  <section class="shop-page" aria-label="Catálogo">
+    <div class="wrap">
+      <div class="filters" id="fGroups" role="group" aria-label="Categorías"></div>
+      <div id="fBoots"></div>
+      <div class="meta-row">
+        <span id="count" aria-live="polite"></span>
+        <label class="sr" for="sort">Ordenar por</label>
+        <select class="sort" id="sort">
+          <option value="default">Ordenar por</option>
+          <option value="asc">Precio: menor a mayor</option>
+          <option value="desc">Precio: mayor a menor</option>
+        </select>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+</main>
+
+<div class="lb" id="lb" role="dialog" aria-label="Imagen ampliada" aria-hidden="true">
+  <button class="x" id="lbClose" aria-label="Cerrar">×</button>
+  <button class="arrow prev" id="lbPrev" aria-label="Anterior">‹</button>
+  <img id="lbImg" alt="">
+  <button class="arrow next" id="lbNext" aria-label="Siguiente">›</button>
+</div>
+
+<script src="assets/products.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/tienda.js"></script>
+</body>
+</html>

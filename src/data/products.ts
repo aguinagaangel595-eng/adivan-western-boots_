@@ -1,4 +1,13 @@
-import type { ProductVariant, ColorSwatch } from "@/components/ProductCard";
+export interface ProductVariant {
+  color: string;
+  images: string[];
+}
+
+export interface ColorSwatch {
+  name: string;
+  hex: string;
+  hex2?: string; // si existe, se pinta mitad y mitad (para "Combinado")
+}
 
 // Fuente única del catálogo — la Tienda y los destacados del Inicio leen de aquí,
 // así que un cambio de precio/nombre/foto se refleja en todo el sitio a la vez.

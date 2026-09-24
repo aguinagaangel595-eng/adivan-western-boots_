@@ -1,77 +1,42 @@
-# Welcome to your Lovable project
+# ADIVAN · adivanwesternboots.com
 
-## Project info
+Sitio de ADIVAN (botas y artículos de piel hechos a mano) + agente de ventas de WhatsApp.
 
-**URL**: https://lovable.dev/projects/7766a0fb-6397-4f96-9130-27eefd3cbec0
+## Cómo editar el sitio (desde GitHub, sin instalar nada)
 
-## How can I edit this code?
+| Quiero cambiar… | Edito este archivo |
+|---|---|
+| **Precios, nombres, descripciones, ofertas, colores, tallas de productos** | [`src/data/products.ts`](src/data/products.ts) |
+| Fotos de productos | Subir la foto a la carpeta [`public/`](public) y ponerla en `products.ts` (ej. `"/mi-foto.jpg"`) |
+| Textos de las páginas (inicio, nosotros, oficio, contacto, legales) | [`site/`](site) (un `.html` por página) |
+| Colores y estilos | [`site/assets/site.css`](site/assets/site.css) y [`pages.css`](site/assets/pages.css) |
 
-There are several ways of editing your application.
+Al guardar un cambio en GitHub, Vercel **vuelve a armar y publica el sitio solo** (1 a 2 minutos). No hay que correr nada: el catálogo de la tienda se genera automáticamente desde `products.ts` en cada publicación.
 
-**Use Lovable**
+En `products.ts`:
+- `price` es el precio actual y `originalPrice` (opcional) el precio tachado: si existe, el producto aparece en "Ofertas".
+- `genero: "Dama" | "Hombre"` aplica solo a botas y alimenta el filtro Dama/Hombre.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/7766a0fb-6397-4f96-9130-27eefd3cbec0) and start prompting.
+## Estructura
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+src/data/products.ts   catálogo (fuente única de precios y productos)
+site/                  páginas y estilos del sitio (HTML, CSS y JS simples, sin frameworks)
+public/                fotos y archivos estáticos
+scripts/build-site.ts  arma dist/ (copia public/ y site/, y genera el catálogo desde products.ts)
+api/whatsapp.ts        webhook del agente de WhatsApp (función de Vercel)
+server/                lógica del agente (Claude + Supabase)
+supabase/migrations/   tablas del agente
 ```
 
-**Edit a file directly in GitHub**
+## Ver el sitio en tu computadora
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/7766a0fb-6397-4f96-9130-27eefd3cbec0) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```bash
+npm install
+npm run build      # arma dist/
+npm run preview    # abre http://localhost:8080
+```
 
 ## Agente de WhatsApp
 
-Este repo también incluye el agente de ventas automático de WhatsApp (webhook en `/api/whatsapp`, catálogo sincronizado a Supabase, panel de pedidos en `/admin/pedidos`). Ver [WHATSAPP_AGENT.md](./WHATSAPP_AGENT.md) para configurarlo.
+Ver [WHATSAPP_AGENT.md](./WHATSAPP_AGENT.md). El panel de pedidos vive en `/admin/pedidos`.
