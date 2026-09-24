@@ -19,43 +19,78 @@ $$('.split').forEach(el=>{
   el.innerHTML=`<span class="sr">${text}</span><span aria-hidden="true">${vis}</span>`;
 });
 
-/* ── héroe ── */
-const hero=$('#top'), stage=$('#stage'), cover=$('#cover'), dusk=$('#dusk'), sunglow=$('#sunglow'), cue=$('#cue');
+/* ── héroe: video que avanza y retrocede con el scroll ── */
+const hero=$('#top'), stage=$('#stage'), video=$('#heroVideo'), poster=$('#poster'), cue=$('#cue'), ring=$('.ring');
 const bands=$$('.band').map(el=>({el,a:+el.dataset.a,b:+el.dataset.b,op:-1,k:-1,ks:-1,kb:-1,isLast:false}));
 bands[bands.length-1].isLast=true; bands[0].isFirst=true;
-const b4=bands[3].el;
-const IMG_AR=1536/1024, SUN_X=.505, SUN_Y=.588;
-let vw=innerWidth, vh=innerHeight, W=0,H=0,coverTop=0,coverLeft=0,sunNX=0,sunNY=0;
+const VIDEO_URL='assets/hero-scrub.mp4', VIDEO_BYTES=4358371;
+const POSTER_START="url('assets/hero-poster.jpg')", POSTER_END="url('assets/hero-ending.jpg')";
+let vw=innerWidth, vh=innerHeight, videoFailed=false;
 
 function layout(){
   vw=innerWidth; vh=innerHeight;
-  W=Math.max(vw,vh*IMG_AR); H=W/IMG_AR;
-  coverLeft=(vw-W)/2;
-  coverTop=clamp(vh*0.60-SUN_Y*H, vh-H, 0);
-  cover.style.width=W+'px'; cover.style.height=H+'px';
-  cover.style.left=coverLeft+'px'; cover.style.top=coverTop+'px';
-  cover.style.transformOrigin=(SUN_X*W)+'px '+(SUN_Y*H)+'px';
-  sunNX=coverLeft+SUN_X*W; sunNY=coverTop+SUN_Y*H;
+  stage.style.setProperty('--sx',(vw/2)+'px');
+  stage.style.setProperty('--sy',(vh*0.34)+'px');
 }
 
-let lastPaint=-1;
+/* saltos de tiempo con compuerta: nunca se pisan dos búsquedas */
+let seekBusy=false, pendingTime=null;
+function requestSeek(t){
+  if(!video.duration||isNaN(t)) return;
+  if(seekBusy){pendingTime=t;return}
+  seekBusy=true; video.currentTime=t;
+}
+video.addEventListener('seeked',()=>{
+  seekBusy=false;
+  if(pendingTime!==null){const t=pendingTime;pendingTime=null;requestSeek(t)}
+});
+video.addEventListener('error',()=>{seekBusy=false;pendingTime=null;failVideo()});
+
+let lastPaint=-1, lastPosterEnd=null;
 function paint(p){
   if(Math.abs(p-lastPaint)<0.0002 && lastPaint>=0) return;
   lastPaint=p;
-  const e=p*p*(3-2*p);
-  const s=1+1.45*e;
-  const targetY=vh*0.36;
-  const tx=0, ty=(targetY-sunNY)*e;
-  cover.style.transform=`translate3d(${tx}px,${ty}px,0) scale(${s})`;
-  const sx=sunNX+tx, sy=sunNY+ty;
-  stage.style.setProperty('--sx',sx+'px'); stage.style.setProperty('--sy',sy+'px');
-  dusk.style.opacity=(smooth(p,.12,.92)*.88).toFixed(3);
-  sunglow.style.opacity=(1-smooth(p,.42,.78)).toFixed(3);
-  const so=smooth(p,.46,.8);
-  stage.style.setProperty('--so',so.toFixed(3));
-  stage.style.setProperty('--ss',(.3+.7*smooth(p,.46,.95)).toFixed(3));
+  if(scrubOn && !videoFailed) requestSeek(p*(video.duration||0));
+  if(videoFailed){ const end=p>.5; if(end!==lastPosterEnd){lastPosterEnd=end;poster.style.backgroundImage=end?POSTER_END:POSTER_START} }
+  stage.style.setProperty('--so',smooth(p,.55,.86).toFixed(3));
+  stage.style.setProperty('--ss',(.3+.7*smooth(p,.55,.97)).toFixed(3));
   cue.style.opacity=(1-smooth(p,.0,.06)).toFixed(2);
 }
+
+/* carga del video como Blob, con anillo de progreso (funciona en cualquier servidor) */
+let heroInited=false;
+function initHeroOnce(){
+  if(heroInited) return; heroInited=true;
+  poster.style.backgroundImage=POSTER_START;
+  let started=false;
+  const start=()=>{ if(started) return; started=true; loadHeroBlob().catch(failVideo) };
+  const img=new Image(); img.onload=start; img.onerror=start; img.src='assets/hero-poster.jpg';
+  setTimeout(start,4000);
+}
+async function loadHeroBlob(){
+  const ctrl=new AbortController();
+  let watchdog=setTimeout(()=>ctrl.abort(),20000);
+  const res=await fetch(VIDEO_URL,{priority:'low',signal:ctrl.signal});
+  if(!res.ok) throw new Error('video');
+  const total=Number(res.headers.get('Content-Length'))||VIDEO_BYTES;
+  const reader=res.body.getReader(), chunks=[]; let got=0,lastRing=0;
+  for(;;){
+    const {done,value}=await reader.read(); if(done) break;
+    clearTimeout(watchdog); watchdog=setTimeout(()=>ctrl.abort(),20000);
+    chunks.push(value); got+=value.length;
+    const frac=Math.min(1,got/total), now=performance.now();
+    if(now-lastRing>100||frac===1){lastRing=now;ring.style.setProperty('--ld',Math.round(126*(1-frac)))}
+  }
+  clearTimeout(watchdog); ring.style.setProperty('--ld',0);
+  video.src=URL.createObjectURL(new Blob(chunks,{type:'video/mp4'}));
+  video.load();
+  video.addEventListener('canplay',()=>{
+    if(!scrubOn) return;
+    requestSeek(heroProgress()*video.duration);
+    stage.classList.add('video-ready');
+  },{once:true});
+}
+function failVideo(){ videoFailed=true; stage.classList.add('video-failed'); lastPosterEnd=null; lastPaint=-1; if(scrubOn) paint(shown) }
 
 function updateBands(p,loadK){
   for(const b of bands){
@@ -117,6 +152,9 @@ let scrubOn=false;
 function enableScrub(){
   if(scrubOn) return; scrubOn=true;
   hero.classList.remove('static');
+  initHeroOnce();
+  poster.style.backgroundImage=POSTER_START; lastPosterEnd=null;
+  if(video.readyState>=3) stage.classList.add('video-ready');
   addEventListener('scroll',onScroll,{passive:true});
   bands.forEach(b=>{b.op=-1;b.k=-1;b.ks=-1;b.kb=-1});
   lastPaint=-1; loadStart=performance.now(); loadK=0;
@@ -128,6 +166,8 @@ function disableScrub(){
   removeEventListener('scroll',onScroll);
   if(rafId!==null){cancelAnimationFrame(rafId);rafId=null}
   hero.classList.add('static');
+  stage.classList.remove('video-ready');
+  poster.style.backgroundImage=POSTER_END;
   layout(); lastPaint=-1; paint(1);
   bands.forEach(b=>{b.op=-1;b.k=-1;b.ks=-1;b.kb=-1});
   updateBands(1,1);
