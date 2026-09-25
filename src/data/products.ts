@@ -411,6 +411,18 @@ export const products: Product[] = [
       { name: "Blanco", hex: "#f3efe8" },
     ],
   },
+  {
+    id: 39,
+    name: "Botín Elegante",
+    price: 900,
+    originalPrice: 1199,
+    group: "Botas",
+    category: "Botín",
+    genero: "Hombre",
+    referenceImage: true,
+    description: "Botín corto en piel de res café oscuro con grano natural, tubo en nobuck, cierre lateral y suela de cuero.",
+    variants: [{ color: "Café oscuro", images: ["/botin-elegante-1.jpg", "/botin-elegante-2.jpg", "/botin-elegante-3.jpg"] }],
+  },
 ];
 
 export const GRUPOS = ["Todo", "Ofertas", "Botas", "Carteras", "Bolsos", "Cintos", "Sombreros", "Gorras", "Chamarras", "Otros"];
