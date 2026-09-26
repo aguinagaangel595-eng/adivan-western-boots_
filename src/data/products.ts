@@ -354,7 +354,8 @@ export const products: Product[] = [
     group: "Chamarras",
     category: "Chamarras",
     description: "Chamarra tipo camisola en nobuck, con bolsas de solapa y botones de presión metálicos. Forro interior.",
-    variants: [{ color: "Colores disponibles", images: ["/chamarra-colores.jpg"] }],
+    referenceImage: true,
+    variants: [{ color: "Colores disponibles", images: ["/chamarra-colores.jpg", "/chamarra-puesta-miel.jpg", "/chamarra-puesta-cafe.jpg", "/chamarra-puesta-verde.jpg"] }],
     colorSwatches: [
       { name: "Café oscuro", hex: "#4a2f24" },
       { name: "Verde musgo", hex: "#5b5a35" },
