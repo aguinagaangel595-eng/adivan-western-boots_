@@ -30,7 +30,16 @@ export interface Product {
   grabadoPatrones?: string[];
   grabadoImages?: string[];
   grabadoCatalogUrl?: string;
+  esDeVestir?: boolean; // true = cinto de vestir/formal — no cuenta para el Paquete JUMBO (ver más abajo)
 }
+
+// ── Paquete JUMBO ──────────────────────────────────────────────────────────
+// Promoción: 1 par de botas (cualquiera) + 1 cinto que NO sea de vestir (esDeVestir
+// distinto de true) = de regalo una Cartera Grabada. La lógica vive en
+// site/assets/site.js (detecta por `group`/`esDeVestir` de lo que hay en el carrito,
+// no depende de un id de producto). Para dar de alta la Cartera Grabada cuando haya
+// fotos: agrégala como cualquier producto nuevo (group/category "Carteras"); no hace
+// falta tocar site.js.
 
 export const products: Product[] = [
   {
@@ -249,6 +258,7 @@ export const products: Product[] = [
     group: "Cintos",
     category: "Cintos",
     description: "Cinto de piel lisa negra, hebilla rectangular sencilla.",
+    esDeVestir: true,
     variants: [{ color: "Negro", images: ["/cinto-clasico-negro.jpg"] }],
   },
   {

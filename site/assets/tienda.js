@@ -79,7 +79,7 @@ function card(p,idx){
     if(e.target.closest('[data-add]')){
       if(p.tallas.length&&!s.talla){const er=$('.err',el); er.hidden=false; return}
       const gr=hasGr?($('[data-gr]',el).value.trim()||'Sin especificar'):undefined;
-      cart.add({id:p.id,name:p.name,price:p.price,image:imgs()[0],talla:s.talla||undefined,color:colorName(),grabado:gr});
+      cart.add({id:p.id,name:p.name,price:p.price,image:imgs()[0],talla:s.talla||undefined,color:colorName(),grabado:gr,group:p.group,esDeVestir:!!p.esDeVestir});
       s.talla=null; $$('[data-t]',el).forEach(b=>b.setAttribute('aria-pressed','false'));
     }
   });

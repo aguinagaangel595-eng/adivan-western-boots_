@@ -44,6 +44,7 @@ const data = {
     genero: p.genero ?? null,
     description: p.description,
     referenceImage: !!p.referenceImage,
+    esDeVestir: !!p.esDeVestir,
     tallas: tallasDe(p),
     variants: (p.variants ?? []).map((v) => ({ color: v.color, images: v.images.map(img) })),
     swatches: p.colorSwatches ?? [],

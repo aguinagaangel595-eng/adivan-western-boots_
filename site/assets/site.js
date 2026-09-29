@@ -4,6 +4,7 @@
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
 const WA='524793203429';
+const FREE_SHIP_MIN=1100; // a partir de este total, envío gratis
 const money=n=>new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(n)+' MXN';
 const reduce=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
 const STAR='<svg viewBox="0 0 100 100" aria-hidden="true"><use href="#star"/></svg>';
@@ -44,6 +45,9 @@ const same=(a,b)=>a.id===b.id&&(a.talla||'')===(b.talla||'')&&(a.color||'')===(b
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(items))}catch(e){}};
 const total=()=>items.reduce((s,i)=>s+i.price*i.quantity,0);
 const count=()=>items.reduce((s,i)=>s+i.quantity,0);
+const hasBoots=()=>items.some(i=>i.group==='Botas');
+const hasCintoNoVestir=()=>items.some(i=>i.group==='Cintos'&&!i.esDeVestir);
+const calificaJumbo=()=>hasBoots()&&hasCintoNoVestir();
 
 document.body.insertAdjacentHTML('beforeend',
 `<div class="drawer-bg" id="drawerBg"></div>
@@ -62,7 +66,18 @@ function renderCart(){
     dBody.innerHTML='<div class="empty">'+STAR+'<p>Tu carrito está vacío.</p><a class="pill" href="tienda.html">Ver la tienda</a></div>'; dFoot.innerHTML=''; return;
   }
   dBody.innerHTML=items.map((it,idx)=>`<div class="line"><img src="${it.image}" alt="" width="72" height="72"><div class="l-info"><h3>${it.name}</h3><p>${[it.talla&&'Talla '+it.talla,it.color&&it.color,it.grabado&&'Grabado: '+it.grabado].filter(Boolean).join(' · ')}</p><span class="l-price">${money(it.price)}</span><div class="qty"><button data-q="${idx}" data-d="-1" aria-label="Menos">−</button><b>${it.quantity}</b><button data-q="${idx}" data-d="1" aria-label="Más">+</button><button class="rm" data-rm="${idx}" aria-label="Quitar">Quitar</button></div></div></div>`).join('');
-  dFoot.innerHTML=`<div class="tot"><span>Total estimado</span><b>${money(total())}</b></div><button class="pill" id="orderWa">Pedir por WhatsApp</button><small>Sin pago en línea: te escribimos por WhatsApp para confirmar talla, disponibilidad y forma de pago.</small>`;
+
+  const t=total(), pct=Math.round(clamp(t/FREE_SHIP_MIN,0,1)*100);
+  const faltan=money(Math.max(0,FREE_SHIP_MIN-t));
+  const shipHtml=`<div class="ship-bar"><div class="ship-track"><div class="ship-fill" style="width:${pct}%"></div></div><p class="ship-msg">${t>=FREE_SHIP_MIN?'🎉 Tu pedido ya tiene envío gratis.':`Te faltan <b>${faltan}</b> para envío gratis. Si no, el envío se cobra aparte, según tu ciudad.`}</p></div>`;
+
+  const jumboHtml=calificaJumbo()
+    ? `<div class="jumbo-banner">🎁 <b>¡Calificas para el Paquete JUMBO!</b> Te regalamos una Cartera Grabada.</div>`
+    : hasBoots()||hasCintoNoVestir()
+    ? `<div class="jumbo-banner off">🎁 Agrega ${hasBoots()?'un cinto (no de vestir)':'un par de botas'} y llévate de regalo una Cartera Grabada (Paquete JUMBO).</div>`
+    : '';
+
+  dFoot.innerHTML=`${shipHtml}${jumboHtml}<div class="tot"><span>Total estimado</span><b>${money(t)}</b></div><button class="pill" id="orderWa">Pedir por WhatsApp</button><small>Sin pago en línea: te escribimos por WhatsApp para confirmar talla, disponibilidad y forma de pago.</small>`;
 }
 function openCart(){drawer.classList.add('open');bg.classList.add('open');drawer.setAttribute('aria-hidden','false');document.body.classList.add('lock');$('#drawerClose').focus()}
 function closeCart(){drawer.classList.remove('open');bg.classList.remove('open');drawer.setAttribute('aria-hidden','true');document.body.classList.remove('lock')}
@@ -77,7 +92,10 @@ dFoot.addEventListener('click',e=>{
     const det=[it.talla&&'Talla: '+it.talla,it.color&&'Color: '+it.color,it.grabado&&'Grabado: '+it.grabado].filter(Boolean);
     return '• '+it.name+(det.length?' ('+det.join(', ')+')':'')+' x'+it.quantity+' - '+money(it.price*it.quantity);
   });
-  const msg=['Hola, me gustaría hacer el siguiente pedido:','',...lineas,'','*Total: '+money(total())+'*'].join('\n');
+  if(calificaJumbo()) lineas.push('🎁 Regalo Paquete JUMBO: Cartera Grabada');
+  const t=total();
+  const envio=t>=FREE_SHIP_MIN?'Envío: gratis 🎉':'Envío: se cobra aparte, según ciudad';
+  const msg=['Hola, me gustaría hacer el siguiente pedido:','',...lineas,'',envio,'*Total: '+money(t)+'*'].join('\n');
   window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank','noopener');
 });
 $('#cartBtn').addEventListener('click',openCart); $('#drawerClose').addEventListener('click',closeCart); bg.addEventListener('click',closeCart);

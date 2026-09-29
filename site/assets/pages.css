@@ -42,6 +42,14 @@ body.lock{overflow:hidden}
 .qty b{min-width:22px;text-align:center;font-family:var(--mono);font-weight:500}
 .qty .rm{width:auto;border:0;margin-left:auto;font-size:12px;color:var(--text-secondary);text-decoration:underline;padding:0 6px}
 .drawer>footer{padding:20px 24px 26px;border-top:1px solid var(--line);display:grid;gap:12px;background:none}
+.ship-bar{display:grid;gap:8px}
+.ship-track{height:6px;border-radius:999px;background:rgba(193,150,106,.2);overflow:hidden}
+.ship-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#2fae52,#3ecf6e);transition:width .5s var(--ease)}
+.ship-msg{font-size:13px;color:var(--text-secondary)}
+.ship-msg b{color:#3ecf6e;font-weight:700}
+.jumbo-banner{font-size:13px;line-height:1.45;background:rgba(62,207,110,.12);border:1px solid rgba(62,207,110,.4);color:var(--text-primary);border-radius:12px;padding:12px 14px}
+.jumbo-banner.off{background:rgba(193,150,106,.1);border-color:var(--line);color:var(--text-secondary)}
+.jumbo-banner b{color:#3ecf6e}
 .tot{display:flex;justify-content:space-between;align-items:baseline}
 .tot b{font-family:var(--display);font-size:32px}
 .drawer footer .pill{justify-content:center;padding:15px}
