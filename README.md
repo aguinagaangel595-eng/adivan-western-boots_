@@ -9,6 +9,7 @@ Sitio de ADIVAN (botas y artículos de piel hechos a mano) + agente de ventas de
 | **Precios, nombres, descripciones, ofertas, colores, tallas de productos** | [`src/data/products.ts`](src/data/products.ts) |
 | Fotos de productos | Subir la foto a la carpeta [`public/`](public) y ponerla en `products.ts` (ej. `"/mi-foto.jpg"`) |
 | Textos de las páginas (inicio, nosotros, oficio, contacto, legales) | [`site/`](site) (un `.html` por página) |
+| SEO (títulos, descripciones, categorías, preguntas frecuentes) | [`src/data/seo.ts`](src/data/seo.ts) — ver [SEO.md](SEO.md) |
 | Colores y estilos | [`site/assets/site.css`](site/assets/site.css) y [`pages.css`](site/assets/pages.css) |
 
 Al guardar un cambio en GitHub, Vercel **vuelve a armar y publica el sitio solo** (1 a 2 minutos). No hay que correr nada: el catálogo de la tienda se genera automáticamente desde `products.ts` en cada publicación.
@@ -21,6 +22,8 @@ En `products.ts`:
 
 ```
 src/data/products.ts   catálogo (fuente única de precios y productos)
+src/data/seo.ts        textos de SEO y categorías
+scripts/seo-build.ts   genera páginas de producto/categoría, sitemap y datos estructurados
 site/                  páginas y estilos del sitio (HTML, CSS y JS simples, sin frameworks)
 public/                fotos y archivos estáticos
 scripts/build-site.ts  arma dist/ (copia public/ y site/, y genera el catálogo desde products.ts)

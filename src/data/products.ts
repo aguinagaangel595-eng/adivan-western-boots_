@@ -31,6 +31,10 @@ export interface Product {
   grabadoImages?: string[];
   grabadoCatalogUrl?: string;
   esDeVestir?: boolean; // true = cinto de vestir/formal — no cuenta para el Paquete JUMBO (ver más abajo)
+  // SEO (opcionales): dirección web fija, título y descripción para Google. Si no los pones, se generan solos.
+  slug?: string;
+  seoTitle?: string;
+  seoDescription?: string;
 }
 
 // ── Paquete JUMBO ──────────────────────────────────────────────────────────

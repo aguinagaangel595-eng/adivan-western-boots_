@@ -4,7 +4,9 @@
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
 const WA='524793203429';
-const FREE_SHIP_MIN=1100; // a partir de este total, envío gratis
+const FREE_SHIP_MIN=/*__FREE__*/1100; // a partir de este total, envío gratis (se define en src/data/seo.ts)
+const CATS=/*__CATS__*/[]; // categorías con página propia (las pone el build)
+const abs=s=>/^(\/|https?:)/.test(s)?s:'/'+s;
 const money=n=>new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(n)+' MXN';
 const reduce=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
 const STAR='<svg viewBox="0 0 100 100" aria-hidden="true"><use href="#star"/></svg>';
@@ -22,12 +24,12 @@ document.body.insertAdjacentHTML('afterbegin',
 
 /* ── navegación ── */
 const page=document.body.dataset.page||'';
-const links=[['tienda.html','Tienda','tienda'],['nosotros.html','Nosotros','nosotros'],['artesania.html','Oficio','artesania'],['contacto.html','Contacto','contacto']];
+const links=[['/tienda','Tienda','tienda'],['/nosotros','Nosotros','nosotros'],['/artesania','Oficio','artesania'],['/contacto','Contacto','contacto']];
 const navLinks=links.map(([h,t,k])=>`<li><a href="${h}"${page===k?' aria-current="page"':''}>${t}</a></li>`).join('');
 const menuLinks=links.map(([h,t])=>`<a href="${h}">${t}</a>`).join('');
 document.body.insertAdjacentHTML('afterbegin',
 `<header class="nav" id="nav">
-  <a href="index.html" aria-label="ADIVAN, inicio"><img src="assets/adivan-logo-legado.png" alt="ADIVAN, Legado en cada paso"></a>
+  <a href="/" aria-label="ADIVAN, inicio"><img src="/assets/adivan-logo-legado.png" alt="ADIVAN, Legado en cada paso"></a>
   <nav aria-label="Principal"><ul>${navLinks}</ul></nav>
   <div class="nav-actions">
     <button class="cart-btn" id="cartBtn" aria-label="Abrir carrito"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span class="cart-count" id="cartCount" aria-live="polite">0</span></button>
@@ -35,7 +37,7 @@ document.body.insertAdjacentHTML('afterbegin',
     <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
   </div>
 </header>
-<div class="menu" id="menu" aria-hidden="true"><nav aria-label="Menú móvil">${menuLinks}<a href="index.html">Inicio</a></nav></div>`);
+<div class="menu" id="menu" aria-hidden="true"><nav aria-label="Menú móvil">${menuLinks}<a href="/">Inicio</a></nav></div>`);
 
 /* ── carrito ── */
 const KEY='adivan-rediseno-cart';
@@ -63,9 +65,9 @@ const drawer=$('#drawer'), bg=$('#drawerBg'), dBody=$('#dBody'), dFoot=$('#dFoot
 function renderCart(){
   $('#cartCount').textContent=count(); $('#cartCount').classList.toggle('on',count()>0);
   if(!items.length){
-    dBody.innerHTML='<div class="empty">'+STAR+'<p>Tu carrito está vacío.</p><a class="pill" href="tienda.html">Ver la tienda</a></div>'; dFoot.innerHTML=''; return;
+    dBody.innerHTML='<div class="empty">'+STAR+'<p>Tu carrito está vacío.</p><a class="pill" href="/tienda">Ver la tienda</a></div>'; dFoot.innerHTML=''; return;
   }
-  dBody.innerHTML=items.map((it,idx)=>`<div class="line"><img src="${it.image}" alt="" width="72" height="72"><div class="l-info"><h3>${it.name}</h3><p>${[it.talla&&'Talla '+it.talla,it.color&&it.color,it.grabado&&'Grabado: '+it.grabado].filter(Boolean).join(' · ')}</p><span class="l-price">${money(it.price)}</span><div class="qty"><button data-q="${idx}" data-d="-1" aria-label="Menos">−</button><b>${it.quantity}</b><button data-q="${idx}" data-d="1" aria-label="Más">+</button><button class="rm" data-rm="${idx}" aria-label="Quitar">Quitar</button></div></div></div>`).join('');
+  dBody.innerHTML=items.map((it,idx)=>`<div class="line"><img src="${abs(it.image)}" alt="" width="72" height="72"><div class="l-info"><h3>${it.name}</h3><p>${[it.talla&&'Talla '+it.talla,it.color&&it.color,it.grabado&&'Grabado: '+it.grabado].filter(Boolean).join(' · ')}</p><span class="l-price">${money(it.price)}</span><div class="qty"><button data-q="${idx}" data-d="-1" aria-label="Menos">−</button><b>${it.quantity}</b><button data-q="${idx}" data-d="1" aria-label="Más">+</button><button class="rm" data-rm="${idx}" aria-label="Quitar">Quitar</button></div></div></div>`).join('');
 
   const t=total(), pct=Math.round(clamp(t/FREE_SHIP_MIN,0,1)*100);
   const faltan=money(Math.max(0,FREE_SHIP_MIN-t));
@@ -112,7 +114,7 @@ menu.addEventListener('click',e=>{if(e.target.closest('a')) closeMenu()});
 try{
   if(!localStorage.getItem('adivan_cookie_consent')){
     setTimeout(()=>{
-      document.body.insertAdjacentHTML('beforeend',`<div class="cookie" id="cookie" role="dialog" aria-label="Aviso de cookies"><p>Usamos cookies propias y de terceros para que el carrito funcione, recordar tus preferencias y entender cómo se usa el sitio. Puedes aceptar todas o solo las esenciales. <a href="privacidad.html#cookies">Leer más</a>.</p><div><button class="pill ghost" data-c="essential-only">Solo esenciales</button><button class="pill" data-c="all">Aceptar todas</button></div></div>`);
+      document.body.insertAdjacentHTML('beforeend',`<div class="cookie" id="cookie" role="dialog" aria-label="Aviso de cookies"><p>Usamos cookies propias y de terceros para que el carrito funcione, recordar tus preferencias y entender cómo se usa el sitio. Puedes aceptar todas o solo las esenciales. <a href="/privacidad#cookies">Leer más</a>.</p><div><button class="pill ghost" data-c="essential-only">Solo esenciales</button><button class="pill" data-c="all">Aceptar todas</button></div></div>`);
       const ck=$('#cookie'); requestAnimationFrame(()=>ck.classList.add('show'));
       ck.addEventListener('click',e=>{const b=e.target.closest('[data-c]'); if(!b) return; try{localStorage.setItem('adivan_cookie_consent',b.dataset.c);localStorage.setItem('adivan_cookie_consent_date',new Date().toISOString())}catch(_){} ck.classList.remove('show'); setTimeout(()=>ck.remove(),500)});
     },900);
@@ -120,11 +122,13 @@ try{
 }catch(e){}
 
 /* ── pie de página ── */
+const catCol=CATS.length?`<div><h3>Catálogo</h3><ul>${CATS.slice(0,7).map(c=>`<li><a href="/${c.slug}">${c.label}</a></li>`).join('')}</ul></div>`:'';
 document.body.insertAdjacentHTML('beforeend',
 `<footer><div class="wrap"><div class="foot">
-  <div><img src="assets/adivan-logo-legado.png" alt="ADIVAN, Legado en cada paso"><small>Artículos de piel genuina hechos a mano en León, Guanajuato, con tradición Western y diseño moderno.</small></div>
-  <div><h3>Enlaces</h3><ul><li><a href="index.html">Inicio</a></li><li><a href="tienda.html">Tienda</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="artesania.html">Oficio</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
-  <div><h3>Legal</h3><ul><li><a href="privacidad.html">Aviso de privacidad</a></li><li><a href="terminos.html">Términos de compra</a></li></ul></div>
+  <div><img src="/assets/adivan-logo-legado.png" alt="ADIVAN, Legado en cada paso"><small>Artículos de piel genuina hechos a mano en León, Guanajuato, con tradición Western y diseño moderno.</small></div>
+  ${catCol}
+  <div><h3>Enlaces</h3><ul><li><a href="/">Inicio</a></li><li><a href="/tienda">Tienda</a></li><li><a href="/nosotros">Nosotros</a></li><li><a href="/artesania">Oficio</a></li><li><a href="/contacto">Contacto</a></li></ul></div>
+  <div><h3>Legal</h3><ul><li><a href="/privacidad">Aviso de privacidad</a></li><li><a href="/terminos">Términos de compra</a></li></ul></div>
   <div><h3>Escríbenos</h3><ul><li><a href="https://wa.me/${WA}" target="_blank" rel="noopener">WhatsApp +52 479 320 3429</a></li><li><a href="https://www.tiktok.com/@adivan.western" target="_blank" rel="noopener">TikTok @adivan.western</a></li><li><span>México · Envíos nacionales</span></li></ul></div>
 </div><p class="fine">© ${new Date().getFullYear()} ADIVAN · Todos los derechos reservados</p></div></footer>`);
 

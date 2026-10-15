@@ -23,8 +23,8 @@ $$('.split').forEach(el=>{
 const hero=$('#top'), stage=$('#stage'), video=$('#heroVideo'), poster=$('#poster'), cue=$('#cue'), ring=$('.ring');
 const bands=$$('.band').map(el=>({el,a:+el.dataset.a,b:+el.dataset.b,op:-1,k:-1,ks:-1,kb:-1,isLast:false}));
 bands[bands.length-1].isLast=true; bands[0].isFirst=true;
-const VIDEO_URL='assets/hero-scrub.mp4', VIDEO_BYTES=4358371;
-const POSTER_START="url('assets/hero-poster.jpg')", POSTER_END="url('assets/hero-ending.jpg')";
+const VIDEO_URL='/assets/hero-scrub.mp4', VIDEO_BYTES=4358371;
+const POSTER_START="url('/assets/hero-poster.jpg')", POSTER_END="url('/assets/hero-ending.jpg')";
 let vw=innerWidth, vh=innerHeight, videoFailed=false;
 
 function layout(){
@@ -64,7 +64,7 @@ function initHeroOnce(){
   poster.style.backgroundImage=POSTER_START;
   let started=false;
   const start=()=>{ if(started) return; started=true; loadHeroBlob().catch(failVideo) };
-  const img=new Image(); img.onload=start; img.onerror=start; img.src='assets/hero-poster.jpg';
+  const img=new Image(); img.onload=start; img.onerror=start; img.src='/assets/hero-poster.jpg';
   setTimeout(start,4000);
 }
 async function loadHeroBlob(){
