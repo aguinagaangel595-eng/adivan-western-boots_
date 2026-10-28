@@ -106,14 +106,14 @@ export const CATEGORIAS: CategoriaSEO[] = [
     filtro: { groups: ["Botas"] },
     intro: [
       "Las botas vaqueras ADIVAN se hacen a mano en León, Guanajuato, la capital del calzado en México. Trabajamos piel de res genuina con bordados, grabados y costuras reforzadas, pensadas para el uso diario, el jaripeo, el rodeo o la fiesta.",
-      "Aquí encuentras {n} modelos de botas y botines para hombre (tallas 22 a 31) y para dama (tallas 22 a 27), desde {min} hasta {max} MXN. Pides por WhatsApp o desde el carrito, pagas por transferencia, depósito o efectivo contra entrega, y enviamos a todo México.",
+      "Aquí encuentras {n} modelos de botas y botines para hombre (tallas 25 a 31) y para dama (tallas 22 a 27), desde {min} hasta {max} MXN. Pides por WhatsApp o desde el carrito, pagas por transferencia, depósito o efectivo contra entrega, y enviamos a todo México.",
     ],
     faq: [
       {
         q: "¿De qué material son las botas vaqueras ADIVAN?",
         a: "De piel de res genuina. Algunos modelos llevan grabado tipo exótico (avestruz, cocodrilo, pescado, pitón o mantarraya) sobre piel de res; no usamos piel exótica original.",
       },
-      { q: "¿Qué tallas de botas manejan?", a: "Botas para hombre de la 22 a la 31 y botas para dama de la 22 a la 27." },
+      { q: "¿Qué tallas de botas manejan?", a: "Botas para hombre de la 25 a la 31 y botas para dama de la 22 a la 27." },
       {
         q: "¿Hacen envíos de botas a todo México?",
         a: "Sí. El costo y el tiempo dependen de la paquetería y del destino. Los pedidos desde {envioGratis} MXN tienen envío gratis.",
@@ -127,14 +127,14 @@ export const CATEGORIAS: CategoriaSEO[] = [
     h1: "Botas vaqueras para hombre",
     title: "Botas vaqueras para hombre, de piel | ADIVAN",
     description:
-      "Botas vaqueras para hombre en piel de res genuina: rodeo, grabadas, tejidas y botines. Hechas a mano en León, Gto. Tallas 22 a 31. Envío a todo México.",
+      "Botas vaqueras para hombre en piel de res genuina: rodeo, grabadas, tejidas y botines. Hechas a mano en León, Gto. Tallas 25 a 31. Envío a todo México.",
     filtro: { groups: ["Botas"], genero: "Hombre" },
     intro: [
-      "Botas vaqueras para hombre hechas a mano en León, Guanajuato, con piel de res genuina y costuras reforzadas. Hay modelos rodeo, grabadas tipo exótico, tejidas y botines, en tallas 22 a 31.",
+      "Botas vaqueras para hombre hechas a mano en León, Guanajuato, con piel de res genuina y costuras reforzadas. Hay modelos rodeo, grabadas tipo exótico, tejidas y botines, en tallas 25 a 31.",
       "Tenemos {n} modelos desde {min} hasta {max} MXN. Si no estás seguro de tu talla o quieres un grabado a tu gusto, escríbenos por WhatsApp y te ayudamos a elegir.",
     ],
     faq: [
-      { q: "¿Qué tallas hay en botas para hombre?", a: "De la 22 a la 31." },
+      { q: "¿Qué tallas hay en botas para hombre?", a: "De la 25 a la 31." },
       {
         q: "¿Puedo elegir el grabado de mis botas?",
         a: "Sí. En las botas grabadas te mostramos el catálogo de patrones (avestruz, cocodrilo, pescado, elefante y cincelado) y eliges el que más te guste.",
@@ -186,7 +186,7 @@ export const CATEGORIAS: CategoriaSEO[] = [
         q: "¿Cuál es la diferencia entre bota y botín?",
         a: "El botín es corto y llega al tobillo; la bota vaquera tiene el tubo alto y sube hacia la pantorrilla.",
       },
-      { q: "¿Qué tallas manejan en botines?", a: "Botines para hombre de la 22 a la 31 y botinas para dama de la 22 a la 27." },
+      { q: "¿Qué tallas manejan en botines?", a: "Botines para hombre de la 25 a la 31 y botinas para dama de la 22 a la 27." },
     ],
   },
   {
@@ -206,7 +206,7 @@ export const CATEGORIAS: CategoriaSEO[] = [
         q: "¿Para qué sirven las botas rodeo?",
         a: "Son botas vaqueras de uso diario y de fiesta: jaripeos, rodeos, ferias, bailes o simplemente para vestir con estilo Western.",
       },
-      { q: "¿Qué tallas hay en botas rodeo?", a: "Para hombre de la 22 a la 31 y para dama de la 22 a la 27." },
+      { q: "¿Qué tallas hay en botas rodeo?", a: "Para hombre de la 25 a la 31 y para dama de la 22 a la 27." },
     ],
   },
   {
