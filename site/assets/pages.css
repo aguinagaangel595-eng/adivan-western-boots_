@@ -265,3 +265,11 @@ footer{border-top:1px solid var(--line);padding:56px 0 46px;background:rgba(14,8
 
 .shop-page .more-link{color:var(--cream-ink)}
 .shop-page .more-link:hover{color:#b3661a}
+
+/* legado (nosotros) */
+.legacy-in{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,6vw,100px);align-items:start}
+@media (max-width:860px){.legacy-in{grid-template-columns:1fr}}
+.legacy-text p{font-size:clamp(18px,1.8vw,22px);line-height:1.65;color:var(--text-secondary);margin-bottom:20px;max-width:56ch}
+.legacy-text p.key{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(30px,3.6vw,50px);line-height:1;color:var(--text-primary);margin:34px 0 22px}
+.legacy-text p.thanks{color:var(--accent);font-style:italic}
+.pcard .desc{-webkit-line-clamp:3}

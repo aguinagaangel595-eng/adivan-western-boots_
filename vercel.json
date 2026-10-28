@@ -9,7 +9,8 @@
     { "source": "/craftsmanship", "destination": "/artesania", "permanent": true },
     { "source": "/contact", "destination": "/contacto", "permanent": true },
     { "source": "/privacy", "destination": "/privacidad", "permanent": true },
-    { "source": "/terms", "destination": "/terminos", "permanent": true }
+    { "source": "/terms", "destination": "/terminos", "permanent": true },
+    { "source": "/producto/botin-elegante", "destination": "/producto/botin-alto", "permanent": true }
   ],
   "rewrites": [
     { "source": "/admin/pedidos", "destination": "/admin.html" },

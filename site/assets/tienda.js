@@ -12,9 +12,11 @@ function chip(label,pressed,attrs='',cls=''){return `<button class="chip ${cls}"
 function renderFilters(){
   $('#fGroups').innerHTML=D.grupos.map(g=>chip(g,st.g===g,`data-g="${g}"`,g==='Ofertas'?'sale':'')).join('');
   const b=$('#fBoots');
+  const parao=`<div class="sub-row"><span class="lbl">Para</span>${['Todos','Dama','Hombre'].map(s=>chip(s,st.gen===s,`data-gen="${s}"`,'sm')).join('')}</div>`;
   if(st.g==='Botas'){
-    b.innerHTML=`<div class="sub-row"><span class="lbl">Tipo</span>${D.subBota.map(s=>chip(s,st.sub===s,`data-sub="${s}"`,'sm')).join('')}</div>
-    <div class="sub-row"><span class="lbl">Para</span>${['Todos','Dama','Hombre'].map(s=>chip(s,st.gen===s,`data-gen="${s}"`,'sm')).join('')}</div>`;
+    b.innerHTML=`<div class="sub-row"><span class="lbl">Tipo</span>${D.subBota.map(s=>chip(s,st.sub===s,`data-sub="${s}"`,'sm')).join('')}</div>`+parao;
+  }else if(st.g==='Botines'){
+    b.innerHTML=parao;
   }else b.innerHTML='';
 }
 $('#fGroups').addEventListener('click',e=>{const b=e.target.closest('[data-g]'); if(!b) return; st.g=b.dataset.g; st.sub='Todas'; st.gen='Todos'; update()});
@@ -30,7 +32,7 @@ function filtered(){
   else if(st.g!=='Todo'){
     base=base.filter(p=>p.group===st.g);
     if(st.g==='Botas'&&st.sub!=='Todas') base=base.filter(p=>p.category===st.sub);
-    if(st.g==='Botas'&&st.gen!=='Todos') base=base.filter(p=>p.genero===st.gen);
+    if((st.g==='Botas'||st.g==='Botines')&&st.gen!=='Todos') base=base.filter(p=>p.genero===st.gen);
   }
   base=[...base];
   if(st.sort==='asc') base.sort((a,b)=>a.price-b.price);
@@ -50,7 +52,7 @@ function update(rebuildFilters=true){
   const u=new URL(location.href); u.search='';
   if(st.g!=='Todo') u.searchParams.set('g',st.g);
   if(st.g==='Botas'&&st.sub!=='Todas') u.searchParams.set('sub',st.sub);
-  if(st.g==='Botas'&&st.gen!=='Todos') u.searchParams.set('genero',st.gen);
+  if((st.g==='Botas'||st.g==='Botines')&&st.gen!=='Todos') u.searchParams.set('genero',st.gen);
   try{history.replaceState(null,'',u)}catch(e){}
 }
 update();

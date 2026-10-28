@@ -47,7 +47,7 @@ const same=(a,b)=>a.id===b.id&&(a.talla||'')===(b.talla||'')&&(a.color||'')===(b
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(items))}catch(e){}};
 const total=()=>items.reduce((s,i)=>s+i.price*i.quantity,0);
 const count=()=>items.reduce((s,i)=>s+i.quantity,0);
-const hasBoots=()=>items.some(i=>i.group==='Botas');
+const hasBoots=()=>items.some(i=>i.group==='Botas'||i.group==='Botines');
 const hasCintoNoVestir=()=>items.some(i=>i.group==='Cintos'&&!i.esDeVestir);
 const calificaJumbo=()=>hasBoots()&&hasCintoNoVestir();
 

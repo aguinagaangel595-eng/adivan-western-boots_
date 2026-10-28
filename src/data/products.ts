@@ -21,7 +21,7 @@ export interface Product {
   originalPrice?: number;
   group: string;
   category: string;
-  genero?: "Dama" | "Hombre"; // Solo para group "Botas" — habilita el filtro Dama/Hombre en la Tienda
+  genero?: "Dama" | "Hombre"; // Solo para botas y botines (group "Botas" o "Botines") — habilita el filtro Dama/Hombre en la Tienda
   description: string;
   image?: string;
   referenceImage?: boolean; // true = la foto es una imagen de referencia (no la foto real del producto)
@@ -54,7 +54,7 @@ export const products: Product[] = [
     group: "Botas",
     category: "Rodeo",
     genero: "Dama",
-    description: "Botas coquetas en piel rosa, para dama, con pespunte en tono contrastante.",
+    description: "Botas coquetas en piel rosa, para dama, con pespunte en tono contrastante. Construcción Welt.",
     variants: [{ color: "Rosa", images: ["/Botasrosas.jpg"] }],
   },
   {
@@ -64,7 +64,7 @@ export const products: Product[] = [
     group: "Botas",
     category: "Rodeo",
     genero: "Hombre",
-    description: "Bota rodeo clásica en piel café enmielado, tubo bordado y suela de doble vida.",
+    description: "Bota rodeo clásica en piel café enmielado, tubo bordado y suela de doble vida. Construcción Welt.",
     variants: [
       { color: "Café enmielado", images: ["/Rodeo-cafe-enmielado-1.jpeg", "/Rodeo-cafe-enmielado-2.jpeg", "/Rodeo-cafe-enmielado-3.jpeg"] },
     ],
@@ -76,7 +76,7 @@ export const products: Product[] = [
     group: "Botas",
     category: "Rodeo",
     genero: "Hombre",
-    description: "Bota rodeo en piel color mango con bordado floral en hilo tono hueso.",
+    description: "Bota rodeo en piel color mango con bordado floral en hilo tono hueso. Construcción Welt.",
     variants: [
       { color: "Mango", images: ["/Rodeo-mango-1.jpeg", "/Rodeo-mango-2.jpeg", "/Rodeo-mango-3.jpeg"] },
     ],
@@ -89,7 +89,7 @@ export const products: Product[] = [
     group: "Botas",
     category: "Exótica",
     genero: "Hombre",
-    description: "Piel de res con grabado tipo exótico. Ve el catálogo y dinos qué patrón quieres.",
+    description: "Piel de res con grabado tipo exótico. Ve el catálogo y dinos qué patrón quieres. Construcción Welt.",
     grabadoPatrones: ["Avestruz", "Cocodrilo", "Pescado", "Elefante", "Cincelado"],
     grabadoImages: ["/cocologo.jpeg", "/coco-papada.jpg"],
     grabadoCatalogUrl: "https://canva.link/f9olgb75t9hbhv7",
@@ -101,7 +101,7 @@ export const products: Product[] = [
     group: "Botas",
     category: "Tejida",
     genero: "Hombre",
-    description: "Bota de piel tejida a mano en tono miel, con tubo liso color café.",
+    description: "Bota de piel tejida a mano en tono miel, con tubo liso color café. Construcción Welt.",
     variants: [{ color: "Miel", images: ["/tejida-miel.jpg"] }],
   },
   {
@@ -128,7 +128,7 @@ export const products: Product[] = [
     group: "Botas",
     category: "Exótica",
     genero: "Hombre",
-    description: "Bota alta en piel de res negra con grabado tipo mantarraya en el empeine, tubo bordado a tono.",
+    description: "Bota alta en piel de res negra con grabado tipo mantarraya en el empeine, tubo bordado a tono. Construcción Welt.",
     variants: [{ color: "Negro", images: ["/bota-mantarraya-negra.jpg"] }],
   },
   {
@@ -138,17 +138,17 @@ export const products: Product[] = [
     group: "Botas",
     category: "Exótica",
     genero: "Hombre",
-    description: "Bota alta en piel de res negra con grabado tipo pitón tono sobre tono, tubo bordado.",
+    description: "Bota alta en piel de res negra con grabado tipo pitón tono sobre tono, tubo bordado. Construcción Welt.",
     variants: [{ color: "Negro", images: ["/bota-piton-negra.jpg"] }],
   },
   {
     id: 29,
     name: "Botina de Dama",
     price: 890,
-    group: "Botas",
+    group: "Botines",
     category: "Botín",
     genero: "Dama",
-    description: "Botina de tacón para dama, piel grabada con bordado tipo talavera y hebilla.",
+    description: "Botina de tacón para dama, piel grabada con bordado tipo talavera y hebilla. Construcción Welt.",
     variants: [{ color: "Surtido", images: ["/botina-dama-1.jpg", "/botina-dama-2.jpg"] }],
   },
   {
@@ -394,7 +394,7 @@ export const products: Product[] = [
     category: "Rodeo",
     genero: "Dama",
     referenceImage: true,
-    description: "Bota de dama estilo retro, caña alta con bordado floral tono sobre tono y punta fina.",
+    description: "Bota de dama estilo retro, caña alta con bordado floral tono sobre tono y punta fina. Construcción Welt.",
     variants: [{ color: "Colores disponibles", images: ["/bota-retro.jpg"] }],
     colorSwatches: [
       { name: "Miel", hex: "#c48a55" },
@@ -404,25 +404,25 @@ export const products: Product[] = [
   },
   {
     id: 39,
-    name: "Botín Elegante",
+    name: "Botín Alto",
     price: 900,
     originalPrice: 1199,
-    group: "Botas",
+    group: "Botines",
     category: "Botín",
     genero: "Hombre",
     referenceImage: true,
-    description: "Botín corto en piel de res café oscuro con grano natural, tubo en nobuck, cierre lateral y suela de cuero.",
+    description: "Botín alto en piel de res café oscuro con grano natural, tubo en nobuck, cierre lateral y suela de cuero. Construcción Welt.",
     variants: [{ color: "Café oscuro", images: ["/botin-elegante-1.jpg", "/botin-elegante-2.jpg", "/botin-elegante-3.jpg"] }],
   },
 ];
 
-export const GRUPOS = ["Todo", "Ofertas", "Botas", "Carteras", "Bolsos", "Cintos", "Sombreros", "Gorras", "Chamarras", "Otros"];
-export const SUBCATEGORIAS_BOTA = ["Todas", "Rodeo", "Exótica", "Tejida", "Botín"];
+export const GRUPOS = ["Todo", "Ofertas", "Botas", "Botines", "Carteras", "Bolsos", "Cintos", "Sombreros", "Gorras", "Chamarras", "Otros"];
+export const SUBCATEGORIAS_BOTA = ["Todas", "Rodeo", "Exótica", "Tejida"];
 
-// Tallas por producto. Botas: hombre 25 a 31, dama 22 a 27. Se usa en la tienda y en el agente de WhatsApp.
+// Tallas por producto. Botas y botines: hombre 25 a 31, dama 22 a 27. Se usa en la tienda y en el agente de WhatsApp.
 const rango = (a: number, b: number) => Array.from({ length: b - a + 1 }, (_, i) => a + i);
 export function tallasDe(p: Pick<Product, "group" | "category" | "genero">): (number | string)[] {
-  if (p.group === "Botas") return p.genero === "Dama" ? rango(22, 27) : rango(25, 31);
+  if (p.group === "Botas" || p.group === "Botines") return p.genero === "Dama" ? rango(22, 27) : rango(25, 31);
   if (p.category === "Cintos") return [28, 30, 32, 34, 36, 38, 40, 42];
   if (p.category === "Chamarras") return ["S", "M", "L", "XL", "XXL"];
   return [];

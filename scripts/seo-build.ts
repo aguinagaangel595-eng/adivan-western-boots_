@@ -41,6 +41,7 @@ export interface ProductoSEO extends Product {
 
 const GROUP_NOUN: Record<string, string> = {
   Botas: "Botas vaqueras",
+  Botines: "Botines vaqueros",
   Cintos: "Cinturones de piel",
   Carteras: "Carteras de piel",
   Bolsos: "Bolsos de piel",
@@ -126,9 +127,14 @@ function productCopy(p: ProductoSEO): string[] {
       lines.push(
         `${p.name} es una ${tipo}${para ? " " + para : ""} hecha a mano en León, Guanajuato, con piel de res genuina. Disponible en tallas ${tl}${col ? ` y en color ${col}` : ""}.`
       );
+      lines.push("Lleva construcción Welt (Goodyear-Welt): la suela va cosida al cuerpo de la bota, es más durable y se puede cambiar.");
       if (grabado) lines.push("Puedes elegir el patrón de grabado que más te guste: te mostramos el catálogo y lo hacemos a mano. Es piel de res con grabado tipo exótico, no piel exótica original.");
       break;
     }
+    case "Botines":
+      lines.push(`${p.name} es un botín vaquero${para ? " " + para : ""} hecho a mano en León, Guanajuato, con piel de res genuina. Disponible en tallas ${tl}${col ? ` y en color ${col}` : ""}.`);
+      lines.push("Lleva construcción Welt (Goodyear-Welt): la suela va cosida al cuerpo del botín, es más durable y se puede cambiar.");
+      break;
     case "Cintos":
       lines.push(`${p.name} es un cinturón de piel hecho a mano en León, Guanajuato. Disponible en tallas ${tl}${col ? ` y en color ${col}` : ""}.`);
       if (!p.esDeVestir) lines.push("Cuenta para el Paquete JUMBO: junto con un par de botas te regalamos una cartera grabada.");
