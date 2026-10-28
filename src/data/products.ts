@@ -38,7 +38,7 @@ export interface Product {
 }
 
 // ── Paquete JUMBO ──────────────────────────────────────────────────────────
-// Promoción: 1 par de botas (cualquiera) + 1 cinto que NO sea de vestir (esDeVestir
+// Promoción: 1 par de botas (solo botas, no botines) + 1 cinto que NO sea de vestir (esDeVestir
 // distinto de true) = de regalo una Cartera Grabada. La lógica vive en
 // site/assets/site.js (detecta por `group`/`esDeVestir` de lo que hay en el carrito,
 // no depende de un id de producto). Para dar de alta la Cartera Grabada cuando haya
