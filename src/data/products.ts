@@ -59,12 +59,12 @@ export const products: Product[] = [
   },
   {
     id: 2,
-    name: "Rodeo Café Enmielado",
+    name: "Rodeo Miel",
     price: 1199,
     group: "Botas",
     category: "Rodeo",
     genero: "Hombre",
-    description: "Bota rodeo clásica en piel café enmielado, tubo bordado y suela de doble vida. Construcción Welt.",
+    description: "Bota rodeo clásica en piel floter miel mate, tubo encerado café. Construcción Welt.",
     variants: [
       { color: "Café enmielado", images: ["/Rodeo-cafe-enmielado-1.jpeg", "/Rodeo-cafe-enmielado-2.jpeg", "/Rodeo-cafe-enmielado-3.jpeg"] },
     ],
