@@ -205,8 +205,8 @@ export const products: Product[] = [
   {
     id: 19,
     name: "Bolsa Yareli",
-    price: 399,
-    originalPrice: 799,
+    price: 349,
+    originalPrice: 450,
     group: "Bolsos",
     category: "Bolsos",
     description: "Bolsa tipo caja con doble asa y cadena, en piel de res con grabado tipo exótico.",
@@ -218,7 +218,7 @@ export const products: Product[] = [
     id: 20,
     name: "Crossbody",
     price: 299,
-    originalPrice: 499,
+    originalPrice: 380,
     group: "Bolsos",
     category: "Bolsos",
     description: "Bolso cruzado tipo cámara en piel grabada tipo pitón, correa ajustable.",
@@ -411,7 +411,7 @@ export const products: Product[] = [
     category: "Botín",
     genero: "Hombre",
     referenceImage: true,
-    description: "Botín alto en piel de res café oscuro con grano natural, tubo en nobuck, cierre lateral y suela de cuero. Construcción Welt.",
+    description: "Botín alto en piel de res café oscuro con grano natural, cierre lateral y suela de cuero. Construcción Welt.",
     variants: [{ color: "Café oscuro", images: ["/botin-elegante-1.jpg", "/botin-elegante-2.jpg", "/botin-elegante-3.jpg"] }],
   },
 ];
