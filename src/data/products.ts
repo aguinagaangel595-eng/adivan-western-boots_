@@ -97,7 +97,7 @@ export const products: Product[] = [
   {
     id: 8,
     name: "Tejida Original Miel",
-    price: 1499,
+    price: 1599,
     group: "Botas",
     category: "Tejida",
     genero: "Hombre",
@@ -174,7 +174,7 @@ export const products: Product[] = [
   {
     id: 35,
     name: "Sombrero Laredo",
-    price: 380,
+    price: 390,
     group: "Sombreros",
     category: "Sombreros",
     description: "Sombrero de palma tipo vaquero, marca Laredo Hats, ala ancha y toquilla trenzada.",
@@ -206,7 +206,7 @@ export const products: Product[] = [
     id: 19,
     name: "Bolsa Yareli",
     price: 349,
-    originalPrice: 450,
+    originalPrice: 420,
     group: "Bolsos",
     category: "Bolsos",
     description: "Bolsa tipo caja con doble asa y cadena, en piel de res con grabado tipo exótico.",
@@ -285,7 +285,7 @@ export const products: Product[] = [
   },
   {
     id: 27,
-    name: "Sacabotas",
+    name: "Sacabotas ADIVAN",
     price: 220,
     group: "Otros",
     category: "Otros",
@@ -306,7 +306,7 @@ export const products: Product[] = [
   {
     id: 30,
     name: "Bolsa de pelo",
-    price: 690,
+    price: 780,
     group: "Bolsos",
     category: "Bolsos",
     description: "Bolsa grande en pelo de vaca, asas y jareta de piel lisa.",
@@ -315,7 +315,7 @@ export const products: Product[] = [
   {
     id: 31,
     name: "Sobaqueras",
-    price: 240,
+    price: 250,
     group: "Otros",
     category: "Otros",
     description: "Neceser tipo sobaquera en piel lisa con panel grabado, cierre doble y correa de mano.",
@@ -326,7 +326,7 @@ export const products: Product[] = [
   {
     id: 32,
     name: "Portacelular",
-    price: 129,
+    price: 130,
     group: "Otros",
     category: "Otros",
     description: "Funda para celular en piel, con panel grabado o cincelado.",
@@ -363,8 +363,8 @@ export const products: Product[] = [
   {
     id: 36,
     name: "Chamarra de Nobuck",
-    price: 1700,
-    originalPrice: 2000,
+    price: 1799,
+    originalPrice: 2100,
     group: "Chamarras",
     category: "Chamarras",
     description: "Chamarra tipo camisola en nobuck, con bolsas de solapa y botones de presión metálicos. Forro interior.",
@@ -389,7 +389,7 @@ export const products: Product[] = [
     id: 38,
     name: "Bota de Dama Retro",
     price: 1299,
-    originalPrice: 1700,
+    originalPrice: 1400,
     group: "Botas",
     category: "Rodeo",
     genero: "Dama",
