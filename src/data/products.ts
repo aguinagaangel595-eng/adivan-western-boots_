@@ -70,6 +70,7 @@ export const products: Product[] = [
   {
     id: 2,
     name: "Rodeo Miel",
+    agotado: "sobre-pedido",
     price: 1199,
     group: "Botas",
     category: "Rodeo",
@@ -82,6 +83,7 @@ export const products: Product[] = [
   {
     id: 3,
     name: "Rodeo Mango",
+    agotado: "sobre-pedido",
     price: 1199,
     group: "Botas",
     category: "Rodeo",
