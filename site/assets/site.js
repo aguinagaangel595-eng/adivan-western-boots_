@@ -67,7 +67,7 @@ function renderCart(){
   if(!items.length){
     dBody.innerHTML='<div class="empty">'+STAR+'<p>Tu carrito está vacío.</p><a class="pill" href="/tienda">Ver la tienda</a></div>'; dFoot.innerHTML=''; return;
   }
-  dBody.innerHTML=items.map((it,idx)=>`<div class="line"><img src="${abs(it.image)}" alt="" width="72" height="72"><div class="l-info"><h3>${it.name}</h3><p>${[it.talla&&'Talla '+it.talla,it.color&&it.color,it.grabado&&'Grabado: '+it.grabado].filter(Boolean).join(' · ')}</p><span class="l-price">${money(it.price)}</span><div class="qty"><button data-q="${idx}" data-d="-1" aria-label="Menos">−</button><b>${it.quantity}</b><button data-q="${idx}" data-d="1" aria-label="Más">+</button><button class="rm" data-rm="${idx}" aria-label="Quitar">Quitar</button></div></div></div>`).join('');
+  dBody.innerHTML=items.map((it,idx)=>`<div class="line"><img src="${abs(it.image)}" alt="" width="72" height="72"><div class="l-info"><h3>${it.name}</h3><p>${[it.talla&&'Talla '+it.talla,it.color&&it.color,it.grabado&&'Grabado: '+it.grabado,it.sobrePedido&&'AGOTADO · sobre pedido (tarda más)'].filter(Boolean).join(' · ')}</p><span class="l-price">${money(it.price)}</span><div class="qty"><button data-q="${idx}" data-d="-1" aria-label="Menos">−</button><b>${it.quantity}</b><button data-q="${idx}" data-d="1" aria-label="Más">+</button><button class="rm" data-rm="${idx}" aria-label="Quitar">Quitar</button></div></div></div>`).join('');
 
   const t=total(), pct=Math.round(clamp(t/FREE_SHIP_MIN,0,1)*100);
   const faltan=money(Math.max(0,FREE_SHIP_MIN-t));
@@ -91,7 +91,7 @@ dBody.addEventListener('click',e=>{
 dFoot.addEventListener('click',e=>{
   if(!e.target.closest('#orderWa')) return;
   const lineas=items.map(it=>{
-    const det=[it.talla&&'Talla: '+it.talla,it.color&&'Color: '+it.color,it.grabado&&'Grabado: '+it.grabado].filter(Boolean);
+    const det=[it.talla&&'Talla: '+it.talla,it.color&&'Color: '+it.color,it.grabado&&'Grabado: '+it.grabado,it.sobrePedido&&'AGOTADO: sobre pedido, tarda más en salir'].filter(Boolean);
     return '• '+it.name+(det.length?' ('+det.join(', ')+')':'')+' x'+it.quantity+' - '+money(it.price*it.quantity);
   });
   if(calificaJumbo()) lineas.push('🎁 Regalo Paquete JUMBO: Cartera Grabada');

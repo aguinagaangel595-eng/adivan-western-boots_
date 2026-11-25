@@ -22,8 +22,10 @@ addEventListener('keydown',e=>{if(!lbEl.classList.contains('open'))return; if(e.
 function card(p,idx,opts){
   opts=opts||{};
   const s={ci:0,ii:0,si:0,talla:null};
+  const ag=p.agotado||null; // null | 'no-pedir' (no se puede pedir) | 'sobre-pedido' (se puede pedir, tarda más)
+  const noPedir=ag==='no-pedir', sobrePedido=ag==='sobre-pedido';
   const hasSw=p.swatches.length>0, hasGr=p.grabadoPatrones.length>0, hasVar=p.variants.length>0;
-  const el=document.createElement('article'); el.className='pcard'; if(!opts.page) el.id='p-'+p.id; el.style.setProperty('--d',(Math.min(idx,12)*0.05)+'s');
+  const el=document.createElement('article'); el.className='pcard'+(noPedir?' is-out':''); if(!opts.page) el.id='p-'+p.id; el.style.setProperty('--d',(Math.min(idx,12)*0.05)+'s');
   const imgs=()=> hasGr&&p.grabadoImages.length ? p.grabadoImages : hasVar ? p.variants[s.ci].images : p.image?[p.image]:['/assets/adivan-logo-legado.png'];
   const colorName=()=> hasSw ? p.swatches[s.si].name : (hasGr||!hasVar||NO_COLOR.includes(p.variants[s.ci].color)) ? undefined : p.variants[s.ci].color;
   const tallaHtml=p.tallas.length?`<div class="opt"><div class="ol"><span>Talla</span></div><div class="row" role="group" aria-label="Talla">${p.tallas.map(t=>`<button class="o-btn o-size" data-t="${t}" aria-pressed="false">${t}</button>`).join('')}</div><p class="err" hidden>Selecciona una talla</p></div>`:'';
@@ -35,9 +37,9 @@ function card(p,idx,opts){
     else if(!NO_COLOR.includes(p.variants[0].color)&&p.variants[0].color!=='Surtido') colorHtml=`<div class="opt"><div class="ol"><span>Color</span><b>${esc(p.variants[0].color)}</b></div></div>`;
   }
   const grHtml=hasGr?`<div class="opt">${p.grabadoCatalogUrl?`<a class="gr-link" href="${p.grabadoCatalogUrl}" target="_blank" rel="noopener">Ver catálogo de grabados ↗</a>`:''}<div class="ol" style="margin-top:12px"><span>¿Qué grabado quieres?</span></div><input class="gr-in" data-gr placeholder="Ej. ${esc(p.grabadoPatrones.join(', '))}..." aria-label="Grabado que quieres"></div>`:'';
-  el.innerHTML=`<div class="pimg"><button class="zoom" aria-label="Ver imagen ampliada de ${esc(p.name)}"></button><img alt="" ${opts.page?'fetchpriority="high"':'loading="lazy"'}><span class="badge">${esc(p.category)}${p.genero?' · '+p.genero:''}</span>${p.originalPrice?'<span class="badge sale">Oferta</span>':''}${p.referenceImage?'<span class="ref">Imagen de referencia</span>':''}<span data-nav></span><div class="dots" data-dots></div></div>
-  <div class="pbody">${opts.page?'':`<div><h3><a class="plink" href="${p.url||'/tienda'}">${esc(p.name)}</a></h3><p class="desc">${esc(p.description)}</p></div>`}${colorHtml}${grHtml}${tallaHtml}
-  <div class="pfoot"><div class="pprice">${p.originalPrice?`<s>${money(p.originalPrice)}</s>`:''}<b class="${p.originalPrice?'sale':''}">$${p.price.toLocaleString('es-MX')}</b><span>MXN</span></div><button class="pill" data-add>Agregar<span class="sr"> al carrito</span></button></div></div>`;
+  el.innerHTML=`<div class="pimg"><button class="zoom" aria-label="Ver imagen ampliada de ${esc(p.name)}"></button><img alt="" ${opts.page?'fetchpriority="high"':'loading="lazy"'}><span class="badge">${esc(p.category)}${p.genero?' · '+p.genero:''}</span>${p.originalPrice?'<span class="badge sale">Oferta</span>':''}${ag?`<span class="badge out">${sobrePedido?'Agotado · sobre pedido':'Agotado'}</span>`:''}${p.referenceImage?'<span class="ref">Imagen de referencia</span>':''}<span data-nav></span><div class="dots" data-dots></div></div>
+  <div class="pbody">${opts.page?'':`<div><h3><a class="plink" href="${p.url||'/tienda'}">${esc(p.name)}</a></h3><p class="desc">${esc(p.description)}</p></div>`}${colorHtml}${noPedir?'':grHtml}${noPedir?'':tallaHtml}
+  <div class="pfoot"><div class="pprice">${p.originalPrice?`<s>${money(p.originalPrice)}</s>`:''}<b class="${p.originalPrice?'sale':''}">$${p.price.toLocaleString('es-MX')}</b><span>MXN</span></div>${noPedir?'<button class="pill" disabled aria-disabled="true">Agotado</button>':`<button class="pill" data-add>${sobrePedido?'Pedir sobre pedido':'Agregar'}<span class="sr"> al carrito</span></button>`}</div>${sobrePedido?'<p class="stock-note">Agotado por ahora. Puedes pedirlo, pero tarda más en salir; te confirmamos el tiempo por WhatsApp.</p>':''}${noPedir?'<p class="stock-note">Agotado por ahora. Escríbenos por WhatsApp para saber cuándo vuelve.</p>':''}</div>`;
   const img=$('img',el), dots=$('[data-dots]',el), navSlot=$('[data-nav]',el);
   function paint(){
     const L=imgs(); if(s.ii>=L.length) s.ii=0;
@@ -55,9 +57,10 @@ function card(p,idx,opts){
     const sw=e.target.closest('[data-sw]'); if(sw){s.si=+sw.dataset.sw; $$('[data-sw]',el).forEach(b=>b.setAttribute('aria-pressed',b===sw)); $('[data-swname]',el).textContent=p.swatches[s.si].name; return}
     const t=e.target.closest('[data-t]'); if(t){s.talla=t.dataset.t; $$('[data-t]',el).forEach(b=>b.setAttribute('aria-pressed',b===t)); const er=$('.err',el); if(er) er.hidden=true; return}
     if(e.target.closest('[data-add]')){
+      if(noPedir) return;
       if(p.tallas.length&&!s.talla){const er=$('.err',el); er.hidden=false; return}
       const gr=hasGr?($('[data-gr]',el).value.trim()||'Sin especificar'):undefined;
-      cart.add({id:p.id,name:p.name,price:p.price,image:imgs()[0],talla:s.talla||undefined,color:colorName(),grabado:gr,group:p.group,esDeVestir:!!p.esDeVestir});
+      cart.add({id:p.id,name:p.name,price:p.price,image:imgs()[0],talla:s.talla||undefined,color:colorName(),grabado:gr,group:p.group,esDeVestir:!!p.esDeVestir,sobrePedido:sobrePedido||undefined});
       s.talla=null; $$('[data-t]',el).forEach(b=>b.setAttribute('aria-pressed','false'));
     }
   });

@@ -10,7 +10,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { products, GRUPOS, SUBCATEGORIAS_BOTA } from "../src/data/products";
+import { products, GRUPOS, SUBCATEGORIAS_BOTA, estadoStock } from "../src/data/products";
 import { buildSeo, enrichProducts } from "./seo-build";
 import { PAGINAS } from "../src/data/seo";
 
@@ -57,6 +57,7 @@ const data = {
     description: p.description,
     referenceImage: !!p.referenceImage,
     esDeVestir: !!p.esDeVestir,
+    agotado: estadoStock(p),
     tallas: p.tallas,
     variants: (p.variants ?? []).map((v) => ({ color: v.color, images: v.images.map(img) })),
     swatches: p.colorSwatches ?? [],
@@ -67,6 +68,19 @@ const data = {
   })),
 };
 fs.writeFileSync(path.join(DIST, "assets", "products.js"), "window.ADIVAN_DATA=" + JSON.stringify(data) + ";\n");
+
+// Inicio: las tarjetas fijas de "Lo más pedido" también muestran AGOTADO si el producto está agotado.
+{
+  const fp = path.join(DIST, "index.html");
+  let html = fs.readFileSync(fp, "utf8");
+  for (const p of enriched) {
+    const est = estadoStock(p);
+    if (!est) continue;
+    const re = new RegExp(`(<a class="tile[^"]*"[^>]*href="[^"]*[?&]p=${p.id}"[^>]*>)`);
+    html = html.replace(re, `$1<span class="tag out">${est === "sobre-pedido" ? "Agotado · sobre pedido" : "Agotado"}</span>`);
+  }
+  fs.writeFileSync(fp, html);
+}
 
 // Datos públicos para el panel /admin/pedidos (la llave anon es pública; la protección real es RLS en Supabase).
 const cfg = {

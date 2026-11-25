@@ -7,7 +7,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import type { Product } from "../src/data/products";
-import { tallasDe } from "../src/data/products";
+import { tallasDe, estadoStock } from "../src/data/products";
 import { SITE, PAGINAS, CATEGORIAS, type CategoriaSEO } from "../src/data/seo";
 
 // ───────────────────────── utilidades ─────────────────────────
@@ -263,7 +263,7 @@ function productLD(p: ProductoSEO) {
       url: abs(p.url),
       priceCurrency: "MXN",
       price: p.price,
-      availability: "https://schema.org/InStock",
+      availability: estadoStock(p) === "no-pedir" ? "https://schema.org/OutOfStock" : estadoStock(p) === "sobre-pedido" ? "https://schema.org/BackOrder" : "https://schema.org/InStock",
       itemCondition: "https://schema.org/NewCondition",
       hasMerchantReturnPolicy: {
         "@type": "MerchantReturnPolicy",
@@ -335,7 +335,7 @@ function priceHtml(p: ProductoSEO): string {
 
 function cardStatic(p: ProductoSEO): string {
   return `<a class="ccard" href="${p.url}">
-  <div class="cimg"><img src="${p.mainImage}" alt="${esc(longName(p))}${p.colors[0] ? " - " + esc(p.colors[0]) : ""}" loading="lazy">${p.originalPrice ? '<span class="badge sale">Oferta</span>' : ""}${p.referenceImage ? '<span class="ref">Imagen de referencia</span>' : ""}</div>
+  <div class="cimg"><img src="${p.mainImage}" alt="${esc(longName(p))}${p.colors[0] ? " - " + esc(p.colors[0]) : ""}" loading="lazy">${p.originalPrice ? '<span class="badge sale">Oferta</span>' : ""}${estadoStock(p) ? `<span class="out-tag">${estadoStock(p) === "sobre-pedido" ? "Agotado · sobre pedido" : "Agotado"}</span>` : ""}${p.referenceImage ? '<span class="ref">Imagen de referencia</span>' : ""}</div>
   <div class="cinfo"><h3>${esc(p.name)}</h3><p class="cprice">${priceHtml(p)}</p></div></a>`;
 }
 

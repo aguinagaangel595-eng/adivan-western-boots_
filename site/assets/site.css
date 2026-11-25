@@ -265,3 +265,5 @@ footer{border-top:1px solid var(--line);padding:46px 0 60px;background:rgba(14,8
   html{scroll-behavior:auto}
 }
 body.paused *,body.paused *::before,body.paused *::after{animation-play-state:paused !important}
+
+.tile .tag.out{top:50px;background:#1a0d05;color:#fff;border:1px solid rgba(255,255,255,.4);font-weight:600}

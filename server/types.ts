@@ -12,6 +12,7 @@ export interface ProductoDB {
   tallas: (number | string)[];
   colores: string[];
   grabado_personalizable: boolean;
+  agotado: "no-pedir" | "sobre-pedido" | null;
 }
 
 export type EstadoConversacion = "activa" | "requiere_humano" | "cerrada";

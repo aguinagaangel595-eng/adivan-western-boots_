@@ -34,6 +34,7 @@ export function formatCatalogoParaPrompt(catalogo: ProductoDB[]): string {
     tallas: p.tallas.length > 0 ? p.tallas : undefined,
     colores: p.colores.length > 0 ? p.colores : undefined,
     grabado_personalizable: p.grabado_personalizable || undefined,
+    agotado: p.agotado ?? undefined,
     descripcion: p.descripcion,
   }));
   return JSON.stringify(compacto);

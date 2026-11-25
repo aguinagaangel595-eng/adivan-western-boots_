@@ -111,7 +111,7 @@ El catálogo del agente se sincroniza solo en cada publicación del sitio (si `S
 
 ## Cosas a saber
 
-- **No hay control de inventario.** Todo se trata como sobre pedido/artesanal — el agente nunca dice "agotado". Si más adelante quieres marcar productos sin stock, se agrega fácil (columna `disponible` en `productos`).
+- **Agotados.** En `src/data/products.ts`, agrégale a un producto `agotado: "no-pedir"` (no se puede pedir) o `agotado: "sobre-pedido"` (se puede pedir, tarda más). El sitio muestra la etiqueta AGOTADO y el bot sabe qué hacer: con "no-pedir" no toma el pedido y ofrece algo parecido; con "sobre-pedido" avisa que tarda más y lo anota en el pedido. Se aplica con `npm run sync:catalogo` (o solo al publicar el sitio). Requiere la migración `supabase/migrations/0002_agotado.sql`.
 - **Productos con grabado a elegir** (`grabado_personalizable = true` en la tabla) el agente los escala directo a humano en vez de intentar cerrarlos solo, porque implican elegir un patrón por catálogo aparte — igual que ya lo manejas hoy por WhatsApp normal.
 - **Historial**: el agente ve los últimos 20 mensajes de cada conversación (ajustable en `HISTORIAL_MAX_MENSAJES`, en `api/whatsapp.ts` y `scripts/test-agent-local.ts`).
 - **Idempotencia**: si Meta reenvía el mismo mensaje (pasa seguido), el `message_id` (wamid) es único en la tabla `mensajes`, así que el segundo intento no genera una respuesta duplicada.

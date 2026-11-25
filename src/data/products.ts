@@ -31,11 +31,21 @@ export interface Product {
   grabadoImages?: string[];
   grabadoCatalogUrl?: string;
   esDeVestir?: boolean; // true = cinto de vestir/formal — no cuenta para el Paquete JUMBO (ver más abajo)
+  agotado?: boolean | "no-pedir" | "sobre-pedido"; // ver "Productos agotados" abajo
   // SEO (opcionales): dirección web fija, título y descripción para Google. Si no los pones, se generan solos.
   slug?: string;
   seoTitle?: string;
   seoDescription?: string;
 }
+
+// ── Productos agotados ─────────────────────────────────────────────────────
+// Para marcar un producto como AGOTADO, agrégale UNA línea (con coma al final):
+//     agotado: "no-pedir",      -> sale con la etiqueta AGOTADO y NO se puede pedir.
+//     agotado: "sobre-pedido",  -> sale con la etiqueta AGOTADO, pero se puede pedir sabiendo que tarda más en salir.
+// Cuando vuelva a haber stock, borra esa línea. (`agotado: true` equivale a "no-pedir").
+export type EstadoStock = "no-pedir" | "sobre-pedido" | null;
+export const estadoStock = (p: Pick<Product, "agotado">): EstadoStock =>
+  p.agotado === "sobre-pedido" ? "sobre-pedido" : p.agotado ? "no-pedir" : null;
 
 // ── Paquete JUMBO ──────────────────────────────────────────────────────────
 // Promoción: 1 par de botas (solo botas, no botines) + 1 cinto que NO sea de vestir (esDeVestir

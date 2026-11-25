@@ -8,7 +8,7 @@
 
 import "dotenv/config";
 import { createClient } from "@supabase/supabase-js";
-import { products, tallasDe } from "../src/data/products";
+import { products, tallasDe, estadoStock } from "../src/data/products";
 
 function colores(p: (typeof products)[number]): string[] {
   const deVariantes = (p.variants ?? []).map((v) => v.color);
@@ -39,6 +39,7 @@ async function main() {
     tallas: tallasDe(p),
     colores: colores(p),
     grabado_personalizable: Array.isArray(p.grabadoPatrones) && p.grabadoPatrones.length > 0,
+    agotado: estadoStock(p),
     actualizado_en: new Date().toISOString(),
   }));
 

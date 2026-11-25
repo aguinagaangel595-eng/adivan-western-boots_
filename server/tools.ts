@@ -116,6 +116,18 @@ async function ejecutarRegistrarPedido(
   const productoId = typeof input.producto_id === "number" ? input.producto_id : undefined;
   const productoCatalogo = productoId ? ctx.catalogo.find((p) => p.id === productoId) : undefined;
 
+  // Agotados: 'no-pedir' no se puede registrar; 'sobre-pedido' se registra marcándolo en las notas (esto lo hace el
+  // servidor, no depende de que el modelo se acuerde).
+  if (productoCatalogo?.agotado === "no-pedir") {
+    return {
+      resultadoParaClaude:
+        "ERROR: ese producto está AGOTADO y no se puede pedir. Díselo al cliente y ofrécele algo parecido que no esté agotado.",
+    };
+  }
+  const notaAgotado =
+    productoCatalogo?.agotado === "sobre-pedido" ? "AGOTADO: sobre pedido, el cliente sabe que tarda más en salir" : null;
+  const notasFinales = [input.notas ? String(input.notas) : null, notaAgotado].filter(Boolean).join(" | ") || undefined;
+
   const pedido = await insertarPedido({
     nombre,
     telefono,
@@ -129,7 +141,7 @@ async function ejecutarRegistrarPedido(
     direccion,
     forma_pago: formaPago,
     fecha_limite: input.fecha_limite ? String(input.fecha_limite) : undefined,
-    notas: input.notas ? String(input.notas) : undefined,
+    notas: notasFinales,
     conversacionId: ctx.conversacionId,
     precioUnitario: productoCatalogo?.precio ?? null,
   });
