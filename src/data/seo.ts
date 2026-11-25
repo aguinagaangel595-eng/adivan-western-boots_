@@ -16,7 +16,7 @@ export const SITE = {
   region: "Guanajuato",
   country: "MX",
   geo: { lat: 21.1238068, lng: -101.6751618 },
-  freeShipMin: 1100, // envío gratis desde este total (también lo usa el carrito)
+  freeShipMin: 1699, // envío gratis desde este total (también lo usa el carrito)
   logo: "/adivan-logo-legado.png",
   ogImage: "/Rodeo-cafe-enmielado-1.jpeg", // 1080x1350, imagen al compartir el enlace
   sameAs: [
