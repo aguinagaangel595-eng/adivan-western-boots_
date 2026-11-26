@@ -64,9 +64,20 @@ function tallasTxt(t: (number | string)[]): string {
 
 const imgPath = (p: string) => "/assets/p/" + path.basename(p);
 
+// Orden de la vitrina (tienda y páginas de categoría): primero lo de temporada (agrupado por temporada),
+// luego las demás ofertas, luego lo normal, y al final lo agotado que no se puede pedir.
+// Dentro de cada grupo se respeta el orden de products.ts.
+const prioridadVitrina = (p: Product): number => {
+  if (estadoStock(p) === "no-pedir") return 1000;
+  if (p.temporada && TEMPORADAS[p.temporada]) return Object.keys(TEMPORADAS).indexOf(p.temporada);
+  if (p.originalPrice) return 100;
+  return 500;
+};
+
 export function enrichProducts(products: Product[]): ProductoSEO[] {
   const used = new Set<string>();
-  return products.map((p) => {
+  const ordenados = products.map((p, i) => ({ p, i })).sort((a, b) => prioridadVitrina(a.p) - prioridadVitrina(b.p) || a.i - b.i).map((x) => x.p);
+  return ordenados.map((p) => {
     let slug = p.slug || slugify(p.name);
     if (used.has(slug)) slug = `${slug}-${p.id}`;
     used.add(slug);
