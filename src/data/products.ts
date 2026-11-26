@@ -424,6 +424,7 @@ export const products: Product[] = [
     name: "Botín Alto",
     price: 900,
     originalPrice: 1199,
+    temporada: "navidad",
     group: "Botines",
     category: "Botín",
     genero: "Hombre",
