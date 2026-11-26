@@ -280,3 +280,20 @@ footer{border-top:1px solid var(--line);padding:56px 0 46px;background:rgba(14,8
 .pill[disabled]{background:rgba(193,150,106,.25);color:var(--text-secondary);cursor:not-allowed;pointer-events:none}
 .stock-note{margin-top:10px;font-size:12px;line-height:1.5;color:#8a5a2b}
 .cimg .out-tag{position:absolute;top:12px;left:12px;z-index:2;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:#1a0d05;color:#fff;border:1px solid rgba(255,255,255,.4);font-weight:600}
+
+/* ── Temporadas (ofertas con look propio; los colores vienen de src/data/temporadas.ts) ── */
+.pcard.seasonal,.ccard.seasonal,.shop-page .ccard.seasonal{border:2px solid var(--sc);box-shadow:0 18px 40px -28px var(--sc)}
+.s-band{position:relative;display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 12px;background:linear-gradient(90deg,var(--sc),var(--sc2));color:var(--stx,#fff);font-family:var(--mono);font-size:11px;letter-spacing:.2em;font-weight:600;text-align:center;overflow:hidden}
+.s-band span{font-size:17px;letter-spacing:0;display:inline-block;animation:sway 3.2s ease-in-out infinite}
+.s-band span:last-child{animation-delay:-1.6s}
+.s-band::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;background:radial-gradient(circle at 8% 35%,#fff 0 1.5px,transparent 2.5px),radial-gradient(circle at 28% 75%,#fff 0 1px,transparent 2px),radial-gradient(circle at 52% 20%,#fff 0 1.5px,transparent 2.5px),radial-gradient(circle at 73% 70%,#fff 0 1px,transparent 2px),radial-gradient(circle at 92% 30%,#fff 0 1.5px,transparent 2.5px)}
+.pcard.seasonal .pbody{background:linear-gradient(180deg,color-mix(in srgb,var(--sc) 12%,#f6efe1),#f6efe1 75%)}
+.pcard.seasonal .pprice b.sale{color:var(--sc)}
+.pcard.seasonal .pill:not([disabled]){background:var(--sc);color:#fff}
+.pcard.seasonal .pill:not([disabled]):hover{filter:brightness(1.12)}
+.pcard.seasonal .pimg .badge.sale{background:var(--sc);color:#fff}
+.ccard.seasonal .cimg .badge{background:var(--sc);color:#fff}
+.ccard.seasonal .cprice b{color:var(--sc)}
+@keyframes sway{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(9deg)}}
+@media (prefers-reduced-motion:reduce){.s-band span{animation:none}}
+.pimg .s-sticker{position:absolute;right:12px;bottom:12px;z-index:2;width:50px;height:50px;border-radius:50%;background:#fff;border:3px solid var(--sc);display:grid;place-items:center;font-size:28px;line-height:1;transform:rotate(10deg);box-shadow:0 6px 16px -4px rgba(0,0,0,.45);pointer-events:none}

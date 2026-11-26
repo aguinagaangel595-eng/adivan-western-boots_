@@ -32,6 +32,7 @@ export interface Product {
   grabadoCatalogUrl?: string;
   esDeVestir?: boolean; // true = cinto de vestir/formal — no cuenta para el Paquete JUMBO (ver más abajo)
   agotado?: boolean | "no-pedir" | "sobre-pedido"; // ver "Productos agotados" abajo
+  temporada?: string; // id de una temporada de src/data/temporadas.ts (ej. "navidad"): le da al producto el look de esa temporada
   // SEO (opcionales): dirección web fija, título y descripción para Google. Si no los pones, se generan solos.
   slug?: string;
   seoTitle?: string;
@@ -46,6 +47,10 @@ export interface Product {
 export type EstadoStock = "no-pedir" | "sobre-pedido" | null;
 export const estadoStock = (p: Pick<Product, "agotado">): EstadoStock =>
   p.agotado === "sobre-pedido" ? "sobre-pedido" : p.agotado ? "no-pedir" : null;
+
+// ── Ofertas por temporada ──────────────────────────────────────────────────
+// Para que un producto salga con el look de una temporada (Navidad, Buen Fin, etc.) mira las
+// instrucciones al inicio de src/data/temporadas.ts: se le pone `price`, `originalPrice` y `temporada`.
 
 // ── Paquete JUMBO ──────────────────────────────────────────────────────────
 // Promoción: 1 par de botas (solo botas, no botines) + 1 cinto que NO sea de vestir (esDeVestir

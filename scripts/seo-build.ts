@@ -8,6 +8,7 @@ import fs from "node:fs";
 import path from "node:path";
 import type { Product } from "../src/data/products";
 import { tallasDe, estadoStock } from "../src/data/products";
+import { TEMPORADAS } from "../src/data/temporadas";
 import { SITE, PAGINAS, CATEGORIAS, type CategoriaSEO } from "../src/data/seo";
 
 // ───────────────────────── utilidades ─────────────────────────
@@ -334,7 +335,9 @@ function priceHtml(p: ProductoSEO): string {
 }
 
 function cardStatic(p: ProductoSEO): string {
-  return `<a class="ccard" href="${p.url}">
+  const t = p.temporada ? TEMPORADAS[p.temporada] : null;
+  const band = t ? `<div class="s-band">${t.decoracion[0]} ${esc(t.cinta)} ${t.decoracion[t.decoracion.length - 1]}</div>` : "";
+  return `<a class="ccard${t ? " seasonal" : ""}" href="${p.url}"${t ? ` style="--sc:${t.color};--sc2:${t.color2};--stx:${t.texto ?? "#fff"}"` : ""}>${band}
   <div class="cimg"><img src="${p.mainImage}" alt="${esc(longName(p))}${p.colors[0] ? " - " + esc(p.colors[0]) : ""}" loading="lazy">${p.originalPrice ? '<span class="badge sale">Oferta</span>' : ""}${estadoStock(p) ? `<span class="out-tag">${estadoStock(p) === "sobre-pedido" ? "Agotado · sobre pedido" : "Agotado"}</span>` : ""}${p.referenceImage ? '<span class="ref">Imagen de referencia</span>' : ""}</div>
   <div class="cinfo"><h3>${esc(p.name)}</h3><p class="cprice">${priceHtml(p)}</p></div></a>`;
 }

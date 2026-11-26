@@ -13,6 +13,7 @@ import { fileURLToPath } from "node:url";
 import { products, GRUPOS, SUBCATEGORIAS_BOTA, estadoStock } from "../src/data/products";
 import { buildSeo, enrichProducts } from "./seo-build";
 import { PAGINAS } from "../src/data/seo";
+import { TEMPORADAS } from "../src/data/temporadas";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PUB = path.join(ROOT, "public");
@@ -44,6 +45,7 @@ const enriched = enrichProducts(products);
 const data = {
   grupos: GRUPOS,
   subBota: SUBCATEGORIAS_BOTA,
+  temporadas: TEMPORADAS,
   products: enriched.map((p) => ({
     id: p.id,
     slug: p.slug,
@@ -58,6 +60,7 @@ const data = {
     referenceImage: !!p.referenceImage,
     esDeVestir: !!p.esDeVestir,
     agotado: estadoStock(p),
+    temporada: p.temporada && TEMPORADAS[p.temporada] ? p.temporada : null,
     tallas: p.tallas,
     variants: (p.variants ?? []).map((v) => ({ color: v.color, images: v.images.map(img) })),
     swatches: p.colorSwatches ?? [],
@@ -75,9 +78,13 @@ fs.writeFileSync(path.join(DIST, "assets", "products.js"), "window.ADIVAN_DATA="
   let html = fs.readFileSync(fp, "utf8");
   for (const p of enriched) {
     const est = estadoStock(p);
-    if (!est) continue;
+    const t = p.temporada ? TEMPORADAS[p.temporada] : null;
+    if (!est && !t) continue;
     const re = new RegExp(`(<a class="tile[^"]*"[^>]*href="[^"]*[?&]p=${p.id}"[^>]*>)`);
-    html = html.replace(re, `$1<span class="tag out">${est === "sobre-pedido" ? "Agotado · sobre pedido" : "Agotado"}</span>`);
+    const tags =
+      (est ? `<span class="tag out">${est === "sobre-pedido" ? "Agotado · sobre pedido" : "Agotado"}</span>` : "") +
+      (t ? `<span class="tag season" style="--sc:${t.color};--sc2:${t.color2}">${t.decoracion[0]} ${t.nombre}</span>` : "");
+    html = html.replace(re, `$1${tags}`);
   }
   fs.writeFileSync(fp, html);
 }
